@@ -1,4 +1,4 @@
-\documentclass[book,paper=a4, fontsize=12pt, line_length=16cm, number_of_lines=33,dvipdfmx]{jlreq}
+\documentclass[report,paper=a4, fontsize=12pt, line_length=16cm, number_of_lines=33,dvipdfmx]{jlreq}
 %\documentclass[pandoc,12pt]{bxjsarticle}
 
 \usepackage{amsmath,amssymb}
@@ -19,6 +19,12 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{breakable, skins, theorems}
 %\usepackage{cleveref}
+
+% font warningを出さないため
+\DeclareFontShape{JY2}{hgt}{b}{n}{<->ssub*hgt/bx/n}{}
+\DeclareFontShape{JY2}{hgt}{m}{it}{<->ssub*hgt/m/n}{}
+\DeclareFontShape{JT2}{hgt}{b}{n}{<->ssub*hgt/bx/n}{}
+\DeclareFontShape{JT2}{hgt}{m}{it}{<->ssub*hgt/m/n}{}
 
 \newenvironment{myquote}{\begin{tcolorbox}[
   colback = blue!5, after = \noindent] }{\end{tcolorbox}}
@@ -74,23 +80,200 @@
 \newcommand{\Cb}{\mathbb{C}}
 \newcommand{\Zb}{\mathbb{Z}}
 \newcommand{\CP}{\Cb \mathrm{P}}
-\newcommand{\strong}[1]{\textgt{#1}}
+\newcommand{\strong}[1]{{\sffamily \bfseries #1}}
+\newcommand{\Sp}{S$'$}
 
-
-
+\newcommand{\xb}{\vvmathbb{x}}
+\newcommand{\pbb}{\vvmathbb{p}}
+\newcommand{\Ab}{\vvmathbb{A}}
 
 \title{相対論的量子力学---Dirac方程式と場の理論の初歩}
 \author{山口　哲}
 \date{2020年前期}
 \begin{document}
+
 \maketitle
 \tableofcontents
 \chapter{導入}
+この講義のタイトルは「相対論的量子力学」です。文字通り量子力学を相対論的にしようという試みです。まずそれぞれについて、どんなものだったか復習しましょう。
 
+ここで相対論とは、ここでは特殊相対論のことです。特殊相対論とはLorentz変換によって物理法則が不変になるという、理論の枠組みのことでした。
+特に\strong{Lorentz変換は、時刻$t$と空間の位置$\xb$を混ぜる変換}ですので、理論の記述の中には、時間と空間は同等に入っていることが望ましいです
+\footnote{実際には、物理量がLorentz変換の対称性を持てばよいので、理論の記述ではLorentz対称性は明らかではないかもしれません。
+量子力学以降の現代的な物理では、「物理量」と「理論の記述」を区別することが重要です。}。
 
+もう一方の量子力学は、Schr\"{o}dinger方程式で記述されるような、波動関数を考えるものでした。１粒子の場合だと波動関数を$\psi(t,\xb)$として、
+\begin{align}
+  i\hbar\pdv{t} \psi=\qty(
+    -\frac{\hbar^2}{2m}\nabla^2+V(\xb)
+  )\psi
+\end{align}
+というふうになります。ここでは、時刻$t$については１階微分ですが、位置$\xb$については２階微分になっているので、これらは同等に扱われていません。
+１粒子の場合では１階か２階かという程度の問題ですが、多粒子になるともっと問題が大きくなります。
+例えば２粒子の場合だと時刻は一つしかないのに空間の位置は２つあります。
+
+この後、講義で説明するように量子力学を相対論的に書き換えようと、困難に直面します。
+その一部は\strong{Dirac方程式}を考えることで克服できます。このDirac方程式は一つの電子をそれなりに良く記述します。
+これは、大変素晴らしいもので、例えば非相対論的量子力学では「手で」入れていたスピンという角運動量が、Dirac方程式の立場からは自然に導入されます。
+この講義の大部分は、このDirac方程式による一つの電子の記述についてです。
+
+Dirac方程式による一つの電子の記述は素晴らしいものですが、まだ困難は残っています。Diracはそれを克服するために「Diracの海」という概念を導入しました。
+これについては、後で詳しく説明します。
+このDiracの海の概念も反粒子を予言するという素晴らしい成果を残しましたが、同時に\strong{一つの電子だけを考える理論は不完全で、必ず多粒子を考えなければならない}ということも明らかにします。
+
+正しく相対論的に量子力学を記述できる理論は、次の２つの条件を満たさなければなりません。
+\begin{itemize}
+  \item 任意個の粒子をいっぺんに取り扱うことができる。
+  \item 粒子の「個数」、「種類」が時間発展で変わりうる。
+\end{itemize}
+こういう条件を満たす理論が\strong{場の理論}です。この場の理論の初歩的な導入をこの講義の後半で行います。
+
+ここで強調したいのは、量子力学を相対論的に書き換えたいという「ちょっとした」動機から始まって、様々な困難に出会い克服していくうちに、場の理論という非常に大掛かりな理論に\strong{必然的に}行かなければならないことが分かったという点です。
+物理の発展の歴史の中でも、もっともドラマチックな展開の一つだと思います。
+理論的な考察が大きな役割を果たしたという点も、理論物理をやっている者としては興味深い点です。
+
+参考文献を紹介します。１つめは昔からあるこの分野の名著で
+\begin{mycite}
+  西島和彦「相対論的量子力学」
+\end{mycite}
+です。Dirac方程式の取り扱いについて非常に詳しく書かれています。場の理論に行かない範囲内での電磁気の相互作用についても書かれています。もう一つは比較的新しい本で
+\begin{mycite}
+  坂本眞人「場の量子論―不変性と自由場を中心にして―」
+\end{mycite}
+です。非常に読みやすい本です。自由場についても比較的詳しく書かれています。
 
 \chapter{準備}
+\section{自然単位系}
+この分野では、複雑な式がたくさん出てきます。
+その式の見た目の複雑さを少しでも軽減するために単位をうまくとって基本的な物理定数を$1$にすることを考えます。２つだけ注意をしておきます。
+\begin{itemize}
+  \item このような単位系を選ぶのは、単に式の見た目を簡単にするという便利のためであって物理の本質とは全く関係ありません。SI単位系を用いて全く同じように物理を記述することができます。
+  \item 物理定数をあらわに書いたほうが便利なこともあります。このようなときには、次元解析により物理定数を式の中に復活させることは、いつでもできます。復活させる練習をしておくことは重要です。
+\end{itemize}
 
+まず、我々は特殊相対論を取り扱います。特殊相対論では真空中の光速$c$は非常に基本的な定数で、そこらじゅうに現れます。ですので時間の単位をとりかえて$c=1$となる単位系をとれば式が簡単になると期待できます。例えば、長さを[m]（メートル）で測ったとして、時間も[m]で測ることになります。時間1mは真空中の光が1m進むのにかかる時間です。
+
+また、我々は量子力学を取り扱います。量子力学ではプランク定数を$2\pi$で割ったもの$\hbar$は非常に基本的な定数で、たくさん現れます。なので、例えばエネルギーの単位をとりかえて$\hbar=1$になるようにすると便利です。例えば先程のように長さと時間の単位を[m]にしたとすると、角振動数の単位は[m${}^{-1}$]になります。なのでエネルギーの単位は[m${}^{-1}$]とすると$\hbar=1$にすることができます。この場合エネルギー1m${}^{-1}$は、角振動数1m${}^{-1}$の光子一個が持つエネルギーになります。
+
+このように$c=1,\hbar=1$とした単位系を\strong{自然単位系}といいます\footnote{この講義では関係ないですが、$c=1, \hbar=1$に加えてボルツマン定数$k_B=1$となるように温度の単位も選んだものを自然単位系と呼ぶことも多いです。}。自然単位系では、まだ一つだけ単位を自由に選ぶことができます。例えば上では、長さの単位[m]を選びました。素粒子論でよく使うのはエネルギーの単位を一つ選ぶことです。例えばエネルギーの単位を[GeV]（ギガ電子ボルト）を選んだとすると、長さや時間は[GeV${}^{-1}$]で表すことになります。
+
+ちなみに、これに関して覚えておくと便利な数字があります。
+\begin{align}
+  \hbar c = 0.20 \mathrm{\ GeV\cdot fm}\label{fmGeV}
+\end{align}
+というものです。ここで1 fm $=10^{-15}$mです。1 fmはだいたい原子核の大きさくらいのスケールです。\eqref{fmGeV}の意味するところは、自然単位系では$1\ \mathrm{ fm}=\frac{1}{0.20}\ \mathrm{GeV}^{-1}$ということです。
+
+\section{特殊相対論のテンソル}
+まず、特殊相対論のテンソルの記号の使い方等は、付録\ref{app:tensor}にまとめています。ひととおり復習しておいてください。一つだけ注意することは、$\eta_{\mu\nu}$の符号についてです。今回の記号の使い方では、時空の計量は
+\begin{align}
+  \dd{s}^2=\eta_{\mu\nu}\dd{x}^{\mu}\dd{x}^{\nu}=+(\dd{x}^0)^2
+  -(\dd{x}^1)^2
+  -(\dd{x}^2)^2
+  -(\dd{x}^3)^2\label{metric}
+\end{align}
+となります。私の電磁気学２の講義を受けた人は、そのときと符号が逆であることに注意してください。人、教科書、時と場合によって、この符号はどちらを使っているかが違います。今後教科書、論文などを読むときは注意してください。
+
+\section{相対論的な自由粒子の古典力学}
+さて、相対論的な粒子の運動について復習しましょう。ここでは解析力学の枠組みで見ていきます。まずは自由粒子からです。粒子が時空に描く線を\strong{世界線}と呼びます。自由粒子の作用は世界線の長さに比例します。これは、質量を$m$として
+\begin{align}
+  S=-m\int \dd{s}\label{actionfree}
+\end{align}
+と書けます。世界線をパラメータ表示するためのパラメータを$\lambda$とし、式\eqref{metric}の両辺を$d\lambda$で割って
+\begin{align}
+  \qty(\dv{s}{\lambda})^2=\eta_{\mu\nu}\dv{x^{\mu}}{\lambda}\dv{x^{\nu}}{\lambda}
+\end{align}
+となるので、\eqref{actionfree}の作用は
+\begin{align}
+  S=-m\int \dd{s}
+  =-m\int \dd{\lambda}\dv{s}{\lambda}
+  =-m\int \dd{\lambda}\sqrt{\eta_{\mu\nu}\dv{x^{\mu}}{\lambda}\dv{x^{\nu}}{\lambda}}
+\end{align}
+と書くことができます。ここで気づくことは、$\lambda$はちゃんとパラメータ付けできるようなものであれば何でもよいということです。別の言い方をすると、再パラメータ付け$\lambda\to \lambda'=\lambda'(\lambda)$の対称性があるということです\footnote{再パラメータ付けの対称性は広い意味でのゲージ対称性です。}。
+
+再パラメータ付けの対称性を利用して$\lambda=t$という条件を付けることにします。このような操作を一般に\strong{ゲージを選ぶ}あるいは\strong{ゲージ固定}といいます。特に今の$\lambda=t$の条件を課すゲージ固定は\strong{静的ゲージ}と呼びます。こうすると、作用は
+\begin{align}
+  S=\int \dd{t} L,\quad L=-m\sqrt{1-\dot{\xb}^2}\label{staticgauge}
+\end{align}
+となります。$\dot{\xb}$は速度です。この表式では、明白なLorentz不変性は失われてしまっています。これは、静的ゲージという時間$t$を特別扱いしたゲージをとったためです。しかし、理論からLorentz不変性が失われたわけではないことに注意してください。
+
+さて、\eqref{staticgauge}の作用を解析力学で習ったように取り扱うことにしましょう。このLagrangianには、$\dot{\xb}$は現れますが$\xb$そのものは現れない、つまり$\xb$は循環座標になっています。この場合、$\xb$を並進する対称性があり、$\xb$の正準運動量が保存します。これを求めてみましょう。$i=1,2,3$として定義にしたがって計算すると
+\begin{align}
+  p^i=\pdv{L}{\dot{x}^i}=\frac{m\dot{x}^i}{\sqrt{1-\dot{\xb}^2}}
+\end{align}
+となります。つまり、３次元ベクトルの記法を用いると
+\begin{align}
+  \pbb=\frac{m\dot{\xb}}{\sqrt{1-\dot{\xb}^2}}
+\end{align}
+となります。
+
+一方、Lagrangianは時間$t$に陽によっていないので時間並進の対称性もあります。時間並進対称性の保存量であるエネルギーは
+\begin{align}
+  E=\pbb\cdot \xb-L=\frac{m}{\sqrt{1-\dot{\xb}^2}}
+\end{align}
+となります。時間方向並進と空間方向並進は合わせて４元ベクトルを組んでいるので、その保存量である$E$と$\pbb$も合わせて４元ベクトルになっていると期待できます。実際$p^0=E$としたとき、$p^{\mu}$が４元反変ベクトルになっています。例えば$p^2$を計算してみると
+\begin{align}
+  p^2=\eta_{\mu\nu}p^{\mu}p^{\nu}=E^2-\pbb^2
+=\frac{m^2}{1-\dot{\xb}^2}-\frac{m^2\dot{\xb}^2}{1-\dot{\xb}^2}
+\end{align}
+となり、
+\begin{important}
+  \begin{align}
+    p^2=m^2\label{p2}
+  \end{align}  
+\end{important}
+というスカラーを得ます。式\eqref{p2}になると、また明白なLorentz不変性があります。
+
+\section{電磁場背景中の粒子}
+ここでは、電磁場背景中の電荷を持った粒子を考えることにしましょう。まず、電磁ポテンシャル$(\phi, \Ab)$は、４元ベクトルとして表すことができます。つまり
+\begin{align}
+  \phi=A^0,\quad \Ab=\mqty(A^1 \\ A^2 \\ A^3)
+\end{align}
+としたとき$A^{\mu}$は４元反変ベクトルになっています。
+
+少々天下り的ですが、電荷$q$をもつ粒子の作用は
+\begin{align}
+  S=-m\int \dd{s}-q\int A_{\mu}\dd{x}^{\mu}
+\end{align}
+となります。これが、Lorentz対称性およびゲージ対称性を保っていることは確かめることができます。静的ゲージをとると
+\begin{align}
+  S=\int \dd{t}L,\quad
+  L=-m\sqrt{1-\dot{\xb}^2}-qA_{0}-qA_{i}\dot{x}^{i}
+  \label{emstaticgauge}
+\end{align}
+となります。
+
+ここで、前と同じように正準運動量を求めると
+\begin{align}
+  p^{i}=\pdv{L}{\dot{x}^i}
+  =\frac{m\dot{x}^i}{\sqrt{1-\dot{\xb}^2}}-qA_{i}
+  =\frac{m\dot{x}^i}{\sqrt{1-\dot{\xb}^2}}+qA^{i}
+\end{align}
+となります。ここで$A_i=-A^i$であることに注意してください。これは、正準運動量でしたが、運動学的運動量$K^i$も定義しておきます。
+\begin{align}
+  K^i:=p^i-qA^{i}=\frac{m\dot{x}^i}{\sqrt{1-\dot{\xb}^2}}.
+\end{align}
+これは、電磁場がないときの運動量と同じです。同様に、前と同じようにエネルギーを求めると
+\begin{align}
+  E=p^i\dot{x}^i-L
+  =p^i\dot{x}^i+m\sqrt{1-\dot{\xb}^2}+qA_{0}+qA_{i}\dot{x}^{i}
+  =K^i\dot{x}^i+m\sqrt{1-\dot{\xb}^2}+qA_{0}
+  =\frac{m}{\sqrt{1-\dot{\xb}^2}}+qA_{0}
+\end{align}
+となります。$A_0=A^0$であることに注意して$K^0:=E-qA^0$は
+\begin{align}
+  K^0:=E-qA^0=\frac{m}{\sqrt{1-\dot{\xb}^2}}
+\end{align}
+となって、電磁場がないときのエネルギーと同じになります。$K^{\mu}=p^{\mu}-qA^{\mu}$ですので、$K^{\mu}$はまた４元反変ベクトルになります。これは、電磁場が無いときの４元運動量なので
+\begin{align}
+  K^2=(p-qA)^2=m^2
+\end{align}
+となります。
+
+まとめると電磁場が入ったときの運動量の関係は
+\begin{important}
+  電磁場$A_{\mu}$が入る\ $\Rightarrow$\ $p_{\mu}\to p_{\mu}-qA_{\mu}$の置き換え
+\end{important}
+をやればよいことになります。実はこれは深い意味があり、ゲージ対称性から説明することができます。それは、この講義の後の方で出てきます。
 
 
 \chapter{相対論的量子力学に向けて}
@@ -111,5 +294,238 @@
 \chapter{場の理論における作用と正準量子化}
 
 
+\appendix
+\chapter{特殊相対論でのテンソル算}
+\label{app:tensor}
+\section{Lorentz変換とEinsteinの規約}
+Lorentz変換や、それに伴う様々な物理量の変換を記述するために、次のような記法を導入する。
+まず、時空の座標$x^{\mu},\ (\mu=0,1,2,3)$ を
+\begin{align}
+x^{0}=ct,\quad x^{1}=x,\quad x^{2}=y,\quad x^{3}=z
+\end{align}
+とする。今後、$x^{\mu}$の$\mu$は上付きの添字であって、べき乗ではないことに注意する。
+S系の座標$x^{\mu}$と\Sp 系の座標 $x'^{\mu}$の間が変換の行列成分を$\Lambda^{\mu}{}_{\nu}$とする１次変換
+\begin{align}
+ x'^{\mu}=\sum_{\nu=0}^{3}\Lambda^{\mu}{}_{\nu}x^{\nu}
+\label{lorentz1}
+\end{align}
+で関係していて、さらに
+\begin{align}
+s^{2}
+:=(x^{0})^{2}-(x^{1})^{2}-(x^{2})^{2}-(x^{2})^{2}
+=s'^{2}
+:=(x'^{0})^{2}-(x'^{1})^{2}-(x'^{2})^{2}-(x'^{2})^{2}
+\end{align}
+を満たすとき、この変換を Lorentz 変換と呼ぶのであった。これらの式を簡潔に表すために、まず次の Einstein の規約を導入する。
+式\eqref{lorentz1}では、２回出てきている添字$\nu$について和をとっている。今後このような和がたくさん出てくるので、約束として
+\emph{１つの項に２回同じ添字が出てきたら、和の記号を書かなくても、その添字が走る範囲で和を取る}ということにする。例えば
+\begin{align}
+ x'^{\mu}=\Lambda^{\mu}{}_{\nu}x^{\nu}
+\label{lorentz2}
+\end{align}
+は、式\eqref{lorentz1}と全く同じ式である。注意することは、式\eqref{lorentz2}は、式\eqref{lorentz1}と同じであり、$\nu$は
+和をとっている添字なので、別の文字にしても、全く同じである。
+\begin{align}
+\Lambda^{\mu}{}_{\nu}x^{\nu}
+=\Lambda^{\mu}{}_{\rho}x^{\rho}
+\end{align}
+である。このことを利用して\emph{１つの項に同じ添字が３回以上出てこない}ように注意する。
+
+さらに$s^{2}$の表式を簡潔に表すために、次の記号を導入する。
+\begin{align}
+\eta_{\mu\nu}=\eta^{\mu\nu}
+=
+\begin{cases}
++1&(\mu=\nu=0),\\
+-1&(\mu=\nu=1,2,3),\\
+0 &(\mu\ne\nu).
+\end{cases}
+\end{align}
+そうすると$s^{2}$は
+\begin{align}
+s^{2}=
+\eta_{\mu\nu}x^{\mu}x^{\nu}
+\end{align}
+という簡潔な形に書ける。ここでは、$\mu,\nu$ともに２回ずつ出てきているので、それぞれについて$0,1,2,3$の和をとっていることに
+注意する。そうすると、Lorentz変換の条件$s^{2}=s'^{2}$は
+\begin{align}
+\eta_{\mu\nu}x^{\mu}x^{\nu}
+=\eta_{\mu\nu}x'^{\mu}x'^{\nu}
+\end{align}
+と書ける。右辺の$x'$を\eqref{lorentz2}も用いて$x$で書き換え、先ほどの添字の置き換えの操作を駆使すると
+\begin{align}
+\eta_{\mu\nu}x^{\mu}x^{\nu}
+=\eta_{\rho\sigma}\Lambda^{\rho}{}_{\mu}\Lambda^{\sigma}{}_{\nu}x^{\mu}x^{\nu}
+\end{align}
+となる。$x^{\mu}$は時空の任意の点なので$x^{\mu}x^{\nu}$の係数を比較して
+\begin{important}
+\begin{align}
+\eta_{\mu\nu}
+=\eta_{\rho\sigma}\Lambda^{\rho}{}_{\mu}\Lambda^{\sigma}{}_{\nu}
+\label{l3}
+\end{align}
+\end{important}
+を得る。これが変換\eqref{lorentz2}がLorentz変換になるための行列成分$\Lambda^{\mu}{}_{\nu}$に対する条件である。
+
+次に、並進も含めて考えることにする。$b^{\mu}$を４成分ある定数として、S系と\Sp 系が
+\begin{align}
+x'^{\mu}=\Lambda^{\mu}{}_{\nu}x^{\nu}+b^{\mu}
+\end{align}
+で結びついている場合を考える。ただし$\Lambda^{\mu}{}_{\nu}$は条件\eqref{l3}を満たすとする。このような変換をPoincare変換と呼ぶ。
+このときには、並進があるので、原点からの４次元的距離$s^{2}$は不変ではない。代わりに２つの時空点の座標の差$\Delta x^{\mu}$を用いて作ったこの２点の間の４次元的距離
+\begin{align}
+\Delta s^{2}=\eta_{\mu\nu}\Delta x^{\mu} \Delta x^{\nu}
+\end{align}
+が
+\begin{align}
+\Delta s^{2}=\Delta s'^{2}
+\end{align}
+を満たす。あるいは、無限小の場合を考えて
+\begin{align}
+ds^{2}=\eta_{\mu\nu}dx^{\mu}dx^{\nu}
+\end{align}
+が不変になる。
+
+後のため、次の記号を導入しておく。一つめはクロネッカーのデルタで
+\begin{align}
+\delta^{\mu}_{\nu}
+=
+\begin{cases}
+1&(\mu=\nu),\\
+0 &(\mu\ne\nu).
+\end{cases}
+\end{align}
+これを使うと、上付きの$\eta^{\mu\nu}$と下付きの$\eta_{\mu\nu}$の間には、
+\begin{align}
+\eta^{\mu\rho}\eta_{\rho\nu}=\delta^{\mu}_{\nu}
+\end{align}
+の関係があることが分かる。
+もう一つは$\Lambda^{\mu}{}_{\nu}$の逆行列$\Lambda^{-1}{}^{\mu}{}_{\nu}$である。つまりこれは
+\begin{align}
+\Lambda^{\mu}{}_{\rho}\Lambda^{-1}{}^{\rho}{}_{\nu}=\Lambda^{-1}{}^{\mu}{}_{\rho}\Lambda^{\rho}{}_{\nu}=\delta^{\mu}_{\nu}
+\end{align}
+を満たす。
+\section{スカラーとベクトル}
+以下、上のPoincare変換を考え、S系から見た量と\Sp 系から見た量を$'$を付けて区別する。
+
+\subsection{スカラー}
+１成分の量$f$が、$f=f'$を満たすとき、$f$をスカラーと呼ぶ。例えば、２つの時空点間の４次元的距離の２乗$\Delta s^{2}$、光速$c$などはスカラーである。また、１成分の関数$f(x)$が、$f'(x')=f(x)$のとき、これをスカラー場と呼ぶ。
+
+\subsection{反変ベクトル}
+４成分の量$A^{\mu}$が
+\begin{important}
+\begin{align}
+A'^{\mu}=\Lambda^{\mu}{}_{\nu}A^{\nu}
+\end{align}
+\end{important}
+を満たすとき、これを（４元）\emph{反変ベクトル}と呼ぶ。$\Delta x^{\mu}$は反変ベクトルの例である。４成分の関数$A^{\mu}(x)$が、
+\begin{important}
+\begin{align}
+A'^{\mu}(x')=\Lambda^{\mu}{}_{\nu}A^{\nu}(x)
+\end{align}
+\end{important}
+を満たすとき、これを\emph{反変ベクトル場}と呼ぶ。
+
+\subsection{共変ベクトル}
+一方、４成分の量$A_{\mu}$が
+\begin{important}
+\begin{align}
+A'_{\mu}\Lambda^{\mu}{}_{\nu}=A_{\nu}
+\end{align}
+\end{important}
+を満たすとき、これを（４元）\emph{共変ベクトル}と呼ぶ。
+４成分の関数$A^{\mu}(x)$が、
+\begin{important}
+\begin{align}
+A'_{\mu}(x')\Lambda^{\mu}{}_{\nu}=A_{\nu}(x)
+\end{align}
+\end{important}
+を満たすとき、これを\emph{共変ベクトル場}と呼ぶ。共変ベクトルの１つの重要な例は$A^{\mu}$を反変ベクトルとしたとき、$A_{\mu}:=\eta_{\mu\nu}A^{\nu}$で定義した$A_{\mu}$は共変ベクトルとなることである。これらは逆に、$A^{\mu}=\eta^{\mu\nu}A_{\nu}$とも書ける。このように$\eta_{\mu\nu}$, $\eta^{\mu\nu}$を使って添字を上げ下げし、共変ベクトルと反変ベクトルを行き来することができる。
+
+共変ベクトル場のもう一つの重要な例は、$f(x)$をスカラー場としたとき
+\begin{align}
+\del_{\mu}f(x):=\frac{\del}{\del x^{\mu}} f(x)
+\end{align}
+は、共変ベクトル場となることである。別の見方をすると、ナブラの４次元バージョンである微分演算子$\del_{\mu}$は共変ベクトル演算子である。
+
+\subsection{内積}
+$A^{\mu}$、$B_{\mu}$をそれぞれ反変ベクトルと共変ベクトルとする。
+この２つから作った\emph{$A^{\mu}B_{\mu}$はスカラーになる。}これを$A^{\mu}$と$B_{\mu}$の内積と呼ぶことにしよう。
+特に自分との内積$A^{\mu}A_{\mu}=\eta_{\mu\nu}A^{\mu}A^{\nu}$は、「大きさの自乗」と呼んでもよさそうなものである。
+ただしEuclid空間の場合と異なり、Minkowski空間の場合にはこの「大きさの自乗」は正にも負にもなりうる。
+$A^{\mu}A_{\mu}<0$のベクトルを「空間的」、$A^{\mu}A_{\mu}>0$のベクトルを「時間的」、$A^{\mu}A_{\mu}=0$のベクトルを「光的」と呼ぶ。
+
+\section{テンソル}
+\subsection{２階反変テンソル}
+上付きの足を二つもっている量$T^{\mu\nu}$が
+\begin{important}
+\begin{align}
+ T'^{\mu\nu}=\Lambda^{\mu}{}_{\rho}\Lambda^{\nu}{}_{\sigma}T^{\rho\sigma}
+\end{align}
+\end{important}
+と変換するとき、これを２階反変テンソルと呼ぶ。２階反変テンソル場も同様に定義する。
+
+\subsection{対称（反対称）テンソル}
+このテンソルが
+\begin{important}
+\begin{align}
+T^{\mu\nu}=T^{\nu\mu}
+\end{align}
+\end{important}
+という性質を満たす場合、\Sp 系から見ても$T'^{\mu\nu}=T'^{\nu\mu}$となるので、\emph{この性質は見る系によらない。}
+このようなテンソルを\emph{対称テンソル}と呼ぶ。同様に
+\begin{important}
+\begin{align}
+T^{\mu\nu}=-T^{\nu\mu}
+\end{align}
+\end{important}
+の性質も系によらないので、この性質を持つテンソルを\emph{反対称テンソル}と呼ぶ。
+例としては、$A^{\mu}, B^{\mu}$を反変ベクトルとしたとき
+\begin{align}
+T^{\mu\nu}=A^{\mu}B^{\nu}
+\pm A^{\nu}B^{\mu}
+\end{align}
+は、それぞれ２階反変対称（反対称）テンソルである。
+
+\subsection{一般のテンソル}
+さらに一般に下付きの足や上付きの足をたくさん持っているテンソルを考えることができる。上付きの足を$p$個、下付きの足を$q$個
+持っている量$T^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}$が、変換性
+\begin{important}
+  \begin{align}
+   T'^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}
+   =
+   \Lambda^{\mu_{1}}{}_{\rho_{1}} \cdots
+   \Lambda^{\mu_{p}}{}_{\rho_{p}}
+   T^{\rho_{1}\cdots \rho_{p}}{}_{\sigma_{1}\cdots \sigma_{q}}
+   \Lambda^{-1}{}^{\sigma_{1}}{}_{\nu_{1}} \cdots
+   \Lambda^{-1}{}^{\sigma_{q}}{}_{\nu_{q}}
+  \end{align}
+\end{important}
+を満たすとき（足の付き方から決まるタイプの）\emph{テンソル}と呼ぶ。テンソル場も同様に定義する。
+テンソルには、次のような性質がある。
+\begin{itemize}
+\item スカラー、反変ベクトル、共変ベクトルはテンソルである。
+\item $\eta_{\mu\nu}, \ \eta^{\mu\nu},\ \delta^{\mu}_{\nu}$は、テンソルである。
+\item すべての成分が$0$の量はテンソルである。単に$0$と書く。
+\item 同じタイプのテンソルの和はテンソルである。つまり、$T^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}\ U^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}$ がテンソルであるとすると
+\begin{align}
+V^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}
+:=T^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}} + U^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}
+\end{align}
+もテンソルである。
+\item テンソルの成分ごとの積もテンソルである。つまり$T^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}\ U^{\mu_{1}\cdots \mu_{r}}{}_{\nu_{1}\cdots \nu_{s}}$がテンソルであるとすると
+\begin{align}
+V^{\mu_{1}\cdots \mu_{p+r}}{}_{\nu_{1}\cdots \nu_{q+s}}:=
+T^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}U^{\mu_{p+1}\cdots \mu_{p+r}}{}_{\nu_{q+1}\cdots \nu_{q+s}}
+\end{align}
+もテンソルである。
+\item テンソルにおいて、次の「縮約」の操作をしたものもテンソルである。$T^{\mu_{1}\cdots \mu_{p}}{}_{\nu_{1}\cdots \nu_{q}}$ をテンソルとすると
+\begin{align}
+V^{\mu_{1}\cdots \mu_{p-1}}{}_{\nu_{1}\cdots \nu_{q-1}}
+:=T^{\mu_{1}\cdots \mu_{p-1}\lambda}{}_{\nu_{1}\cdots \nu_{q-1}\lambda}
+\end{align}
+もテンソルである。
+\item （テンソル）$=$（テンソル）という方程式が、S系で成り立っていたとすると同じ方程式が\Sp 系でも成り立つ。なので物理法則をこのような方程式の形に書くことができれば、それはどの慣性系でも同じ形になる。
+\end{itemize}
 
 \end{document}
