@@ -1,0 +1,115 @@
+\documentclass[book,paper=a4, fontsize=12pt, line_length=16cm, number_of_lines=33,dvipdfmx]{jlreq}
+%\documentclass[pandoc,12pt]{bxjsarticle}
+
+\usepackage{amsmath,amssymb}
+\usepackage[bold,uplatex]{otf}
+%% Fonts
+\usepackage[T1]{fontenc}
+\usepackage{tgtermes,tgheros,tgcursor}
+\renewcommand{\bfdefault}{bx}
+\usepackage[libertine]{newtxmath}
+\usepackage{hyperref}
+\usepackage{pxjahyper}
+
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+
+\usepackage{physics}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+%\usepackage{cleveref}
+
+\newenvironment{myquote}{\begin{tcolorbox}[
+  colback = blue!5, after = \noindent] }{\end{tcolorbox}}
+\newenvironment{important}{\begin{tcolorbox}[
+  colback = white,
+  colframe = red!35,
+  boxrule = 2mm,
+  fonttitle = \bfseries,
+  after = \noindent] }{\end{tcolorbox}}
+\newenvironment{mycite}{\\ \qquad \textbullet\ }{\\}
+
+
+%\newtheorem{theor}[section]{定理}
+\newtcbtheorem{theor}{定理}{enhanced,
+%    attach boxed title to top left={xshift=5mm,yshift=-3mm}, 
+    boxed title style={colframe = green!35!black, colback = white},
+    coltitle = black,
+    colback = white,
+    colframe = green!35,
+    fonttitle = \bfseries,
+    breakable = true,
+    top = 4mm
+}{}
+
+%\newtheorem{col}[section]{系}
+\newtcbtheorem[use counter from=theor]{col}{系}{enhanced,
+%    attach boxed title to top left={xshift=5mm,yshift=-3mm}, 
+  boxed title style={colframe = green!35!black, colback = white},
+  coltitle = black,
+  colback = white,
+  colframe = green!35,
+  fonttitle = \bfseries,
+  breakable = true,
+  top = 4mm
+}{}
+
+\newtcbtheorem[use counter from=theor]{definition}{定義}{enhanced,
+%    attach boxed title to top left={xshift=5mm,yshift=-3mm}, 
+    boxed title style={colframe = green!35!black, colback = white},
+    coltitle = black,
+    colback = white,
+    colframe = red!35,
+    fonttitle = \bfseries,
+    breakable = true,
+    top = 4mm
+}{}
+
+
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                          often used macro
+\newcommand{\del}{\partial}
+\newcommand{\Cb}{\mathbb{C}}
+\newcommand{\Zb}{\mathbb{Z}}
+\newcommand{\CP}{\Cb \mathrm{P}}
+\newcommand{\strong}[1]{\textgt{#1}}
+
+
+
+
+\title{相対論的量子力学---Dirac方程式と場の理論の初歩}
+\author{山口　哲}
+\date{2020年前期}
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{導入}
+
+
+
+\chapter{準備}
+
+
+
+\chapter{相対論的量子力学に向けて}
+
+
+
+\chapter{Dirac方程式}
+
+
+\chapter{電磁場背景中のDirac方程式}
+
+
+
+\chapter{場の理論に向けて}
+
+
+
+\chapter{場の理論における作用と正準量子化}
+
+
+
+\end{document}
