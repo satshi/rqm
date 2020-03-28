@@ -36,44 +36,7 @@
   after = \noindent] }{\end{tcolorbox}}
 \newenvironment{mycite}{\\ \qquad \textbullet\ }{\\}
 
-
-%\newtheorem{theor}[section]{定理}
-\newtcbtheorem{theor}{定理}{enhanced,
-%    attach boxed title to top left={xshift=5mm,yshift=-3mm}, 
-    boxed title style={colframe = green!35!black, colback = white},
-    coltitle = black,
-    colback = white,
-    colframe = green!35,
-    fonttitle = \bfseries,
-    breakable = true,
-    top = 4mm
-}{}
-
-%\newtheorem{col}[section]{系}
-\newtcbtheorem[use counter from=theor]{col}{系}{enhanced,
-%    attach boxed title to top left={xshift=5mm,yshift=-3mm}, 
-  boxed title style={colframe = green!35!black, colback = white},
-  coltitle = black,
-  colback = white,
-  colframe = green!35,
-  fonttitle = \bfseries,
-  breakable = true,
-  top = 4mm
-}{}
-
-\newtcbtheorem[use counter from=theor]{definition}{定義}{enhanced,
-%    attach boxed title to top left={xshift=5mm,yshift=-3mm}, 
-    boxed title style={colframe = green!35!black, colback = white},
-    coltitle = black,
-    colback = white,
-    colframe = red!35,
-    fonttitle = \bfseries,
-    breakable = true,
-    top = 4mm
-}{}
-
-
-\numberwithin{equation}{section}
+\numberwithin{equation}{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                          often used macro
 \newcommand{\del}{\partial}
@@ -84,8 +47,12 @@
 \newcommand{\Sp}{S$'$}
 
 \newcommand{\xb}{\vvmathbb{x}}
+\newcommand{\jb}{\vvmathbb{j}}
 \newcommand{\pbb}{\vvmathbb{p}}
 \newcommand{\Ab}{\vvmathbb{A}}
+\newcommand{\bnabla}{\raisebox{-0.2ex}{\includegraphics[width=0.65em]{bnabla.pdf}}}
+
+
 
 \title{相対論的量子力学---Dirac方程式と場の理論の初歩}
 \author{山口　哲}
@@ -95,24 +62,24 @@
 \maketitle
 \tableofcontents
 \chapter{導入}
-この講義のタイトルは「相対論的量子力学」です。文字通り量子力学を相対論的にしようという試みです。まずそれぞれについて、どんなものだったか復習しましょう。
+この講義のタイトルは「相対論的量子力学」です。文字通り量子力学を相対論的にしようという試みです。まず、相対論と量子力学について、どんなものだったか思い出しましょう。
 
-ここで相対論とは、ここでは特殊相対論のことです。特殊相対論とはLorentz変換によって物理法則が不変になるという、理論の枠組みのことでした。
+ここでは相対論とは、特殊相対論のことです\footnote{実は、物理の研究者が「相対論」と言うと、多くの場合は一般相対論を指します。}。特殊相対論とはLorentz変換によって物理法則が不変になるという、理論の枠組みのことでした。
 特に\strong{Lorentz変換は、時刻$t$と空間の位置$\xb$を混ぜる変換}ですので、理論の記述の中には、時間と空間は同等に入っていることが望ましいです
 \footnote{実際には、物理量がLorentz変換の対称性を持てばよいので、理論の記述ではLorentz対称性は明らかではないかもしれません。
-量子力学以降の現代的な物理では、「物理量」と「理論の記述」を区別することが重要です。}。
+現代的な物理では、「物理量」と「理論の記述」を区別することが重要です。}。
 
-もう一方の量子力学は、Schr\"{o}dinger方程式で記述されるような、波動関数を考えるものでした。１粒子の場合だと波動関数を$\psi(t,\xb)$として、
+もう一方の量子力学は、Schr\"{o}dinger方程式で記述されるような、波動関数を考えるものでした。ポテンシャル$V(\xb)$中の１粒子の場合だと波動関数を$\psi(t,\xb)$として、
 \begin{align}
   i\hbar\pdv{t} \psi=\qty(
-    -\frac{\hbar^2}{2m}\nabla^2+V(\xb)
-  )\psi
+    -\frac{\hbar^2}{2m}\bnabla^2+V(\xb)
+  )\psi\label{Schroedingereq}
 \end{align}
 というふうになります。ここでは、時刻$t$については１階微分ですが、位置$\xb$については２階微分になっているので、これらは同等に扱われていません。
 １粒子の場合では１階か２階かという程度の問題ですが、多粒子になるともっと問題が大きくなります。
 例えば２粒子の場合だと時刻は一つしかないのに空間の位置は２つあります。
 
-この後、講義で説明するように量子力学を相対論的に書き換えようと、困難に直面します。
+この後、講義で説明するように量子力学を相対論的に書き換えようとすると、困難に直面します。
 その一部は\strong{Dirac方程式}を考えることで克服できます。このDirac方程式は一つの電子をそれなりに良く記述します。
 これは、大変素晴らしいもので、例えば非相対論的量子力学では「手で」入れていたスピンという角運動量が、Dirac方程式の立場からは自然に導入されます。
 この講義の大部分は、このDirac方程式による一つの電子の記述についてです。
@@ -121,7 +88,7 @@ Dirac方程式による一つの電子の記述は素晴らしいものですが
 これについては、後で詳しく説明します。
 このDiracの海の概念も反粒子を予言するという素晴らしい成果を残しましたが、同時に\strong{一つの電子だけを考える理論は不完全で、必ず多粒子を考えなければならない}ということも明らかにします。
 
-正しく相対論的に量子力学を記述できる理論は、次の２つの条件を満たさなければなりません。
+結局、正しく相対論的に量子力学を記述できる理論は、次の２つの条件を満たさなければなりません。
 \begin{itemize}
   \item 任意個の粒子をいっぺんに取り扱うことができる。
   \item 粒子の「個数」、「種類」が時間発展で変わりうる。
@@ -143,6 +110,8 @@ Dirac方程式による一つの電子の記述は素晴らしいものですが
 です。非常に読みやすい本です。自由場についても比較的詳しく書かれています。
 
 \chapter{準備}
+ここでは、量子力学を相対論的に書き換えるための準備をします。まず、自然単位系という便利な単位系を導入します。そして、特殊相対論と量子力学の中から必要なことを復習します。
+
 \section{自然単位系}
 この分野では、複雑な式がたくさん出てきます。
 その式の見た目の複雑さを少しでも軽減するために単位をうまくとって基本的な物理定数を$1$にすることを考えます。２つだけ注意をしておきます。
@@ -273,21 +242,80 @@ Dirac方程式による一つの電子の記述は素晴らしいものですが
 \begin{important}
   電磁場$A_{\mu}$が入る\ $\Rightarrow$\ $p_{\mu}\to p_{\mu}-qA_{\mu}$の置き換え
 \end{important}
-をやればよいことになります。実はこれは深い意味があり、ゲージ対称性から説明することができます。それは、この講義の後の方で出てきます。
+をやればよいことになります。実はこれには深い意味があり、ゲージ対称性から説明することができます。それは、この講義の後の方で出てきます。
 
+\section{量子力学における確率の保存}
+量子力学における重要な原理の一つは確率解釈です。通常の１粒子の量子力学で、この確率解釈がどのように成り立っていたかを思い出してみましょう。
+
+１粒子のSchr\"odinger方程式\eqref{Schroedingereq}を考えましょう。自然単位系でもう一度書いてみると
+\begin{align}
+  i\dv{t} \psi=\qty(-\frac{1}{2m}\bnabla^2+V(\xb))\psi
+\end{align}
+でした。このとき位置$\xb$にいる確率密度は規格化の定数を除いて
+\begin{align}
+  \rho(t,\xb)=\psi^{*}\psi
+\end{align}
+でした。まず、これは確率密度であるための必要条件$\rho\ge 0$を満たします。規格化の定数は
+\begin{align}
+  Z(t)=\int \dd[3]{\xb}\rho(t,\xb) 
+\end{align}
+とします。この$Z(t)$が実は時間によらないというのは自明なことではありません。もし、この$Z(t)$が時間によらなければ、$\psi \to \psi'=\psi/\sqrt{Z}$というふうに規格化しなおすことにより、全確率を$1$にすることができます。
+
+では、$Z(t)$が時間によらないことは、どのようにして証明できるでしょうか。ここで、電磁気で習った電荷の保存則がどのように示せるかを思い出してみましょう。電荷密度$\rho(t,\xb)$に対して、電流密度$\jb(t,\xb)$が存在して、Maxwell方程式から
+\begin{important}
+  \begin{align}
+    \pdv{t} \rho+\bnabla\cdot \jb=0 \label{continue}
+  \end{align}    
+\end{important}
+という連続の式が導けるのでした。この式の意味は、ある領域から流れ出た電荷の分だけ、その中にある電荷が減るというものです。なので今の場合も確率密度$\rho(t,\xb)$に対して式\eqref{continue}を満たすような「確率の流れ密度」$\jb(t,\xb)$を見つけてやればよいことになります。実際、
+\begin{align}
+  \jb(t,\xb)=-\frac{i}{2m}\qty((\bnabla \psi^*)\psi-\psi^{*}\bnabla \psi)
+\end{align}
+とするとよいです。実際にこの$\jb$が式\label{continue}を満たすことを確かめるのは、みなさんの練習問題に残しておきます。
+
+式\label{continue}を満たすような$\jb$が存在するというのは、単に全確率が保存するということ以上の意味があります。確率密度が移動するときは「ワープ」したりせず、必ず途中の道を通っていくということです。このような理論の性質は一般に局所性と呼ばれます。
+
+\section{この章のまとめ}
+この章では、量子力学を相対論的に書き換えるための準備をしました。
+\begin{itemize}
+  \item まず、記述の簡単のために$c=\hbar=1$とする自然単位系を導入しました。
+  \item 特殊相対論のテンソルの記号の使い方を復習しました。付録\ref{app:tensor}にまとめました。
+  \item 相対論的な自由粒子の古典力学を復習しました。特に\eqref{p2}の関係式は後で使います。
+  \item 電磁場中の相対論的な荷電粒子の古典力学を復習しました。電磁場と結合させるには$p_{\mu}\to p_{\mu}-q A_{\mu}$の置き換えをやればよいことが分かりました。
+  \item 量子力学で確率解釈が出来るための必要条件について復習しました。確率密度$\rho\ge 0$であること、そして式\eqref{continue}を満たすような確率の流れ密度$\jb$が存在することが重要です。
+\end{itemize}
 
 \chapter{相対論的量子力学に向けて}
-
+\section{素朴な量子化}
+\section{Klein-Gordon方程式}
+\section{Dirac方程式}
+\section{Maxwell方程式}
+\section{この章のまとめ}
 
 
 \chapter{Dirac方程式}
+\section{ガンマ行列}
+\section{スピン}
+\section{Lorentz変換}
+\section{平面波解}
+\section{ジグザグ運動}
+
 
 
 \chapter{電磁場背景中のDirac方程式}
+\section{電磁場との相互作用}
+\section{非相対論的極限}
+\section{水素原子}
+\section{この章のまとめ}
 
 
 
 \chapter{場の理論に向けて}
+\section{なぜ場の理論？}
+\section{連成振動と波動の古典論}
+\section{量子化と粒子}
+\section{連続極限}
+\section{この章のまとめ}
 
 
 
