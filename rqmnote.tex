@@ -55,13 +55,16 @@
 
 
 
-\title{相対論的量子力学---Dirac方程式と場の理論の初歩}
+\title{相対論的量子力学マニュアル}
 \author{山口　哲}
-\date{2020年前期}
+\date{\today}
 \begin{document}
 
 \maketitle
 \tableofcontents
+\subsubsection*{注意}
+これは、大阪大学理学部物理学科の専門科目「相対論的量子力学」の授業のための資料です。まだ書きかけです。随時更新していきますので、最新のものを手に入れるようにしてください。
+
 \chapter{導入}
 この講義のタイトルは「相対論的量子力学」です。文字通り量子力学を相対論的にしようという試みです。まず、相対論と量子力学について、どんなものだったか思い出しましょう。
 
@@ -406,15 +409,53 @@ Klein-Gordon方程式は、明白なLorentz不変性を持っています。こ�
 Hamiltonian $H$は、
 \begin{align}
   H^2=m^2-\bnabla^2
+  \label{H2}
 \end{align}
 の式を満たします。この$H$を１階微分演算子で表すことは、１成分のものを考えている限り難しそうです。Diracが考えたのは、１成分ではなく行列なら可能だということです。
 
 まず、少しだけ簡単な問題で練習してみましょう。Pauli行列$\sigma_i,\ i=1,2,3$は、それぞれ$2\times 2$行列で
 \begin{align}
-  \sigma_i\sigma_j+\sigma_j\sigma_i=0,\quad (i\ne j),
-  \sigma_i^2=1
+  \sigma_i\sigma_j+\sigma_j\sigma_i=0,\ (i\ne j),\quad
+  \sigma_i^2=1\label{sigmarelation}
 \end{align}
-という関係式を満たすということは、皆さん量子力学の授業で習ったと思います。特に\strong{異なるものは互いに反交換する}というのが重要です。
+という関係式を満たすということは、皆さん量子力学の授業で習ったと思います\footnote{具体的な表式はここでは書きません。この関係式を満たすならば、ここからの議論は具体的な表式によらないということが重要だからです}。特に\strong{異なるものは互いに反交換する}というのが重要です。これで
+\begin{align}
+  H=-i\sigma_1\del_{1}-i\sigma_2\del_{2}+m\sigma_3
+\end{align}
+としてみます。これで式\eqref{sigmarelation}を用いて$H^2$を計算してみると
+\begin{align}
+  H^2=-\del_1^2-\del_2^2+m^2
+\end{align}
+となります。式\eqref{H2}と比べると非常に惜しいところまで行ってますね。あと一息です。
+
+ちなみに、もし$m=0$なら
+\begin{align}
+  H=-i\sigma_{i}\del_{i}
+\end{align}
+とすると、$H^2=-\bnabla^2$となり、欲しかった関係式を満たします。このHamiltonianを用いたSchrödinger方程式は、２成分の波動関数$\psi(t,\xb)=\mqty(\psi_1(t,\xb)\\ \psi_2(t,\xb))$に対する方程式になり、
+\begin{align}
+  i\pdv{t} \psi=-i\sigma_{i}\del_{i}\psi
+\end{align}
+となります。この方程式は\strong{Weyl方程式}と呼ばれます。特徴を挙げてみると
+\begin{itemize}
+  \item $m=0$の場合のみです。なので電子は記述できません。
+  \item パリティ（空間反転対称性）を破ります。
+  \item ４次元の「スピン1/2の場」の最小構成単位です。現実の素粒子の物理を記述するのに重要な役割を果たします。
+\end{itemize}
+
+さて、式\eqref{H2}を満たす$H$の構成に戻りましょう。ここで練習して分かったように
+\begin{important}
+  ４つのエルミート行列$\alpha_i,\ (i=1,2,3),\beta$が互いに反交換し、それぞれ自乗すると$1$となる。式で書くと
+  \begin{align}
+    \alpha_{i}\alpha_{j}+\alpha_{j}\alpha_{i}=0\ (i\ne j),\quad \beta \alpha_{i}+\alpha_{i}\beta=0,\quad
+    \alpha_i^2=1,\quad \beta^2=1\label{alphabeta}
+  \end{align}
+\end{important}
+を満たすとします。するとエルミート演算子
+\begin{align}
+  H=-i\alpha_i\del_i+m\beta
+\end{align}
+を定義すれば、式\eqref{H2}を満たします。式\eqref{alphabeta}を満たすような$\alpha_i,\beta$は$2\times 2$行列では作ることができず、最低$4\times 4$行列が必要であることが知られています。ここでは$\alpha_i,\beta$の具体的な表示は、あえて示しません。これからの議論が表示によらず、\eqref{alphabeta}の関係のみを用いて進められることを強調するためです。付録\ref{app:alphabeta}に、この行列に関することを載せておきます。
 
 \section{Maxwell方程式}
 
@@ -683,6 +724,50 @@ V^{\mu_{1}\cdots \mu_{p-1}}{}_{\nu_{1}\cdots \nu_{q-1}}
 \end{align}
 もテンソルである。
 \item （テンソル）$=$（テンソル）という方程式が、S系で成り立っていたとすると同じ方程式が\Sp 系でも成り立つ。なので物理法則をこのような方程式の形に書くことができれば、それはどの慣性系でも同じ形になる。
+\end{itemize}
+
+
+\chapter{ガンマ行列}
+\label{app:alphabeta}
+ここでは、Dirac方程式に出てくる$\alpha_i,\beta, \gamma^{\mu}$などの行列に関する性質をまとめておく。
+\section{既約表現}
+式\eqref{alphabeta}の
+\begin{align}
+  \alpha_{i}\alpha_{j}+\alpha_{j}\alpha_{i}=0\ (i\ne j),\quad \beta \alpha_{i}+\alpha_{i}\beta=0,\quad
+  \alpha_i^2=1,\quad \beta^2=1, \label{Clifford}
+\end{align}
+を満たすエルミート行列$\alpha_i,\beta$の表示について考える。このような抽象的な代数を具体的な行列で表示する仕方を「表現」と呼ぶ。諸君は量子力学でSU(2)の表現を習ったと思うが、ここでも同様の戦略で作ることができる。
+
+まず、生成消滅演算子を定義する。
+\begin{align}
+  b_1=\frac12(\alpha_1+i\alpha_2),\quad b_1^{\dag}=\frac12(\alpha_1-i\alpha_2),\quad
+  b_2=\frac12(\alpha_3+i\beta),\quad b_2^{\dag}=\frac12(\alpha_3-i\beta)
+\label{fermionicoscillator}
+\end{align}
+とする。すると、反交換関係
+\begin{align}
+  \{b_A,b_B^{\dag}\}=\delta_{AB},\quad\{b_A,b_B\}=0,\quad\{b_A^{\dag},b_B^{\dag}\}=0,\quad (A,B=1,2)\label{lowestweight}
+\end{align}
+が成り立つ。$b_A$を消滅演算子、$b^{\dag}_A$を生成演算子と呼ぶことにする。
+
+まず、すべての消滅演算子で消える状態$\ket{--}$を
+\begin{align}
+  b_A\ket{--}=0\quad (A=1,2)
+\end{align}
+とする。ここから
+\begin{align}
+  \ket{-+}:=b_{1}^{\dag}\ket{--},\quad 
+  \ket{+-}:=b_{2}^{\dag}\ket{--},\quad 
+  \ket{++}:=b_{2}^{\dag}b_{1}^{\dag}\ket{--}
+\end{align}
+を作る。$(b_A^{\dag})^2=0$なので４つのベクトル$\ket{\pm\pm}$は$b_A,b_A^{\dag}$の作用で閉じている。こうして、４つのベクトル$\ket{\pm\pm}$で張られるベクトル空間への$b_A,b_A^{\dag}$の作用が得られた。このようなものを表現と呼んでいる。また、$\braket{--}{--}=1$と規格化しておけば、この４つの状態は正規直交基底となる。これらを基底とすることにより$b_A,b_A^{\dag}$の行列表示が得られたことになる。また、ここで得られた表現は既約表現である。さらに作り方から既約表現はこれしかない。
+
+任意の表現が与えられたとしよう。適当な状態からはじめて消滅演算子$b_A$をかけていくことにより、必ず式\eqref{lowestweight}を満たすような$\ket{--}$を作ることができる。ここから始めて、上の操作で既約表現を作ることができる。この既約表現が、元々与えられた表現全体で無かったとすると、残りの部分から同様の操作で既約表現を作ることができる。これを繰り返すことにより、任意の表現は既約表現に分解できることが分かる。
+
+まとめると
+\begin{itemize}
+  \item \eqref{Clifford}の既約表現は基底の取り替えを除いて一種類しかない。既約表現の次元は４である。
+  \item 任意の\eqref{Clifford}の表現は既約表現に分解できる。特に次元は４の倍数である。
 \end{itemize}
 
 \end{document}
