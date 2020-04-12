@@ -46,11 +46,16 @@
 \newcommand{\strong}[1]{{\sffamily \bfseries #1}}
 \newcommand{\Sp}{S$'$}
 
+\newcommand{\psib}{\overline{\psi}}
+\newcommand{\dell}{\overleftarrow{\del}}
+
 \newcommand{\xb}{\vvmathbb{x}}
 \newcommand{\kb}{\vvmathbb{k}}
 \newcommand{\jb}{\vvmathbb{j}}
 \newcommand{\pbb}{\vvmathbb{p}}
 \newcommand{\Ab}{\vvmathbb{A}}
+\newcommand{\Lb}{\vvmathbb{L}}
+\newcommand{\Sb}{\vvmathbb{S}}
 \newcommand{\bnabla}{\raisebox{-0.2ex}{\includegraphics[width=0.65em]{bnabla.pdf}}}
 
 
@@ -463,6 +468,7 @@ Hamiltonian $H$は、
 \begin{important}
   \begin{align}
     i\pdv{t} \psi=(-i\alpha_i\del_i+m\beta)\psi
+    \label{freeDiracequation}
   \end{align}
 \end{important}
 は（自由な）\strong{Dirac方程式}と呼ばれます。
@@ -600,7 +606,147 @@ Diracの提案がすごいのは、ここからです。図\ref{fig:antiparticle
 
 \chapter{Dirac方程式}
 \section{ガンマ行列}
+Dirac方程式\eqref{freeDiracequation}をもう一度書きます。
+\begin{align}
+  i\del_{0}\psi=(-i\alpha_i\del_{i}+m\beta)\psi.
+  \label{freeDiracequation1}
+\end{align}
+これは、時間微分は左辺にあって空間微分は右辺にあったりするので、もう少し時間と空間を平等に扱った形に書き換えます。ガンマ行列$\gamma^{\mu}$を
+\begin{align}
+  \gamma^{0}=\beta,\quad \gamma^{i}=\beta\alpha_i
+\end{align}
+とすると、Dirac方程式\eqref{freeDiracequation1}は
+\begin{important}
+  \begin{align}
+    (i\gamma^{\mu}\del_{\mu}-m)\psi=0 \label{freeDiracequation2}
+  \end{align}
+\end{important}
+という形に書くことができます。こちらの方が少なくともベクトルの添字を$\mu=0,1,2,3$の縮約で書いているので見た目が良いです。実際、例えば場の理論でDirac方程式を扱う場合、こちらの形の方が遥かに便利です。
+
+ここで出てきたガンマ行列$\gamma^{\mu}$は、
+\begin{important}
+  \begin{align}
+    \{\gamma^{\mu},\gamma^{\nu}\}=2\eta^{\mu\nu}\label{gammaanticommutationrelation}
+  \end{align}    
+\end{important}
+という反交換関係を満たします。この形の反交換関係は記憶に便利ですが、実際に計算するときには、次のように、ばらした形の方が便利な場合も多いです。
+\begin{align}
+  (\gamma^{0})^2=1,\quad (\gamma^{i})^2=-1,\quad
+  \gamma^{\mu}\gamma^{\nu}=-\gamma^{\nu}\gamma^{\mu}\ (\mu\ne \nu).
+  \label{gammaanticommutationrelation1}
+\end{align}
+また、$\alpha_i,\beta$がエルミートであることから
+\begin{align}
+  \gamma^{0\dag}=\gamma^{0},\quad \gamma^{i\dag}=-\gamma^{i}
+  \label{gammahermiticity}
+\end{align}
+となります。
+
+この表記の有用性を示すために、Dirac方程式の確率の保存を考えてみましょう。
+まず、Dirac共役$\psib$を
+\begin{important}
+  \begin{align}
+    \psib:=\psi^{\dag}\gamma^{0}
+  \end{align}  
+\end{important}
+で定義します。$\psib$は４成分を横にならべたものであることに注意してください。後々見ていくようにエルミート共役ではなく、このDirac共役を用いることにより、様々な式を共変に書くことができます。
+
+次のような４元反変ベクトルっぽい量を定義します\footnote{本当に４元反変ベクトルであることは、後に$\psi$のLorentz変換がどうなるかを調べたあとで示します。}。
+\begin{align}
+  j^{\mu}=\psib \gamma^{\mu}\psi.
+\end{align}
+成分を見てみると$j^{0}=\psi^{\dag}\psi$で、以前導入した確率密度、空間成分が確率の流れ密度になります。
+
+$j^{\mu}$が連続の式$\del_{\mu}j^{\mu}=0$を満たすことを示しましょう。まず、反交換関係\eqref{gammaanticommutationrelation}あるいは\eqref{gammaanticommutationrelation1}とエルミート共役の関係\eqref{gammahermiticity}を用いると
+\begin{align}
+  \gamma^{0}\gamma^{\mu\dag}\gamma^{0}=\gamma^{\mu}\label{gammahermiticity2}
+\end{align}
+を得ます。Dirac方程式\eqref{freeDiracequation2}の両辺のエルミート共役をとり、式\eqref{gammahermiticity2}を用いると
+\begin{align}
+  \psib(-i\gamma^{\mu}\dell_{\mu}-m)=0\label{conjugateDiraceqation}
+\end{align}
+を得ます。ここで記述の簡単のために左側に作用する微分演算子$\dell_{\mu}$を導入しました。$\psib\dell_{\mu}:=\del_{\mu}\psib$です。式\eqref{freeDiracequation2}と式\eqref{conjugateDiraceqation}を用いると
+\begin{align}
+  \del_{\mu}j^{\mu}&=\del_{mu}(\psib\gamma^{\mu}\psi)
+  =\psib\gamma^{\mu}\dell_{\mu}\psi+\psib\gamma^{\mu}\del_{\mu}\psi\\
+  &=\psib(im)\psi+\psib(-im)\psi=0
+\end{align}
+となって、保存の式$\del_{\mu}j^{\mu}=0$が示せます。
+
 \section{スピン}
+Dirac方程式の一番美しいところは、非相対論的な場合には手で入れていた電子の「スピン」が必然的に入っているところです。これについて見ていきましょう。
+
+まず、軌道角運動量について思い出してください。３次元ベクトルの外積の記号で
+\begin{align}
+  \Lb=\xb \times \pbb=-i\xb\times\bnabla
+\end{align}
+でした。３次元の成分では、
+\begin{align}
+  L_i=-i\epsilon_{ijk}x^{j}\del_{k}
+\end{align}
+と書けます。ここで$\epsilon_{ijk}$は完全反対称テンソルで$\epsilon_{123}$となる記号です。
+
+軌道角運動量が保存するかどうかを見てみましょう。これにはHamiltonian\eqref{DiracHamiltonian}と交換するかどうかを見ればよいです。交換関係は
+\begin{align}
+  [H,L_i]=-\epsilon_{ijk}\alpha_{j}\del_{k}\label{HLi}
+\end{align}
+となります。したがって\strong{軌道角運動量は保存しない}ということが分かります。
+
+これはどういうことでしょうか。角運動量は回転対称性の保存量でしたから、それが保存しないということは、回転対称性がないということでしょうか。答えは、軌道角運動量以外にスピンという角運動量があって、合わせると保存していて、回転対称性はちゃんと保っているというものです。少々天下り的ですが、スピンを
+\begin{align}
+  S_i
+  :=\frac{i}{4}\epsilon_{ijk}\gamma^{j}\gamma^{k}
+  :=-\frac{i}{4}\epsilon_{ijk}\alpha_{j}\alpha_{k}
+\end{align}
+と定義します。具体的に成分を書くと
+\begin{align}
+  S_1=-\frac{i}{2}\alpha_{2}\alpha_{3},\quad
+  S_2=-\frac{i}{2}\alpha_{3}\alpha_{1},\quad
+  S_3=-\frac{i}{2}\alpha_{1}\alpha_{2},\quad
+\end{align}
+このとき、次の２つのことが成り立ちます。
+\begin{itemize}
+  \item $S_i$が角運動量の交換関係を満たすこと。
+  \item 軌道角運動量とスピンをあわせた全角運動量$L_i+S_i$が保存すること。
+\end{itemize}
+
+まず、角運動量の交換関係を満たすことを確かめましょう。例えば
+\begin{align}
+  [S_1,S_2]&=-\frac{1}{4}[\alpha_{2}\alpha_{3},\alpha_{3}\alpha_{1}]
+  =-\frac{1}{4}(\alpha_{2}\alpha_{3}\alpha_{3}\alpha_{1}-\alpha_{3}\alpha_{1}\alpha_{2}\alpha_{3})\nonumber\\
+  &=-\frac{1}{4}(\alpha_{2}\alpha_{1}-\alpha_{1}\alpha_{2})
+  =\frac{1}{2}\alpha_{1}\alpha_{2}
+  =iS_3
+\end{align}
+となります。計算には式\eqref{alphabeta}の関係を用いました。$1,2,3$を巡回的に入れ替えれば、結局
+\begin{align}
+  [S_i,S_j]=i\epsilon_{ijk}S_k
+\end{align}
+という角運動量の交換関係が成り立つことが分かりました。
+
+次に$L_i+S_i$が保存することを確かめましょう。まず式\eqref{alphabeta}の関係を用いて交換関係$[H,S_i]$を計算します。例えば
+\begin{align}
+  [H,S_1]
+  =[-i\alpha_i\del_i+m\beta,-\frac{i}{2}\alpha_2\alpha_3]
+  =-\frac12\del_{i}[\alpha_i,\alpha_2\alpha_3]
+  =-\del_{2}\alpha_{3}+\del_{3}\alpha_{2}
+\end{align}
+となります。$1,2,3$を巡回的に入れ替えると
+\begin{align}
+  [H,S_i]=\epsilon_{ijk}\alpha_{j}\del_{k}
+\end{align}
+を得ます。\eqref{HLi}と合わせると
+\begin{align}
+  [H,L_i+S_i]=0
+\end{align}
+が確かめられました。
+
+さて、「スピンの大きさ」を求めておきましょう。
+\begin{align}
+  \Sb^2=\sum_{i}S_i^2=\frac{3}{4}=\frac{1}{2}\qty(\frac{1}{2}+1)=s(s+1)
+\end{align}
+なので、$s=\frac{1}{2}$となります。つまり、Dirac方程式はスピン$\frac{1}{2}$の粒子を記述しています。例えば、電子はスピン$\frac{1}{2}$でDirac方程式でうまく記述できます。
+
 \section{Lorentz変換}
 \section{平面波解}
 \section{ジグザグ運動}
