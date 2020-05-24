@@ -15,6 +15,7 @@
 \graphicspath{{fig/}}
 
 \usepackage{physics}
+\usepackage{color}
 
 \usepackage{tcolorbox}
 \tcbuselibrary{breakable, skins, theorems}
@@ -56,9 +57,20 @@
 \newcommand{\jb}{\vvmathbb{j}}
 \newcommand{\pbb}{\vvmathbb{p}}
 \newcommand{\Ab}{\vvmathbb{A}}
+\newcommand{\Bb}{\vvmathbb{B}}
 \newcommand{\Lb}{\vvmathbb{L}}
 \newcommand{\Sb}{\vvmathbb{S}}
+\newcommand{\Jb}{\mathbb{J}}
 \newcommand{\bnabla}{\raisebox{-0.2ex}{\includegraphics[width=0.65em]{bnabla.pdf}}}
+\newcommand{\alphab}{\vmathbb{\alpha}}
+\newcommand{\uket}{\ket{\uparrow}}
+\newcommand{\dket}{\ket{\downarrow}}
+\newcommand{\ml}{m_{l}}
+
+\newcommand{\Fii}{{}_1F_1}
+
+\newcommand{\ao}[1]{\textcolor{blue}{#1}}
+\newcommand{\aka}[1]{\textcolor{red}{#1}}
 
 
 
@@ -206,6 +218,7 @@ Dirac方程式による１つの電子の記述は素晴らしいものですが
 というスカラーを得ます。式\eqref{p2}になると、また明白なLorentz不変性があります。
 
 \section{電磁場背景中の粒子}
+\label{classicalelemagbackground}
 ここでは、電磁場背景中の電荷を持った粒子を考えることにしましょう。まず、電磁ポテンシャル$(\phi, \Ab)$は、４元ベクトルとして表すことができます。つまり
 \begin{align}
   \phi=A^0,\quad \Ab=\mqty(A^1 \\ A^2 \\ A^3)
@@ -243,7 +256,7 @@ Dirac方程式による１つの電子の記述は素晴らしいものですが
 \end{align}
 となります。$A_0=A^0$であることに注意して$K^0:=E-qA^0$は
 \begin{align}
-  K^0:=E-qA^0=\frac{m}{\sqrt{1-\dot{\xb}^2}}
+  K^0:=E-qA^0=\frac{m}{\sqrt{1-\dot{\xb}^2}}\label{kinematicalenergy}
 \end{align}
 となって、電磁場がないときのエネルギーと同じになります。$K^{\mu}=p^{\mu}-qA^{\mu}$ですので、$K^{\mu}$はまた４元反変ベクトルになります。これは、電磁場が無いときの４元運動量なので
 \begin{align}
@@ -330,7 +343,7 @@ Dirac方程式による１つの電子の記述は素晴らしいものですが
   \psi(t,\xb)=\int\frac{\dd[3]{\kb}}{(2\pi)^3}e^{i\kb\cdot \xb}
   \varphi(t,\kb)\label{Fourier3}
 \end{align}
-として$\varphi(t,\kb)$を導入します。これを式\eqref{naivequantization}に代入して、両辺を比較すると$\varphi(t,\kb)$に対する代数方程式
+として$\varphi(t,\kb)$を導入します。これを式\eqref{naivequantization}に代入して、両辺を比較すると$\varphi(t,\kb)$に対する微分方程式
 \begin{align}
   i\pdv{t} \varphi = \sqrt{m^2+\kb^2} \varphi
 \end{align}
@@ -466,7 +479,7 @@ Hamiltonian $H$は、
 \end{align}
 を定義すれば、式\eqref{H2}を満たします。式\eqref{alphabeta}を満たすような$\alpha_i,\beta$は$2\times 2$行列では作ることができず、最低$4\times 4$行列が必要であることが知られています。ここでは$\alpha_i,\beta$の具体的な表示は、あえて示しません。これからの議論が表示によらず、\eqref{alphabeta}の関係のみを用いて進められることを強調するためです。付録\ref{app:alphabeta}に、この行列に関することを載せておきます。
 
-このHamiltonian\eqref{DiracHamiltonian}が自然に作用する波動関数は、縦に４つ成分を並べたもの$\psi(x)=\mqty(\psi_1(x)\\\psi_2(x)\\\psi_3(x)\\\psi_4(x))$です。このHamiltonian\eqref{DiracHamiltonian}を用いて書いたSchrodinger方程式
+このHamiltonian\eqref{DiracHamiltonian}が自然に作用する波動関数は、縦に４つ成分を並べたもの$\psi(x)=\mqty(\psi_1(x)\\\psi_2(x)\\\psi_3(x)\\\psi_4(x))$です。このHamiltonian\eqref{DiracHamiltonian}を用いて書いたSchrödinger方程式
 \begin{important}
   \begin{align}
     i\pdv{t} \psi=(-i\alpha_i\del_i+m\beta)\psi
@@ -557,7 +570,7 @@ Diracの提案がすごいのは、ここからです。図\ref{fig:antiparticle
   \label{fig:antiparticle}
 \end{figure}
 
-さらにこれを推し進めると、次のような現象を予言することができます。図\ref{fig:paircreation}の左のように電子と陽電子が１つずつあるような状態を考えてみます。この場合、正エネルギーを持つ電子が空いている負エネルギー準位に落ち込むことができ、この遷移で放射を出します。結果、電子も陽電子もなくなり放射だけがあるような状態になりました。このような変化を\strong{対消滅}と呼びます。逆に何かの拍子に負エネルギー状態に詰まっている電子が放射のエネルギーを吸収して性エネルギーへと励起すると左側の電子と陽電子が１つずつある状態になります。このような変化を\strong{対生成}と呼びます。
+さらにこれを推し進めると、次のような現象を予言することができます。図\ref{fig:paircreation}の左のように電子と陽電子が１つずつあるような状態を考えてみます。この場合、正エネルギーを持つ電子が空いている負エネルギー準位に落ち込むことができ、この遷移で放射を出します。結果、電子も陽電子もなくなり放射だけがあるような状態になりました。このような変化を\strong{対消滅}と呼びます。逆に何かの拍子に負エネルギー状態に詰まっている電子が放射のエネルギーを吸収して正エネルギーへと励起すると左側の電子と陽電子が１つずつある状態になります。このような変化を\strong{対生成}と呼びます。
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=14cm]{paircreation.pdf}
@@ -657,7 +670,7 @@ Dirac方程式\eqref{freeDiracequation}をもう一度書きます。
 \begin{align}
   j^{\mu}=\psib \gamma^{\mu}\psi.
 \end{align}
-成分を見てみると$j^{0}=\psi^{\dag}\psi$で、以前導入した確率密度、空間成分が確率の流れ密度になります。
+成分を見てみると時間成分が以前導入した確率密度、空間成分が確率の流れ密度になります。
 
 $j^{\mu}$が連続の式$\del_{\mu}j^{\mu}=0$を満たすことを示しましょう。まず、反交換関係\eqref{gammaanticommutationrelation}あるいは\eqref{gammaanticommutationrelation1}とエルミート共役の関係\eqref{gammahermiticity}を用いると
 \begin{align}
@@ -669,8 +682,8 @@ $j^{\mu}$が連続の式$\del_{\mu}j^{\mu}=0$を満たすことを示しまし�
 \end{align}
 を得ます。ここで記述の簡単のために左側に作用する微分演算子$\dell_{\mu}$を導入しました。$\psib\dell_{\mu}:=\del_{\mu}\psib$です。式\eqref{freeDiracequation2}と式\eqref{conjugateDiraceqation}を用いると
 \begin{align}
-  \del_{\mu}j^{\mu}&=\del_{mu}(\psib\gamma^{\mu}\psi)
-  =\psib\gamma^{\mu}\dell_{\mu}\psi+\psib\gamma^{\mu}\del_{\mu}\psi\\
+  \del_{\mu}j^{\mu}&=\del_{\mu}(\psib\gamma^{\mu}\psi)
+  =\psib\gamma^{\mu}\dell_{\mu}\psi+\psib\gamma^{\mu}\del_{\mu}\psi\nonumber\\
   &=\psib(im)\psi+\psib(-im)\psi=0
 \end{align}
 となって、保存の式$\del_{\mu}j^{\mu}=0$が示せます。
@@ -694,7 +707,7 @@ Dirac方程式の一番美しいところは、非相対論的な場合には手
 \end{align}
 となります。したがって\strong{軌道角運動量は保存しない}ということが分かります。
 
-これはどういうことでしょうか。角運動量は回転対称性の保存量でしたから、それが保存しないということは、回転対称性がないということでしょうか。答えは、軌道角運動量以外にスピンという角運動量があって、合わせると保存していて、回転対称性はちゃんと保っているというものです。少々天下り的ですが、スピンを
+これはどういうことでしょうか。角運動量は回転対称性の保存量でしたから、それが保存しないということは、回転対称性がないということでしょうか。答えは、軌道角運動量以外にスピンという角運動量があって、合わせると保存していて回転対称性はちゃんと保っている、というものです。少々天下り的ですが、スピンを
 \begin{align}
   S_i
   :=\frac{i}{4}\epsilon_{ijk}\gamma^{j}\gamma^{k}
@@ -706,7 +719,7 @@ Dirac方程式の一番美しいところは、非相対論的な場合には手
   S_2=-\frac{i}{2}\alpha_{3}\alpha_{1},\quad
   S_3=-\frac{i}{2}\alpha_{1}\alpha_{2},\quad
 \end{align}
-このとき、次の２つのことが成り立ちます。
+となります。このとき、次の２つのことが成り立ちます。
 \begin{itemize}
   \item $S_i$が角運動量の交換関係を満たすこと。
   \item 軌道角運動量とスピンをあわせた全角運動量$L_i+S_i$が保存すること。
@@ -747,10 +760,10 @@ Dirac方程式の一番美しいところは、非相対論的な場合には手
 \begin{align}
   \Sb^2=\sum_{i}S_i^2=\frac{3}{4}=\frac{1}{2}\qty(\frac{1}{2}+1)=s(s+1)
 \end{align}
-なので、$s=\frac{1}{2}$となります。つまり、Dirac方程式はスピン$\frac{1}{2}$の粒子を記述しています。例えば、電子はスピン$\frac{1}{2}$でDirac方程式でうまく記述できます。
+なので、$s=\frac{1}{2}$となります。つまり、Dirac方程式はスピン$\frac{1}{2}$の粒子を記述しています。例えば、電子はスピン$\frac{1}{2}$なのでDirac方程式でうまく記述できます。
 
 \section{Lorentz変換}
-Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変な雰囲気ではありますが、これまではちゃんとLorentz不変であることを示していませんでした。Lorentz不変であることを示すためには、4成分の$\psi$がLorentz変換の元でどう振る舞うかを考える必要があります。$\psi$は４成分の場ですが、ベクトルではありません。このような場は\strong{スピノール}と呼ばれます。スピノールがLorentz変換でどのように振る舞うかを調べるのがここでの目的です。
+Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変になりそうな雰囲気ではありますが、これまではちゃんとLorentz不変であることを示していませんでした。Lorentz不変であることを示すためには、4成分の$\psi$がLorentz変換の元でどう振る舞うかを考える必要があります。$\psi$は４成分の場ですが、ベクトルではありません。このような場は\strong{スピノール}と呼ばれます。スピノールがLorentz変換でどのように振る舞うかを調べるのがここでの目的です。
 
 \subsection{３次元の回転}
 まず、ウォーミングアップとしてLorentz変換の一部である３次元の回転を復習しましょう。ここではLie群、Lie代数、表現論といった数学の概念が有用ですので、簡単に説明します。こういった数学は場の理論、特にゲージ理論を考える際に不可欠ですので、みなさん勉強してください。
@@ -804,13 +817,13 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変な雰囲気ではあ
 
 さて、物理に戻りましょう。これまで準備してきた数学を用いると、次のように言えます。
 \begin{myquote}
-  角運動量とは回転のLie代数のHilbert空間に対する表現である。
+  角運動量とは空間回転のLie代数のHilbert空間に対する表現である。
 \end{myquote}
 つまり、\eqref{so(3)alg}の交換関係を満たすようなHilbert空間上の演算子です。例えば、非相対論的でスピンを持たない粒子の場合、Hilbert空間は３次元空間での規格化可能な関数全体でした。その場合の角運動量は
 \begin{align}
   J_i=L_i:=-i\epsilon_{ijk}\del_{k}
 \end{align}
-となります\footnote{ここでは、記号の簡単のためにLie代数の元とその表現に同じ記号$J_i$を用いました。これはもしかしたら混乱を招くかもしれません。繰り返しますが、抽象的なLie代数の元とその表現を区別することが非常に重要です。}。この$L_i$のことを通称軌道角運動量と呼んでいるわけです。同様にDirac方程式で記述される4成分の波動関数$\psi(x)$に対しては、前の節でやったように
+となります\footnote{ここでは、記号の簡単のためにLie代数の元とその表現に同じ記号$J_i$を用いました。これはもしかしたら混乱を招くかもしれません。繰り返しますが、抽象的なLie代数の元とその表現を区別することが非常に重要です。}。この$L_i$のことを物理では軌道角運動量と呼んでいるわけです。同様にDirac方程式で記述される4成分の波動関数$\psi(x)$に対しては、前の節でやったように
 \begin{align}
   J_i=L_i+S_i,\quad S_i=\frac{i}{4}\epsilon_{ijk}\gamma^{j}\gamma^{k}\label{3dangularmomentum}
 \end{align}
@@ -831,17 +844,17 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変な雰囲気ではあ
 \end{align}
 という関係を満たします。
 
-さて、Lorentz変換の無限小変換を考えることにより、Lorentz群のLie代数（Lorentz代数と呼んでおきましょう）の構造を考えます。$1$に非常に近い変換として$\omega^{\mu}{}_{\nu}$を非常に小さい量として
+さて、Lorentz変換の無限小変換を考えることにより、Lorentz群のLie代数（Lorentz代数と呼んでおきましょう）の構造を考えます。$\omega^{\mu}{}_{\nu}$を非常に小さい量として
 \begin{align}
   \Lambda^{\mu}{}_{\nu}=\delta^{\mu}_{\nu}+\omega^{\mu}{}_{\nu}\label{infinitesimalLorentz0}
 \end{align}
-というものを考えます。この$\omega^{\mu}{}_{\nu}$が満たすべき性質を考えましょう。式\eqref{Lorentztransf1}に\eqref{infinitesimalLorentz0}を代入して変形し、$\omega$の2次以上を無視します。
+を考えます。この$\omega^{\mu}{}_{\nu}$が満たすべき性質を調べましょう。式\eqref{Lorentztransf1}に\eqref{infinitesimalLorentz0}を代入して変形し、$\omega$の2次以上を無視します。
 \begin{align}
   &\eta_{\mu\nu}(\delta^{\mu}_{\rho}+\omega^{\mu}{}_{\rho})(\delta^{\nu}_{\sigma}+\omega^{\nu}{}_{\sigma})=\eta_{\rho\sigma}\\
   \Leftrightarrow\quad&\eta_{\mu\nu}\delta^{\mu}_{\rho}\delta^{\nu}_{\sigma}+\eta_{\mu\nu}\delta^{\mu}_{\rho}\omega^{\nu}{}_{\sigma}+\eta_{\mu\nu}\omega^{\mu}{}_{\rho}\delta^{\nu}_{\sigma}=\eta_{\rho\sigma}\\
   \Leftrightarrow\quad&\eta_{\rho\sigma}+\omega_{\rho\sigma}+\omega_{\sigma\rho}=\eta_{\rho\sigma}
 \end{align}
-と変形できます。$\eta_{\mu\nu}\omega^{\nu}_{\sigma}=:\omega_{\mu\sigma}$と定義しました。得られたのは
+と変形できます。$\eta_{\mu\nu}\omega^{\nu}{}_{\sigma}=:\omega_{\mu\sigma}$と定義しました。得られたのは
 \begin{important}
   \begin{align}
     \omega_{\rho\sigma}=\omega_{\sigma\rho}\label{infinitesimalLorentz1}
@@ -880,7 +893,7 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変な雰囲気ではあ
   )
 \end{align}
 などです。ただし、ここでは$(M_{\rho\sigma})^{\mu}{}_{\nu}$の$\mu$を行の足、$\nu$を列の足にし、それぞれ$0,1,2,3$の順で書きました。
-独立な生成子が6つあるという意味でLorentz群、およびそのLie代数は6次元です。例えば$M_{12}$は$0$行および$0$列を除くと、全体の符号を除いて\eqref{so(3)3rep}の$J_3$と同じになっています。これは当然で、3次元の回転はLorentz変換の特別な場合です。$M_{01}$などが、速度の違う観測者に移るという、Lorentz変換らしいLorentz変換であり、「ブースト」と呼ばれます。ブーストの生成子は行列としては反対称行列ではなく、対称行列になっていますが、「(大きさ)${}^2$が必ずしも正ではない。」の方の違いから来ています。
+独立な生成子が6つあるという意味でLorentz群、およびそのLie代数は6次元です。例えば$M_{12}$は$0$行および$0$列を除くと、全体の符号を除いて\eqref{so(3)3rep}の$J_3$と同じになっています。これは当然で、3次元の回転はLorentz変換の特別な場合です。$M_{01}$などが、速度の違う観測者に移るという、Lorentz変換らしいLorentz変換であり、「ブースト」と呼ばれます。ブーストの生成子は行列としては反対称行列ではなく対称行列（エルミート行列ではなく、反エルミート行列）になっていますが、この違いは「(大きさ)${}^2$が必ずしも正ではない。」の方の違いから来ています。
 
 さて、Lie代数の構造で重要なのは、交換関係でした。生成子の交換関係を計算しましょう。答えは
 \begin{important}
@@ -889,11 +902,11 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変な雰囲気ではあ
     +i\eta_{\mu\sigma}M_{\nu\rho}-i\eta_{\nu\sigma}M_{\mu\rho}\label{Lorentzcomm}
   \end{align}
 \end{important}
-となります。この式は、その内容以上に見た目がゴチャゴチャしていて難しく感じてしまうと思います。計算は強引にやればできますが、うまくやらないと面倒です。少しだけ「計算しなくても分かること」解説しましょう。
+となります。この式は、その内容以上に見た目がゴチャゴチャしていて難しく感じてしまうと思います。計算は強引にやればできますが、うまくやらないと面倒です。少しだけ「計算しなくても分かること」を解説しましょう。
 \begin{itemize}
   \item Lie代数になっていることを認めると、交換関係は$M$ついて1次のはずです。
   \item 交換関係の結果に現れるテンソルは$M_{\cdot\cdot}$と$\eta_{\cdot\cdot},\eta^{\cdot\cdot}$および$\delta^{\cdot}_{\cdot}$というものだけのはずです。これらを用いて下付きの足を$4$つもつもので$M$について1次のものものは、$\eta_{\cdot\cdot}M_{\cdot\cdot}$で$\cdot$のところには$\mu\nu\rho\sigma$を順番を入れ替えていれたものという組み合わせしかありません。
-  \item さらに$M_{\mu\nu}$は$\mu\nu$について反対称ですから、左辺の交換関係は$\mu\nu$および$\rho\sigma$については反対称なはずです。したがって、$\eta_{\mu\nu}M_{\rho\sigma}$のような項はありえません。この反対称性まで考慮すると「計算しなくても」全体にかかる数を除いて式\eqref{Lorentzcomm}と一致することが分かります。
+  \item さらに$M_{\mu\nu}$は$\mu\nu$について反対称ですから、左辺の交換関係は$\mu\nu$および$\rho\sigma$については反対称なはずです。したがって、$\eta_{\mu\nu}M_{\rho\sigma}$のような項はありえません。この反対称性まで考慮すると「計算しなくても」全体にかかる係数を除いて式\eqref{Lorentzcomm}と一致することが分かります。
 \end{itemize}
 全体にかかる係数を決めるには、例えば$[M_{12},M_{31}]$を計算すれば、式\eqref{Lorentzcomm}の第１項だけが$0$でなく出てくるので、その係数を見れば良いです。
 
@@ -959,17 +972,17 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変な雰囲気ではあ
 \end{align}
 さて$0\le u \le 1$をとるパラメータを導入して
 \begin{align}
-  \phi'_{u}(x):=\phi'(x)=\exp\qty(-u\frac{i}{2}\omega^{\rho\sigma}L_{\rho\sigma})\phi(x)\label{tempphiprime}\\
+  \phi'_{u}(x):=\exp\qty(-u\frac{i}{2}\omega^{\rho\sigma}L_{\rho\sigma})\phi(x),\label{tempphiprime}\\
   \phit_{u}(x):=\phi\qty(\qty(\exp\qty(u\frac{i}{2}\omega^{\rho\sigma}V_{\rho\sigma}))x)\label{tempphitilde}
 \end{align}
-を定義します。$\phi'_{u}(x)=\phit_{u(x)}$を示せれば、$u=1$の場合が示したい式です。これを示すのには、次の２つを示せば良いです。
+を定義します。これから$\phi'_{u}(x)=\phit_{u(x)}$を示します。$u=1$の場合が示したかった式です。これを示すのには、次の２つを示せば良いです。
 \begin{enumerate}
   \item $u=0$のとき$\phi'_{0}(x)=\phit_{0}(x)$であること。
   \item $\phi'_{u}(x)$と$\phit_{u}(x)$が同じ微分方程式を満たすこと。
 \end{enumerate}
 まず、$\phi'_{0}(x)=\phit_{0}(x)=\phi(x)$ですから1.は成り立ちます。次に$\phi'_{u}(x)$が満たす微分方程式を求めましょう。式\eqref{tempphiprime}より
 \begin{align}
-  \pdv{u} \phi'_{u}(x)=-u\frac{i}{2}\omega^{\rho\sigma}L_{\rho\sigma}\phi'_{u}(x)\label{tempdiffeqprime}
+  \pdv{u} \phi'_{u}(x)=-\frac{i}{2}\omega^{\rho\sigma}L_{\rho\sigma}\phi'_{u}(x)\label{tempdiffeqprime}
 \end{align}
 となります。次に$\phit_{u}(x)$が満たす微分方程式を求めましょう。$\delta u$を小さい数、$B:=\qty(\exp\qty(\frac{i}{2}\omega^{\rho\sigma}V_{\rho\sigma}))$とすると、$\phi_u(x)=\phi(B^ux)$と書けます。さらに$B^{\delta u}x=x+\delta x$と書くことにすると
 \begin{align}
@@ -996,10 +1009,10 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変な雰囲気ではあ
 \end{align}
 となります。これは\eqref{tempdiffeqprime}と同じなので2.が成り立つことが示せました。
 
-さて、ここではある意味よく知っているスカラー場のLorentz変換を無限小変換や、その$\exp$の言葉を用いて説明しました。これには理由があって、スピノールの場合には無限小変換の$\exp$の形でしか表せないからです。
+ここでは、ある意味よく知っているスカラー場のLorentz変換を無限小変換や、その$\exp$の言葉を用いて説明しました。これには理由があって、スピノールの場合には無限小変換の$\exp$の形でしか表せないからです。
 
 \subsection{定数スピノール}
-Dirac方程式に従う波動関数であるスピノール場に行く前に、時空の点によらない定数スピノールについて考えましょう。Lorentz変換の一部である空間回転については、すでに考えたスピン\eqref{spin1/2}に一致するはずです。これを４次元のLorentz変換に拡張すると
+Dirac方程式に従う波動関数であるスピノール場に行く前に、時空の点によらない定数スピノールについて考えましょう。Lorentz変換の一部である空間回転については、すでに考えたスピン\eqref{spin1/2}に一致するはずです。これを４次元のLorentz変換に拡張するには
 \begin{important}
   \begin{align}
     S_{\mu\nu}=\frac{i}{2}\gamma_{\mu\nu}
@@ -1066,12 +1079,12 @@ Dirac方程式に従う波動関数であるスピノール場に行く前に、
 \end{align}
 となっていれば明白なLorentz不変性を持っています。つまりDirac方程式\eqref{freeDiracequation2}の左辺$\Psi(x):=(i\gamma^{\mu}\del_{\mu}-m)\psi(x)$がスピノール場の変換性を持っていることを示します。
 
-まず、無限小変換からいきましょう。$(i\gamma^{\mu}\del_{\mu}-m)\psi(x)$の無限小変換は
+まず、無限小変換からいきましょう。$\Psi(x)$の無限小変換は
 \begin{align}
   \delta \Psi(x)=
   \Psi'(x)-\Psi(x)=
-  (i\gamma^{\mu}\del_{\mu}-m)\psi(x)-
-  (i\gamma^{\mu}\del_{\mu}-m)\psi'(x)
+  (i\gamma^{\mu}\del_{\mu}-m)\psi'(x)-
+  (i\gamma^{\mu}\del_{\mu}-m)\psi(x)
   = (i\gamma^{\mu}\del_{\mu}-m)\delta \psi(x)\nonumber\\
   =(i\gamma^{\mu}\del_{\mu}-m)(-\frac{i}{2}\omega^{\rho\sigma}(L_{\rho\sigma}+S_{\rho\sigma}))\psi(x)
 \end{align}
@@ -1157,22 +1170,741 @@ Dirac方程式に従う波動関数であるスピノール場に行く前に、
 となるので\eqref{tempgammatransf}の最後の式は\eqref{gammatransf}の右辺と同じになります。こうして\eqref{gammatransf}が示せました。
 
 
-\subsection{スピノールの双線形形式}
+\subsection{Dirac共役、スピノールの双線形形式}
+ここでは、スピノールの双線形形式を考えて、他の様々な表現を作ることを考えます。
 
+まず、最初に注意することは$S_{\mu\nu}$はエルミートではないかも知れないということです。実際角運動量の部分$S_{ij}$はエルミートですが、ブーストの部分$S_{0i}$は$S_{0i}^{\dag}=-S_{0i}$となるので反エルミートです。しかし、次の関係式が成り立ちます。
+\begin{align}
+  \gamma^{0}S_{\mu\nu}^{\dag}\gamma^{0}=S_{\mu\nu}.
+\end{align}
+これは、$(\mu,\nu)=(i,j)$の場合と$(\mu,\nu)=(0,i)$の場合に分けて考えると簡単に示すことができます。これを用いると
+\begin{align}
+  \gamma^{0}S(\Lambda)^{\dag}\gamma^{0}=S(\Lambda)^{-1}\label{gamma0unitarity}
+\end{align}
+が成り立つことを示すことができます。$S(\Lambda)$はユニタリーではないのですが、式\eqref{gamma0unitarity}のような、ちょっと変わった関係式を満たします。
+
+式\eqref{gamma0unitarity}を用いてスピノール場$\psi(x)$Dirac共役$\psib(x)=\psi^{\dag}(x)\gamma^{0}$のLorents変換性を考えましょう。これは
+\begin{align}
+  \psib'(x')
+  &=\psi'(x')^{\dag}\gamma^{0}
+  =\psi(x)^{\dag}S(\Lambda)^{\dag}\gamma^{0}\nonumber\\
+  &=\psib(x)\gamma^{0}S(\Lambda)^{\dag}\gamma^{0}
+\end{align}
+となるので、式\eqref{gamma0unitarity}を用いると
+\begin{important}
+  \begin{align}
+    \psib'(x')=\psib(x)S(\Lambda)^{-1}\label{diracconjtransf}
+  \end{align}
+\end{important}
+となります。
+
+式\eqref{diracconjtransf}を用いて、スピノールの双線形形式の変換性を考えましょう。$\psi(x),\phi(x)$をスピノール場とすると$\psib(x)\phi(x)$のLorentz変換性は
+\begin{align}
+  \psib'(x')\phi'(x')
+  =\psib(x)S(\Lambda)^{-1}S(\Lambda)\phi(x)
+  =\psib(x)\phi(x)
+\end{align}
+となります。つまり、$\psib(x)\phi(x)$は\strong{スカラー場}になります。また、カレント$j^{\mu}(x)=\psib(x)\gamma^{\mu}\psi(x)$の変換性は、式\eqref{gammatransf}を用いて
+\begin{align}
+  j'^{\mu}(x')
+  =\psib'(x')\gamma^{\mu}\psi'(x')
+  =\psib(x)S(\Lambda)^{-1}\gamma^{\mu}S(\Lambda)\psi(x)
+  =\Lambda^{\mu}{}_{\nu}\psib(x)\gamma^{\nu}\psi(x)
+  =\Lambda^{\mu}{}_{\nu}j^{\nu}(x)
+\end{align}
+となります。ですから予告していたように$j^{\mu}(x)$が反変ベクトル場であることが示せました。同様にして
+\begin{align}
+  \psib \gamma^{\mu}\phi,\quad
+  \psib \gamma^{\mu\nu}\phi,\quad
+  \psib \gamma^{\mu\nu\rho}\phi,\quad
+  \psib \gamma^{\mu\nu\rho\sigma}\phi
+\end{align}
+などは、その添字が示すようなテンソル場になります。ただし、ここで
+\begin{align}
+  \gamma^{\mu_1\dots \mu_p}:=\gamma^{[\mu_1}\gamma^{\mu_2}\dots \gamma^{\mu_p]}
+\end{align}
+という記号を用いました。反対称化の記号$[]$は$p$個の添字を持つ量$B^{\mu_1\dots \mu_p}$があったときに
+\begin{align}
+  B^{[\mu_1\dots \mu_p]}:=\frac{1}{p!}\sum_{(i_1,\dots,i_p):\ (1,\dots, p)\text{の置換}}B^{\mu_{i_1}\dots \mu_{i_p}}\epsilon(i_1,\dots,i_p)
+\end{align}
+と定義しています。$\epsilon(i_1,\dots,i_p)$は、
+\begin{align}
+  \epsilon(i_1,\dots,i_p)=
+  \begin{cases}
+    +1 & ((1,\dots,p)\to (i_1,\dots,i_p)\text{が偶置換のとき}),\\
+    -1 & ((1,\dots,p)\to (i_1,\dots,i_p)\text{が奇置換のとき}),\\
+    0 & (\text{それ以外}),\\
+  \end{cases}
+\end{align}
+と定義しました。
 
 \section{平面波解}
+さて、ここではDirac方程式\eqref{freeDiracequation2}の平面波解を少しだけ詳しく見てみましょう。
 
+以前にやりかけたように、
+\begin{align}
+  H=-i\alpha_{i}\del_{i}+m\beta
+\end{align}
+を対角化すれば良いわけです。このHamiltonianは運動量$\pbb$と可換ですから、フーリエ変換すれば良いです。言い換えると平面波の形
+\begin{align}
+  \psi(\xb)=e^{i\kb\cdot \xb}u(\kb)
+\end{align}
+の固有関数を考えれば良いことになります。ここで$u(\kb)$は、$\xb$によらないスピノールです。このとき固有値方程式は
+\begin{align}
+  H(\kb)u(\kb)=Eu(\kb),\quad H(\kb):=\alpha_ik^{i} +m\beta\quad (\kb=(k^1,k^2,k^3))
+\end{align}
+となります。つまり、$H(\kb)$という単なる$4\times 4$行列の対角化の問題に帰着されます。また
+\begin{align}
+  H(\kb)^2=\kb^2+m^2,\quad \Tr H(\kb) =0
+\end{align}
+ですから、固有値は$+\sqrt{\kb^2+m^2}$が２重縮退、$-\sqrt{\kb^2+m^2}$が２重縮退となっています。
 
+さて、これらの２重縮退を区別するのにはどうすれば良いでしょうか。止まっている粒子の場合なら、この縮退は例えば$z$軸方向のスピンが上向きと下向きの縮退に対応します。動いている粒子の場合にはどうすれば良いでしょうか。以前に見たようにスピンだけでは一般に保存量ではありません。
+こういう場合によく使われるのがヘリシティという量です。式\eqref{spin1/2}のスピン
+\begin{align}
+  \Sb=(S_1,S_2,S_3),\quad 
+  S_i=\frac{i}{4}\epsilon_{ijk}\gamma^{jk}=-\frac{i}{4}\epsilon_{ijk}\alpha_{j}\alpha_{k}
+\end{align}
+を用いて
+\begin{important}
+  \begin{align}
+    h:=2\frac{\kb}{|\kb|} \cdot \Sb
+  \end{align}
+  という演算子を定義し、この固有値を\strong{ヘリシティ}と呼びます。言い換えるとヘリシティは粒子の進んでいる向きに測ったスピンの２倍です。  
+\end{important}
+$h^2=1$ですから、固有値は$+1$あるいは$-1$をとります。この$h$は
+\begin{align}
+  [H(\kb),h]=0
+\end{align}
+となることが計算から分かります。したがって$H(\kb)$と同時対角化が可能ですから保存量です。素粒子物理学においてヘリシティという言葉はよく使われます。覚えておいてください。
 
+ここで$u(\kb)$と書いた平面波解の波動関数の詳しい性質は、場の理論の計算をやるときに重要になります。詳しい性質といっても解の具体的な形ではなく、表示のしかたによらない様々な公式のことです。そこは、かなり技術的な側面もあり、この講義では使わないので、ここで紹介するのはやめておきます。
 
 \section{ジグザグ運動}
+Dirac方程式が１粒子の量子力学を記述しているという解釈にしたがって、位置$x^{i}$の時間発展を考えてみましょう。$x^{i}$に対するHeisenberg方程式は、
+\begin{align}
+  \dot{x}^{i}=i[H,x^i]=i[\alpha_jp^{j}, x^{i}]=\alpha_i
+\end{align}
+となります。つまり、「速度」を表す演算子は$\alpha_i$ということになります。これは真に受けると非常に不思議なことが起こっていることになります。
+\begin{itemize}
+  \item 固有値は$\pm 1$です。今、自然単位系をとっているので速さ$1$は光の速さです。つまり、ある座標軸をとったとき、粒子は正の方向に光の速さで進んでいる状態と負の方向に光の速さで進んでいる状態の重ね合わせになっています。
+  \item $\alpha_i$と$H$は可換ではありません。つまり、速度は時間変化します。今考えているのが「自由な粒子」であるにもかかわらず、です。
+\end{itemize}
+このようにある軸方向に注目すると、粒子は光の速さで行ったり来たりしていることになります。このような描像を「ジグザグ運動」(Zitterbewegung)と呼びます。
 
+ちなみに非相対論的な自由粒子の場合、$H=\pbb^2/(2m)$ですから$\dot{x}^i=p^i/m$となって、上のような変な描像には至りません。
+
+ここで、このジグザグ運動を紹介したのは、量子力学、特に相対論的な量子力学では、いかに直感に反するようなことが起こっているかを示す、良い例だと思ったからです。
+
+
+\section{まとめ}
+この章では、自由なDirac方程式の性質を見てきました。
+\begin{itemize}
+  \item ガンマ行列を導入し、Dirac方程式を時間と空間が平等に見えるように書きかえました。
+  \item Dirac方程式ではスピンが必然的に導入されることを見ました。
+  \item スピノールのLorentz変換性を調べ、Dirac方程式が明白なLorentz不変性をもつことを見ました。
+  \item スピノールの双線形形式がテンソルになることを見ました。
+  \item 平面波解について調べました。特にヘリシティという概念を導入しました。
+  \item ジグザグ運動という不思議な現象があることを見ました。
+\end{itemize}
 
 
 \chapter{電磁場背景中のDirac方程式}
 \section{電磁場との相互作用}
+前の章では、力を受けない自由なDirac方程式に従う粒子について、いろいろ調べてきました。ここからは、力を受けるDirac粒子について考えていきましょう。
+
+まず、どのような力を受けることができるかを考えてみましょう。相対論的には、遠隔相互作用は禁止されます。この理由は、遠隔相互作用があると、次のように因果律を破るからです。例えば、離れた場所から同時刻の粒子に力を加えることが出来たとしましょう。この同時は、別の慣性系から見ると力を加える人が未来にいて、力を加えられる粒子が過去にいることになります。過去にいる粒子に力を加えることができてしまうと、因果律を破ります。ですから、粒子に加えることが出来る力は近接相互作用のみです。
+
+我々がよく知っている近接相互作用の力は、電磁気の力です。電磁気の力を受けて運動する粒子のDirac方程式について考えましょう。ヒントは\ref{classicalelemagbackground}でやった、電磁場背景中の古典粒子の記述でした。このとき分かったことは電荷を$q$として
+\begin{align}
+  p_{\mu}\rightarrow p_{\mu}-qA_{\mu}\text{の置き換え}
+\end{align}
+をやればよいということでした。これを量子論にするなら
+\begin{align}
+  i\del_{\mu}\rightarrow i\del_{\mu}-qA_{\mu}\text{の置き換え}
+\end{align}
+言い換えると
+\begin{important}
+  \begin{align}
+    \del_{\mu}\rightarrow D_{\mu}:=\del_{\mu}+iqA_{\mu}\text{の置き換え}\label{covariantderivative}
+  \end{align}
+\end{important}
+をやればよいことになります。ここに出てきた$D_{\mu}:=\del_{\mu}+iqA_{\mu}$は\strong{共変微分}と呼ばれます\footnote{一般相対論にも共変微分というものが出てきたと思います。そのときは「一般座標変換に対して共変になる」というものでした。今の場合は「ゲージ変換に対して共変になるもの」です。}。ここから電磁場背景中のDirac方程式は
+\begin{important}
+  \begin{align}
+    (i\gamma^{\mu}D_{\mu}-m)\psi=0,\qquad D_{\mu}:=\del_{\mu}+iqA_{\mu}\label{Diraceqinelemag}
+  \end{align}
+\end{important}
+となります。
+
+今は、古典的な場合と比較して\eqref{Diraceqinelemag}を発見したのですが、もう少し見通しの良い発見方法があります。これは、ゲージ対称性を元にするもので、「ゲージ原理」と呼ばれます。これについて説明しましょう。
+
+まず、自由なDirac方程式\eqref{freeDiracequation2}
+\begin{align}
+  (i\gamma^{\mu}\del_{\mu}-m)\psi(x)=0\label{freeDiracequation3}
+\end{align}
+の対称性に注目します。このDirac方程式は、次のような$\psi$の位相をずらす変換で不変です。
+\begin{align}
+  \psi(x)\to \psi'(x)=e^{-iq\chi}\psi(x)\quad (\chi \text{:定数}).
+\end{align}
+ここで変換のパラメータ$\chi$は時空の点によらない定数です。つまり、この変換は時空全体で位相を同じようにずらす変換です。このような対称性を\strong{大域的対称性}と呼びます。
+
+次にパラメータ$\chi$を時空の点によるもの$\chi(x)$にすることを考えます。
+\begin{align}
+  \psi(x)\to \psi'(x)=e^{-iq\chi(x)}\psi(x).\label{psigaugetransf}
+\end{align}
+この変換で自由なDirac方程式\eqref{freeDiracequation3}は不変ではありません。それは次のように微分のところで$\chi(x)$を微分したおつりが出てくるからです。
+\begin{align}
+  \del_{\mu}\psi'(x)=\del_{\mu}(e^{-iq\chi(x)}\psi(x))
+  =e^{-iq\chi(x)}(\del_{\mu}\psi(x)-iq\del_{\mu}\chi(x)\psi(x)).
+\end{align}
+\eqref{psigaugetransf}のような時空の点によるような変換を\strong{ゲージ変換}と呼びます。ゲージ変換で理論が不変であるとき、理論は\strong{ゲージ対称性}あるいは\strong{局所的対称性}を持つといいます。理論がゲージ対称性を持つべし、という原理を「ゲージ原理」と呼びます。
+
+さて、\eqref{freeDiracequation3}がゲージ対称性を持つように理論を変更しましょう。このために、電磁場$A_{\mu}$のゲージ変換を思い出しましょう。
+\begin{align}
+  A_{\mu}(x)\to A'_{\mu}(x)=A_{\mu}(x)+\del_{\mu}\chi(x).\label{Agaugetransf}
+\end{align}
+そして、共変微分
+\begin{align}
+  D_{\mu}\psi(x):=\del_{\mu}\psi(x)+iqA_{\mu}(x)\psi(x)
+\end{align}
+のゲージ変換を考えてみましょう。すると、おつりの項がうまく相殺して
+\begin{align}
+  D'_{\mu}\psi'(x)=e^{-iq\chi(x)}D_{\mu}\psi(x)
+\end{align}
+という、きれいな変換性を示すことが分かります。したがって、\eqref{freeDiracequation3}の微分を共変微分で置き換えたもの
+\begin{align}
+  (\gamma^{\mu}D_{\mu}-m)\psi=0
+\end{align}
+がゲージ対称性を持つことが分かります。
+
+
+
 \section{非相対論的極限}
+一般的に相対論的な効果は「速さが光速に比べて無視できない」ときに大きくなります。しかし、Dirac方程式は「スピン」に代表されるように、速さが小さくないときにも、その痕跡を残し、検証することが出来ます。ここでは、Dirac方程式の非相対論的極限を考え、そこから導かれる電子の性質について考えましょう。
+
+まず、非相対論的な場合（「速さが光速に比べて小さい」場合）には、エネルギーが静止エネルギー、つまり質量とほぼ同じです。したがって、次のように波動関数を再定義すると見通しがよくなります。
+\begin{align}
+  \psi=e^{-imt}\phi.
+\end{align}
+こうすると、$\phi$の方は$m$に比べてゆっくり振動することになります。これを電磁場と結合したDirac方程式\eqref{Diraceqinelemag}に代入すると
+\begin{align}
+  &(i\gamma^{\mu}D_{\mu}-m)e^{-imt}\phi=0
+  \ \Leftrightarrow \ 
+  (i\gamma^{\mu}D_{\mu}+\gamma^{0}m-m)\phi=0\\
+  &\Leftrightarrow \ 
+  (i\gamma^{0}D_{0}+i\gamma^{i}D_{i}+(\gamma^{0}-1)m)\phi=0\label{tempnonrela}
+\end{align}
+と変形出来ます。
+
+ここで、$\phi$を次のように$\gamma^0$の固有値によって２つの部分に分けます。
+\begin{align}
+  \phi=\phi_{+}+\phi_{-},\quad \phi_{\pm}:=\frac{1\pm \gamma^0}{2} \phi,\quad \gamma^{0}\phi_{\pm}=\pm \phi_{\pm}.
+\end{align}
+ここで$(\gamma^{0})^2=1$であることに注意してください。これを\eqref{tempnonrela}に代入すると
+\begin{align}
+  \ao{iD_0\phi_{+}}
+  \aka{+i\gamma^{i}D_{i}\phi_{+}}
+  \aka{-iD_0\phi_{-}}\ao{+i\gamma^{i}D_{i}\phi_{-}}
+  \aka{-2m \phi_{-}}=0
+\end{align}
+となります。ここで\ao{青字}で書いた項は$\gamma^0$の固有値が$+1$、\aka{赤字}で書いた項は$\gamma^{0}$の固有値が$-1$です。
+\ao{青字}の項と\aka{赤字}の項が相殺して$0$になることはあり得ませんから、それぞれが$0$となります。
+別の言い方をすると両辺に射影の行列$\frac{1\pm \gamma^{0}}{2}$をかけたものが成り立ちます。したがって
+\begin{align}
+  &iD_{0}\phi_{+}+i\gamma^{i}D_{i}\phi_{-}=0
+  \label{tempnonrelaphi+}\\
+  &-iD_{0}\phi_{-}+i\gamma^{i}D_{i}\phi_{+}-2m\phi_{-}=0
+  \label{tempnonrelaphi-}
+\end{align}
+という２つの等式が成り立ちます。
+
+さて、ここまでは特に何も近似をしていませんでした。ここから近似をします。次のような関係が成り立つことを仮定します。
+\begin{align}
+  |D_{0}\phi_{-}|\ll |m \phi_{-}|.\label{nonrelaapprox}
+\end{align}
+これは、前に言っていたような「$\phi$の振動が$m$に比べて小さい」というものです。ここでは、単なる微分ではなく共変微分になっていることに注意してください。単なる微分したものの大きさ$|\del_0\phi_{-}|$はゲージ変換で変わってしまいますので物理的な意味はありません。\ref{classicalelemagbackground}節で見たように、運動学的エネルギー\eqref{kinematicalenergy}が物理的に意味のあるもので、これが$m$とほとんど変わらないことが、速さが光速に比べて小さいことになります。
+
+\eqref{nonrelaapprox}を仮定すると、\eqref{tempnonrelaphi-}で左辺第１項は第３項に比べて無視できるので
+\begin{align}
+  \phi_{-}=\frac{i}{2m}\gamma^{i}D_{i}\phi_{+}
+\end{align}
+という式が得られます。これを\eqref{tempnonrelaphi+}に代入すると
+\begin{align}
+  iD_0\phi_{+}+i\gamma^{i}D_{i}\frac{i}{2m}\gamma^{j}D_{j}\phi_{+}=0
+\end{align}
+となります。和をとる添字がかぶらないように変えたことに注意してください。これをさらに変形します。$\gamma^{i}\gamma^{j}=-\delta^{ij}+\gamma^{ij}$という関係に注意して
+\begin{align}
+  i\del_0 \phi_{+}
+  &=\qty(\frac{1}{2m}\gamma^{i}\gamma^{j}D_{i} D_{j}+qA_{0})\phi_{+}\nonumber\\
+  &=\Big(\underbrace{-\frac{1}{2m}D_{i} D_{i}}_{\text{運動項}} + \underbrace{\frac{1}{2m}\gamma^{i}\gamma^{j}D_{i} D_{j}}_{\text{Pauli項}} + \underbrace{q A_{0}}_{\text{ポテンシャル項}}\Big)\phi_{+}
+\end{align}
+という式を得ます。ここで左辺の括弧の中の第１項、第２項、第３項をそれぞれ運動項、Pauli項、ポテンシャル項と呼んでおきましょう。
+
+まず運動項は、電磁気の授業で出てきたベクトルポテンシャルが$\Ab=(A^1,A^2,A^3)=(-A_1,-A_2,-A_3)$であることに注意すると
+\begin{align}
+  (\text{運動項})=-\frac{1}{2m} (\del_i+iqA_{i})(\del_i+iqA_{i})=-\frac{1}{2m}(\bnabla-iq\Ab)^2
+\end{align}
+となります。これは量子力学の授業で出てきた、磁場中の荷電粒子のHamiltonianの運動項と同じですね。
+
+次にポテンシャル項を見てみます。これは、電磁気の授業で出てきたスカラーポテンシャルが$A_0=A^0$であることに注意すると、普通のポテンシャル項に他ならないです。
+
+最後にPauli項を見てみましょう。ここが一番面白い部分です。
+\begin{align}
+  (\text{Pauli項})
+  =\frac{1}{2m}\gamma^{ij}D_{i}D_{j}
+  =\frac{1}{2m}\frac{1}{2}\gamma^{ij}[D_{i},D_{j}]
+\end{align}
+と変形できます。ここで交換関係の部分は
+\begin{align}
+  [D_{i},D_{j}]=[\del_i+iqA_i,\del_j+iqA_j]
+  =iq(\del_{i}A_{j}-\del_{j}A_{i})
+  =iq F_{ij}
+\end{align}
+と場の強さ$F_{ij}$を用いて表すことができます。電磁気の授業で習った磁場$\Bb$は
+\begin{align}
+  \Bb=(-F_{23},-F_{31},-F_{12})
+\end{align}
+であること、そしてこの講義で出てきたスピンが
+\begin{align}
+  \Sb=(\frac{i}{2}\gamma^{23},\frac{i}{2}\gamma^{31},\frac{i}{2}\gamma^{12})
+\end{align}
+であることを考慮すると
+\begin{align}
+  (\text{Pauli項})=-\frac{q}{m}\Sb\cdot \Bb
+\end{align}
+となります。ですから、Pauli項は磁場とスピンの相互作用を表す項であることが分かりました。これは量子力学の授業でも出てきたと思いますが、そのときは「手で」入れたと思います。特に前の係数は、実験から決めるしかなかったと思います。しかし、ここではDirac方程式から、ここの係数を理論的に導出することができました。
+この項を「g因子」と呼ばれる記号を用いて
+\begin{align}
+  (\text{Pauli項})=-g\frac{q}{2m}\Sb\cdot \Bb
+\end{align}
+と書き表しておきます。$g$以外の$-\frac{q}{2m}$という因子はBohr磁子と呼ばれる単位です。これは電子が古典的に質量密度と電荷密度を持つような大きさのある物体だと思ったときの磁気モーメントとスピンの比を表します。実験的に図られたg因子の値は約2でした。これはDirac方程式が出る前は、なぜこの値を持つのかは全くの謎でした。ここで見たようにDirac方程式から導かれるのは$g=2$ですから、この実験値を非常によく説明しています。これはDirac方程式が電子を良く記述していることの非常に重要な証拠です。
+
+ところで、現在分かっているg因子の実験値は
+\begin{align}
+  g=2.00231930436256(35)
+\end{align}
+です。最後の$(35)$は最後二桁の誤差を表します。これは物理量の中で最も正確に図られたものの一つです。Dirac方程式からは説明できない$g-2$の部分は場の理論を用いると説明できます。電子に関しては、理論計算と実験値が誤差の範囲内で一致しています。これは場の理論が非常に良い精度で現実の物理を記述していることの重要な証拠です\footnote{μ粒子の$g-2$に関しては、理論値と実験値が誤差を考慮しても合っていない可能性が高いという結果があります。これは素粒子の標準模型を超える物理が効いていて、それを取り入れると説明できると考えている人たちもいます。もちろん、実験の誤差が正しく評価できていない、あるいは理論計算の近似等の誤差が正しく評価できていない可能性もあります。}。
+
 \section{水素原子}
+
+ここでは、Dirac方程式を用いて水素原子、厳密に言えばCoulombポテンシャル中の電子のエネルギー固有値と固有状態を
+求めていきます。これには大きく分けて次の4つのステップを踏んでいきます。
+\begin{enumerate}
+  \item 対称性を用いた、角度方向の波動関数の基底の整備
+  \item 動径方向の微分方程式の導出
+  \item 動径方向の微分方程式の解
+  \item 無限遠での振る舞いとエネルギー固有値
+\end{enumerate}
+これらを順に見ていきます。
+
+\subsection{対称性を用いた、角度方向の波動関数の基底の整備}\label{sec:harmonics}
+Dirac方程式は電子などのスピン$\frac12$の粒子を記述します。このため軌道角運動量$\Lb$だけでは保存せず、
+スピン角運動量$\Sb$と合わせた全角運動量$\Jb=\Lb+\Sb$が保存します。まずは、$\Jb$の既約表現の基底$\ket{j,m}$を$\Lb$の
+既約表現の基底$\ket{l,\ml}$と$\Sb$の既約表現の基底$\uket,\dket$を用いて表すことを考えましょう。これらは次の式を満たします。
+\begin{align}
+  &L_3\ket{l,\ml}=\ml\ket{l,\ml},\quad \Lb^2\ket{l,\ml}=l(l+1)\ket{l,\ml},\quad L_{-}\ket{l,\ml}=\sqrt{(l+\ml)(l+1-\ml)}\ket{l,\ml},\\
+  &J_3\ket{j,m}=m\ket{j,m},\quad \Jb^2\ket{j,m}=j(j+1)\ket{j,m},\quad J_{-}\ket{j,m}=\sqrt{(j+m)(j+1-m)}\ket{j,m},\\
+  &S_3\uket=+\frac12\uket,\quad S_3\dket=-\frac12\dket,\quad
+  \Sb^2\uket=\frac34\uket,\quad
+  \Sb^2\dket=\frac34\dket,\quad
+  S_{-}\uket=\dket.
+\end{align}
+これらの基底はすべて正規化されています。
+
+さて、スピン$l\ (l>0)$表現とスピン$\frac12$表現のテンソル積の既約分解を考えると
+\begin{align}
+  l\otimes \frac12 = (l+\frac12)\oplus (l-\frac12)
+\end{align}
+となるので、$j=l+\frac12$と$j=l-\frac12$の2種類の既約表現が現れます。$l=0$の場合は$j=\frac12$表現のみが現れます。この分解での基底の対応を見てみましょう。すぐに分かるのは$J_3$の固有値は最大で$l+\frac12$なので、この状態は$j=l+\frac12$表現の最高ウェイト状態になっています。つまり
+\begin{align}
+  \ket{j=l+\frac12,m=l+\frac12}=\ket{l,l}\otimes \uket \label{hws}
+\end{align}
+です。$j=l+\frac12$表現の他の状態は、この最高ウェイト状態に$J_{-}$をかけていくことによって得られます。例えば
+\begin{align}
+  \ket{j=l+\frac12,m=l-\frac12}
+  &=\frac{1}{\sqrt{2l+1}}J_{-}\ket{j=l+\frac12,m=l+\frac12}\nonumber\\
+  &=\frac{1}{\sqrt{2l+1}}\qty(\sqrt{2l}\ket{l,l-1}\otimes \uket + \ket{l,l}\otimes\dket)\label{lowerstate}
+\end{align}
+となります。ところで$l\otimes \frac12$の状態の中で、$J_3$の固有値$m$が$m=l-\frac12$となる状態がもう一つあります。これは$m=l+\frac12$の状態が１つしかないことを考慮すると、$j=l-\frac12$表現の最高ウェイト状態です。
+これは、\eqref{lowerstate}の状態に直交し正規化するようにとると
+\begin{align}
+  \ket{j=l-\frac12,m=l-\frac12}
+  =\frac{1}{\sqrt{2l+1}}\qty(\ket{l,l-1}\otimes \uket - \sqrt{2l}\ket{l,l}\otimes\dket)
+\end{align}
+となります。これに$J_{-}$をかけていくことにより、$\ket{j=l-\frac12,m}$のすべての状態が得られます。具体的に$j=l+\frac12$の表現の基底は
+\begin{align*}
+  \ket{j,m}_{+}=\frac{1}{\sqrt{2j}}\qty(\sqrt{j+m}\ket{j-\frac12,m-\frac12}\otimes\uket+\sqrt{j-m}\ket{j-\frac12,m+\frac12}\otimes \dket)
+\end{align*}
+であり、$j=l-\frac12$表現の基底は
+\begin{align*}
+  \ket{j,m}_{-}=\frac{1}{\sqrt{2j}}\qty(\sqrt{j+1-m}\ket{j+\frac12,m-\frac12}\otimes\uket+\sqrt{j+1+m}\ket{j+\frac12,m+\frac12}\otimes \dket)
+\end{align*}
+となります。もし、座標表示の球面調和関数の方が馴染みがあるなら、球面上の座標基底$\bra{\theta,\varphi}$を導入すると
+\begin{align*}
+  \braket{\theta,\varphi}{l,m_{l}}=Y^{m_l}_{l}(\theta,\varphi)
+\end{align*}
+により、今の基底を球面調和関数を用いて表すことができます。
+
+ここでひとつ問題があります。空間の回転SU$(2)$の表現のみで分類するかぎり、$j,m$が同じなら、$l=j-\frac12$から来た状態と$l=j+\frac12$から来た状態、つまり上の$\ket{j,m}_{\pm}$の状態は区別できないことになります。言い換えれば、Hamiltonian を対角化する基底は、これらが混じったものになる可能性があります。幸運なことに、球対称ポテンシャル中のDirac方程式はパリティ（空間反転）で不変ですので、次のようにパリティによって区別することができます。パリティ演算子$P$は$P^2=1$を満たす。座標$x^i$や運動量$p^{i}$に対して
+\begin{align*}
+  Px^{i}P=-x^{i},\qquad Pp^{i}P=-p^{i}
+\end{align*}
+のように作用します。したがって角運動量演算子$\Lb,\Sb,\Jb$とはすべて交換します。
+また座標基底$\ket{\theta,\varphi}$に対して
+\begin{align*}
+  P\ket{\theta,\varphi}=\ket{\pi-\theta,\varphi+\pi}
+\end{align*}
+と作用します。したがって
+\begin{align*}
+  P\ket{l,m_l}=(-1)^{l}\ket{l,m_l}
+\end{align*}
+と作用することが分かります。スピンの基底$\uket,\dket$はパリティで不変であるとすることができます。
+したがって
+\begin{align*}
+  P\ket{j,m}_{\pm}=(-1)^{j\mp \frac12}\ket{j,m}_{\pm}
+\end{align*}
+のように２つの状態を区別することができます。
+
+\subsection{動径方向の微分方程式の導出}
+球対称ポテンシャル中の電子を考えたいので、$qA_{0}=V(r)$が$r$のみによるとし、$A_i=0$とします。
+このとき、Dirac方程式は
+\begin{align*}
+  i\del_{t}\psi=H\psi,\quad H=\alpha_i p^{i}+m\beta+V(r),\qquad (\beta=\gamma^{0},\alpha_i=\gamma^{0}\gamma^{i})
+\end{align*}
+と書けます。この$H$を対角化するというのが今考えたい問題です。つまり
+\begin{align}
+  H\psi=E\psi
+  \label{eigeneq}
+\end{align}
+という方程式を考えたいわけです。
+
+今、座標表示のDiracスピノール$\psi(t,\xb)$に対して、パリティ変換$P$を
+\begin{align*}
+  (P\psi)(t,\xb)=\beta\psi(t,-\xb)
+\end{align*}
+と定義すると、$PH=HP$となるので、$H$の固有状態を$P$の固有状態とすることができます。
+
+\ref{sec:harmonics}節で考えた状態の波動関数は２成分であったが、Diracスピノールは４成分なので、余分に状態が必要です。$\beta$は$\Lb,\Sb,\Jb$と可換なので、$\beta$の固有値を用いてそれを区別することにします。つまり$\ket{+},\ket{-}$を
+\begin{align*}
+  \beta\ket{\pm}=\pm\ket{\pm}
+\end{align*}
+となるような状態として、Diracスピノールの４成分を
+\begin{align*}
+  \ket{+}\uket,\quad
+  \ket{+}\dket,\quad
+  \ket{-}\uket,\quad
+  \ket{-}\dket
+\end{align*}
+の４つの基底で表すことにします。そうすると対称性の縛りだけから、固有状態$\psi$としては
+\begin{align}
+  \psi=
+  F_{+}(r)\ket{j,m}_{+}\otimes\ket{+}
+  +G_{-}(r)\ket{j,m}_{-}\otimes\ket{-}\label{ansatzp}
+\end{align}
+および
+\begin{align}
+  \psi=
+  F_{-}(r)\ket{j,m}_{-}\otimes\ket{+}
+  +G_{+}(r)\ket{j,m}_{+}\otimes\ket{-}\label{ansatzm}
+\end{align}
+のものを考えれば十分であることが分かります。
+
+さて、これらの表式を\eqref{eigeneq}に代入して計算するには、少し工夫が必要です。演算子
+\begin{align}
+  Q=\frac{2S_i x^{i}}{r}
+\end{align}
+を考えてみましょう。今、$2S_i$はPauli行列と同じ関係
+\begin{align}
+  2S_i2S_j=\delta_{ij}+i\epsilon_{ijk}2S_{k}.
+\end{align}
+を満たすので、これを用いると$Q^2=1$が成り立つことが分かります。これらを用いると
+\begin{align}
+  \alpha_ip^i&=\alpha_i p^i Q^2=\alpha_i 2S_j p^{i}x^{j} \frac{Q}{r}\\
+  &=(\delta_{ij}\gamma_{5}+i\epsilon_{ijk}\alpha_{k})p^{i}x^{j}\frac{Q}{r}\\
+  &=(\gamma_{5}p^{i}x^{i}-iL_k\alpha_{k})\frac{Q}{r}\\
+  &=(-ir\del_{r}\gamma_{5}-3i\gamma_5-iL_k\alpha_{k})\frac{Q}{r}\\
+  &=(-ir\del_{r}-3i-iL_k\alpha_{k}\gamma_5)\gamma_5\frac{Q}{r}\label{alphap}
+\end{align}
+を得ます。途中
+\begin{align*}
+  \alpha_{i}2S_{j}=\delta_{ij}\gamma_{5}+i\epsilon_{ijk}\alpha_{k}
+\end{align*}
+という式を用いました。この式自体は、計算で確かめることができます。その際、
+\begin{align*}
+  \alpha_{1}\alpha_{2}\alpha_{3}=i\gamma_5
+\end{align*}
+の関係式を示して用いると便利です。
+
+ここで$Q$について、もう少し考えてみましょう。$Q$は、エルミート演算子であって$\Jb,\beta$と可換であるが$QP=-PQ$です。したがって$\Jb$の表現の基底に作用すると
+\begin{align*}
+  Q\ket{j,m}_{\pm}=c_{\pm}\ket{j,m}_{\mp}
+\end{align*}
+と書けるはずです。ここで$c_{\pm}$はc数の定数です。ただし$Q$はエルミート演算子で$Q^2=1$であることと、$\ket{j,m}_{\pm}$が正規直交系であることを合わせると$c_{\pm}=+1$あるいは$c_{\pm}=-1$です。正規直交条件を保ったままで$\ket{l,\ml}$の位相を調整することで、すべての$j,m$で$c_{\pm}=1$にすることができます。つまり
+\begin{align*}
+  Q\ket{j,m}_{\pm}=\ket{j,m}_{\mp}
+\end{align*}
+であるとします。
+
+次に\eqref{alphap}の$-iL_{k}\alpha_{k}\gamma_5$について考えてみましょう。例えば
+\begin{align*}
+  \alpha_1\gamma_5=\gamma^{01}i\gamma{0123}=i\gamma^{23}=2S_{1}
+\end{align*}
+となります。同様の計算で$\alpha_{k}\gamma_{5}=2S_{k}$であることが分かります。したがって\eqref{alphap}は
+\begin{align}
+  \alpha_ip^i=(-ir\del_{r}-3i-i2\Sb\cdot \Lb)\gamma_5\frac{Q}{r}
+  \label{alphap2}
+\end{align}
+となります。さらにスピン軌道相互作用の計算のときにやったようなトリックを用いて、この項を計算すると
+\begin{align*}
+  -i2\Sb\cdot\Lb=-i(\Jb^2-\Lb^2-\Sb^2)=-i(j(j+1)-l(l+1)-\frac34)
+\end{align*}
+となるので
+\begin{align*}
+  -i2\Sb\cdot\Lb\ket{j,m}_{\pm}=i(1+\kappa_{\pm})\ket{j,m}_{\pm},\quad
+  \kappa_{\pm}=\mp(j+\frac12)
+\end{align*}
+と計算できます。
+
+さらに$\gamma_5$の取り扱いについて述べます。$\gamma_5$は$\Lb,\Sb,\Jb,\alpha_i,x^i,p^i$と交換し、$\beta$と反交換します。なので$\ket{\pm}$に非自明に作用します。これらの状態の位相を適当に調整して
+\begin{align*}
+  \gamma_5\ket{\pm}=\ket{\mp}
+\end{align*}
+となるようにします。
+
+さて、\eqref{ansatzp},\eqref{ansatzm}を\eqref{eigeneq}に代入しましょう。書く量を減らすために、\eqref{ansatzp}の場合には、$\kappa=\kappa_+=-(j+\frac12)$と書くことにし、下付きの$\pm$を省略します。$\gamma_5Q$に関して
+\begin{align*}
+  \gamma_5 Q\ket{j,m}_{+}\otimes\ket{+}=\ket{j,m}_{-}\otimes\ket{-},\quad
+  \gamma_5 Q\ket{j,m}_{-}\otimes\ket{-}=\ket{j,m}_{+}\otimes\ket{+}
+\end{align*}
+であることに注意します。\eqref{eigeneq}は
+\begin{align}
+  (E-m\beta-V)\psi = \alpha_i p^{i}\psi
+\end{align}
+となります。\eqref{ansatzp}を代入すると、左辺は
+\begin{align}
+  (\text{左辺})=(E-m-V)F(r)\ket{j,m}_{+}\otimes\ket{+}
+  +(E+m-V)G(r)\ket{j,m}_{-}\otimes\ket{-}\label{alhs}
+\end{align}
+であり、右辺は\eqref{alphap2}を用いて計算すると 
+\begin{align}
+  (\text{右辺})
+  &=\alpha_i p^i\qty(F(r)\ket{j,m}_{+}\otimes\ket{+}
+  +G(r)\ket{j,m}_{-}\otimes\ket{-})\\
+  &=(-ir\del_{r}-3i-i2\Sb\cdot \Lb)\gamma_5\frac{Q}{r}\qty(F(r)\ket{j,m}_{+}\otimes\ket{+}+G(r)\ket{j,m}_{-}\otimes\ket{-})\\
+  &=(-ir\del_{r}-3i-i2\Sb\cdot \Lb)\frac{1}{r}\qty(G(r)\ket{j,m}_{+}\otimes\ket{+}+F(r)\ket{j,m}_{-}\otimes\ket{-})\\
+  &=(-ir\del_{r}-2i+i\kappa)\frac{1}{r}G(r)\ket{j,m}_{+}\otimes\ket{+}+(-ir\del_{r}-2i-i\kappa)\frac{1}{r}F(r)\ket{j,m}_{-}\otimes\ket{-}\label{arhs}
+\end{align}
+となります。\eqref{arhs}と\eqref{alhs}を比較して
+\begin{align}
+  (E-m-V)F(r)=(-ir\del_{r}-2i+i\kappa))\frac{1}{r}G(r),\\
+  (E+m-V)G(r)=(-ir\del_{r}-2i-i\kappa))\frac{1}{r}F(r)
+\end{align}
+を得ます。少し整理するために
+\begin{align*}
+  F(r)=\frac{f(r)}{r},\qquad G(r)=-i\frac{g(r)}{r}
+\end{align*}
+として代入し、計算すると
+\begin{align}
+  (E-m-V)f(r)=-g'(r)+\frac{\kappa}{r}g(r),\\
+  (E+m-V)g(r)=f'(r)+\frac{\kappa}{r}f(r)  \label{radialeq0}
+\end{align}
+を得ます。
+
+\eqref{ansatzm}を代入したものも全く同じ計算になり、\eqref{radialeq0}で$\kappa$が$\kappa_{-}$であるだけです。
+
+ここまでは、一般の球対称ポテンシャルの場合に成り立つ式です。これから特にCoulombポテンシャルの場合に、この動径方向の方程式を解きます。
+
+\subsection{動径方向の微分方程式の一般解}
+$e$を素電荷とし、電荷$Ze$の原子核が作るCoulombポテンシャルを考えます。$Z$は原子番号であり、$Z=1$が水素原子である。Coulombポテンシャルは
+\begin{align}
+  V(r)=-\frac{Ze^2}{4\pi\epsilon_0 r}=-\frac{Z\alpha}{r}
+\end{align}
+となる。ここで$\alpha$は微細構造定数と呼ばれる無次元の定数で、$c,\hbar$をあらわに書くと
+\begin{align}
+  \alpha=\frac{e^2}{4\pi\epsilon_0\hbar c}\cong \frac{1}{137}
+\end{align}
+である\footnote{ここでは$\epsilon_0$は残したが、$\epsilon_0=1$となるような単位を選ぶと便利であることが多い。あるいは、そのかわりに$e=1$となる単位を選ぶのが便利な場合もある。}。
+このポテンシャルを\eqref{radialeq0}に代入したものは、
+\begin{align}
+  \qty(E-m+\frac{Z\alpha}{r})f(r)=-g'(r)+\frac{\kappa}{r}g(r),\\
+  \qty(E+m+\frac{Z\alpha}{r})g(r)=f'(r)+\frac{\kappa}{r}f(r)  \label{radialeq}  
+\end{align}
+となります。
+
+この式を解くためのヒントを得るために$r\sim 0$付近を考えてみましょう。べき級数で展開できるとして
+\begin{align}
+  &f=r^{\lambda}(a_0+a_1r+\dots),\quad g=r^{\lambda'}(b_0+b_1r+\dots)\ (a_0\ne 0,b_0\ne 0)
+\end{align}
+を代入してみます。まず、\eqref{radialeq}の上の式は
+\begin{align}
+  Z\alpha a_0r^{\lambda-1}+\cdots = -\lambda'b_0r^{\lambda'-1}+\kappa b_0r^{\lambda'-1}+\cdots
+  \label{series1}
+\end{align}
+となります。この式で$\lambda<\lambda'$を仮定すると$a_0\ne 0$と矛盾するので$\lambda \ge \lambda'$が言えます。一方、\eqref{radialeq}の下の式は、
+\begin{align}
+  Z\alpha b_0r^{\lambda'-1}+\cdots = \lambda_0r^{\lambda-1}+\kappa a_0r^{\lambda-1}+\cdots
+  \label{series2}
+\end{align}
+となります。同様の議論で$\lambda\le \lambda'$が言えます。上と合わせると$\lambda=\lambda'$であることが言えます。式\eqref{series1}と\eqref{series2}から
+\begin{align}
+  Z\alpha a_0=-\lambda b_0+\kappa b_0,\qquad
+  Z\alpha b_0=\lambda a_0+\kappa a_0
+\end{align}
+という関係を得ます。この式が$a_0\ne 0,b_0\ne 0$の階を持つための必要条件は、
+\begin{align*}
+  (Z\alpha)^{2}+(\lambda-\kappa)(\lambda+\kappa)=0
+\end{align*}
+です。$\lambda<0$は原点付近で規格化可能でなくなる可能性があるので
+\begin{align}
+  \lambda=\sqrt{\kappa^2-(Z\alpha)^2}
+\end{align}
+とします。結論として$r\sim 0$付近で
+\begin{align}
+  f,g\sim r^{\lambda}=r^{\sqrt{\kappa^2-(Z\alpha)^2}}
+\end{align}
+です。
+
+次に$r\to\infty$での振る舞いを見てみよう。\eqref{radialeq}で$r\to\infty$を考えると
+\begin{align}
+  (E-m)f=-g'+\frac{\kappa}{r}g,\quad
+  (E+m)g=f'+\frac{\kappa}{r}f\label{rinfty}
+\end{align}
+となります。$g$を消去すると$f$に関する２階の微分方程式
+\begin{align}
+  f''=\omega^2f,\qquad \omega=\sqrt{m^2-E^2}
+\end{align}
+が得られます。今、束縛状態を考えているので$E<m$であることに注意します。
+この微分方程式の解は、$e^{\pm \omega r}$ですが、今は規格化可能な解を考えたいので
+$e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考えると
+\begin{align}
+  (E+m)g\cong f'\cong -\omega f
+\end{align}
+です。
+
+これらすべてを合わせると次のような未知関数の変換$(f,g)\to(u,v)$をすると見通しがよくなることが推測できます。
+\begin{align}
+  f=r^{\lambda}e^{-\omega r}u,\quad
+  g=-\frac{\omega}{E+m}r^{\lambda}e^{-\omega r}v.
+  \label{defuv}
+\end{align}
+これを\eqref{radialeq}に代入すると
+\begin{align}
+  &\qty(1+\frac{1}{E-m}\frac{Z\alpha}{r})u=v-\frac{v'}{\omega}+\frac{\kappa-\lambda}{\omega r}v,\\
+  &\qty(1+\frac{1}{E+m}\frac{Z\alpha}{r})v=u-\frac{u'}{\omega}-\frac{\kappa+\lambda}{\omega r}u
+\end{align}
+を得ます。さらに独立変数も無次元のものにしておくのがよいです。$x=2\omega r$として代入し、整理すると
+\begin{align}
+  &\dv{v}{x}+\frac{u-v}{2}+\frac{1}{x}\qty((\lambda-\kappa)v+Bu)=0,\\
+  &\dv{u}{x}-\frac{u-v}{2}+\frac{1}{x}\qty((\lambda+\kappa)v+Au)=0,\qquad
+  A:=\frac{\omega Z\alpha}{E+m},\quad B:=\frac{\omega Z\alpha}{E-m}
+  \label{radialeq1}
+\end{align}
+を得ます。
+
+さて、改めて\eqref{radialeq1}をべき級数の方法で解きましょう。すでに指数は引き抜いてあるので
+\begin{align}
+  u=\sum_{n=0}^{\infty}a_{n}x^n,\quad
+  v=\sum_{n=0}^{\infty}b_{n}x^n\quad
+\end{align}
+を\eqref{radialeq1}に代入します。$x$の$0$次の項から
+\begin{align}
+  (\lambda+\kappa)a_0+Ab_0=0,\quad
+  (\lambda-\kappa)b_0+Ab_0=0\label{zeroth}
+\end{align}
+を得ます。$n=1,2,3,\cdots$からは
+\begin{align}
+  na_n-\frac12(a_{n-1}-b_{n-1})+(\lambda+\kappa)a_n + A b_n=0,\\
+  nb_n+\frac12(a_{n-1}-b_{n-1})+(\lambda-\kappa)b_n + B a_n=0
+  \label{higher}
+\end{align}
+を得ます。この２つの式を足し算すると$a_{n-1},b_{n-1}$が消え、$a_n$と$b_n$の関係式
+\begin{align}
+  \frac{a_n}{n+\lambda-\kappa+A}=\frac{-b_n}{n+\lambda+\kappa+B}
+\end{align}
+が得られます。この両辺を$c_n$と定義します。つまり
+\begin{align}
+  a_{n}=(n+\lambda-\kappa+A)c_n,\quad
+  b_{n}=-(n+\lambda+\kappa+B)c_n
+  \label{cn}
+\end{align}
+と書けます。ここで$n=0$とおいたものは確かに\eqref{zeroth}の解になっています。特に$c_0=1$として差し支えないです。このとき
+\begin{align}
+  AB=-(Z\alpha)^2,\quad \lambda^2-\kappa^2+(Z\alpha)^2=0
+\end{align}
+などの関係式に注意します。
+
+さて、$c_n$を求めましょう。\eqref{cn}を\eqref{higher}に代入して整理すると
+\begin{align}
+  c_n=\frac{a+n-1}{n(b+n-1)} c_{n-1},\quad a:=\lambda+\frac12(A+B),\ c:=2\lambda+1 \label{crecursion}
+\end{align}
+と書くことができます。$c_0=1$として
+\begin{align}
+  c_n=\frac{(a)_n}{(c)_n n!}
+\end{align}
+と求まります。ここではPochhammer記号
+\begin{align}
+  (a)_n:=a(a+1)(a+2)\dots(a+n-1)
+\end{align}
+を導入しました。この$c_n$は合流型超幾何関数の係数であり、べき級数
+\begin{align}
+  \sum_{n=0}^{\infty}c_nx^n=
+  \sum_{n=0}^{\infty}\frac{(a)_n}{(c)_n n!}x^n=:\Fii(a,c;x)
+  \label{infseries}
+\end{align}
+は合流型超幾何関数です。
+
+ここまで来れば$u,v$は合流型超幾何関数を用いて表せます。
+\begin{align}
+  &u=\sum_{n=0}^{\infty}a_nx^n=
+  \sum_{n=0}^{\infty}(n+\lambda-\kappa+A)c_nx^n=
+  x^{1-(\lambda-\kappa+A)}\pdv{x} (x^{\lambda-\kappa+A}\Fii(a,c;x)),\\
+  &v=\sum_{n=0}^{\infty}b_nx^n=
+  -\sum_{n=0}^{\infty}(n+\lambda+\kappa+B)c_nx^n=
+  -x^{1-(\lambda+\kappa+B)}\pdv{x} (x^{\lambda+\kappa+B}\Fii(a,c;x)).\\
+\end{align}
+
+\subsection{無限遠での振る舞いとエネルギー固有値}
+さて、波動関数は合流型超幾何関数で書けることが分かりましたが、その$r\to\infty$の振る舞いについてもう一度考えてみましょう。まず、無限級数\eqref{infseries}の収束半径は無限大であり、すべての複素数$x$に対して収束することに注意しましょう。漸化式\eqref{crecursion}は$n$が大きいときには
+\begin{align}
+  c_n\cong \frac{1}{n}c_{n-1}
+\end{align}
+と振る舞うので、
+\begin{align}
+  c_n\sim \frac{1}{n!}
+\end{align}
+です。つまり$x$が大きいときには
+\begin{align}
+  \Fii(a,c;x)\sim e^{x}=e^{2\omega r}
+\end{align}
+と振る舞います。これは、$u,v$の定義\eqref{defuv}を考慮しても$f,g\sim e^{\omega r}$と指数関数的に増大します。これは今求めたい解ではありません。
+
+この指数関数的増大が起こらないのは、無限級数\eqref{infseries}が途中で切れて、多項式になる場合のみです。この条件からあり得るエネルギー固有値が出てきます。途中で切れるのは、
+\begin{align}
+  -a=n'=0,1,2,3\cdots
+\end{align}
+の場合なので、これからエネルギー固有値を見てみましょう。まず、$A,B$の定義を代入すると
+\begin{align}
+  \frac12(A+B)=-\frac{EZ\alpha}{\omega}
+\end{align}
+と計算できるので、多項式になる条件$-a=n'$は
+\begin{align}
+  \frac{EZ\alpha}{\omega}=\lambda+n'
+\end{align}
+と書き換えられます。両辺２乗し、$\omega=m^2-E^2$であること、および$\lambda=\sqrt{\kappa^2-(Z\alpha)^2}$の中には$E$は入っていないことに注意して$E$について解くと\footnote{もちろん今は正エネルギー解$E>0$を考えています。}
+\begin{align}
+  E=\frac{m}{\sqrt{1+\qty(\frac{Z\alpha}{n'+\lambda})^2}}
+\end{align}
+が得られます。よく使われる主量子数にあたるものは、
+\begin{align}
+  n=n'+|\kappa|=n'+j+\frac12
+\end{align}
+です。$\lambda=\sqrt{\kappa^2-(Z\alpha)^2},\ \kappa=\pm\qty(j+\frac12)$ も代入すると最終的な表式
+\begin{align}
+  E=\frac{m}{\sqrt{1+\qty(\frac{Z\alpha}{n-j-\frac12+\sqrt{\qty(j+\frac12)^2-(Z\alpha)^2}})^2}}
+\end{align}
+が得られます。
+
 \section{この章のまとめ}
 
 
@@ -1183,7 +1915,6 @@ Dirac方程式に従う波動関数であるスピノール場に行く前に、
 \section{量子化と粒子}
 \section{連続極限}
 \section{この章のまとめ}
-
 
 
 \chapter{場の理論における作用と正準量子化}
