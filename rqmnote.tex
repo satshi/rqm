@@ -821,7 +821,7 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変になりそうな雰
 \end{myquote}
 つまり、\eqref{so(3)alg}の交換関係を満たすようなHilbert空間上の演算子です。例えば、非相対論的でスピンを持たない粒子の場合、Hilbert空間は３次元空間での規格化可能な関数全体でした。その場合の角運動量は
 \begin{align}
-  J_i=L_i:=-i\epsilon_{ijk}\del_{k}
+  J_i=L_i:=-i\epsilon_{ijk}x^j\del_{k}
 \end{align}
 となります\footnote{ここでは、記号の簡単のためにLie代数の元とその表現に同じ記号$J_i$を用いました。これはもしかしたら混乱を招くかもしれません。繰り返しますが、抽象的なLie代数の元とその表現を区別することが非常に重要です。}。この$L_i$のことを物理では軌道角運動量と呼んでいるわけです。同様にDirac方程式で記述される4成分の波動関数$\psi(x)$に対しては、前の節でやったように
 \begin{align}
@@ -857,7 +857,7 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変になりそうな雰
 と変形できます。$\eta_{\mu\nu}\omega^{\nu}{}_{\sigma}=:\omega_{\mu\sigma}$と定義しました。得られたのは
 \begin{important}
   \begin{align}
-    \omega_{\rho\sigma}=\omega_{\sigma\rho}\label{infinitesimalLorentz1}
+    \omega_{\rho\sigma}=-\omega_{\sigma\rho}\label{infinitesimalLorentz1}
   \end{align}
   つまり、(無限小Lorentz変換のパラメータ)$=$(反対称テンソル)。
 \end{important}
@@ -908,7 +908,7 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変になりそうな雰
   \item 交換関係の結果に現れるテンソルは$M_{\cdot\cdot}$と$\eta_{\cdot\cdot},\eta^{\cdot\cdot}$および$\delta^{\cdot}_{\cdot}$というものだけのはずです。これらを用いて下付きの足を$4$つもつもので$M$について1次のものものは、$\eta_{\cdot\cdot}M_{\cdot\cdot}$で$\cdot$のところには$\mu\nu\rho\sigma$を順番を入れ替えていれたものという組み合わせしかありません。
   \item さらに$M_{\mu\nu}$は$\mu\nu$について反対称ですから、左辺の交換関係は$\mu\nu$および$\rho\sigma$については反対称なはずです。したがって、$\eta_{\mu\nu}M_{\rho\sigma}$のような項はありえません。この反対称性まで考慮すると「計算しなくても」全体にかかる係数を除いて式\eqref{Lorentzcomm}と一致することが分かります。
 \end{itemize}
-全体にかかる係数を決めるには、例えば$[M_{12},M_{31}]$を計算すれば、式\eqref{Lorentzcomm}の第１項だけが$0$でなく出てくるので、その係数を見れば良いです。
+全体にかかる係数を決めるには、例えば$[M_{12},M_{31}]$を計算すれば、式\eqref{Lorentzcomm}の第３項だけが$0$でなく出てくるので、その係数を見れば良いです。
 
 \subsection{スカラー場への表現}
 まずは、練習のためにスカラー場$\phi(x)$への表現を考えましょう。スカラー場はLorentz変換のもとで
@@ -989,8 +989,8 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変になりそうな雰
   \phit_{u+\delta u}(x)
   =\phi(B^{u+\delta u}x)
   =\phi(B^{u}B^{\delta u}x)\nonumber\\
-  =\phi_u(B^{\delta u}x)
-  =\phi_u(x)+\delta x^{\mu}\del_{\mu}\phi_{u}(x)\label{tempdiffeq0}
+  =\phit_u(B^{\delta u}x)
+  =\phit_u(x)+\delta x^{\mu}\del_{\mu}\phit_{u}(x)\label{tempdiffeq0}
 \end{align}
 となります。ところで、ここで導入した$\delta x$をもう少し計算すると
 \begin{align}
@@ -1315,7 +1315,7 @@ Dirac方程式が１粒子の量子力学を記述しているという解釈に
 
 まず、どのような力を受けることができるかを考えてみましょう。相対論的には、遠隔相互作用は禁止されます。この理由は、遠隔相互作用があると、次のように因果律を破るからです。例えば、離れた場所から同時刻の粒子に力を加えることが出来たとしましょう。この同時は、別の慣性系から見ると力を加える人が未来にいて、力を加えられる粒子が過去にいることになります。過去にいる粒子に力を加えることができてしまうと、因果律を破ります。ですから、粒子に加えることが出来る力は近接相互作用のみです。
 
-我々がよく知っている近接相互作用の力は、電磁気の力です。電磁気の力を受けて運動する粒子のDirac方程式について考えましょう。ヒントは\ref{classicalelemagbackground}でやった、電磁場背景中の古典粒子の記述でした。このとき分かったことは電荷を$q$として
+我々がよく知っている近接相互作用の力は、電磁気の力です。電磁気の力を受けて運動する粒子のDirac方程式について考えましょう。ヒントは\ref{classicalelemagbackground}でやった、電磁場背景中の古典粒子の記述です。このとき分かったことは電荷を$q$として
 \begin{align}
   p_{\mu}\rightarrow p_{\mu}-qA_{\mu}\text{の置き換え}
 \end{align}
@@ -1353,7 +1353,7 @@ Dirac方程式が１粒子の量子力学を記述しているという解釈に
 \begin{align}
   \psi(x)\to \psi'(x)=e^{-iq\chi(x)}\psi(x).\label{psigaugetransf}
 \end{align}
-この変換で自由なDirac方程式\eqref{freeDiracequation3}は不変ではありません。それは次のように微分のところで$\chi(x)$を微分したおつりが出てくるからです。
+自由なDirac方程式\eqref{freeDiracequation3}は、この変換で不変ではありません。それは次のように微分のところで$\chi(x)$を微分したおつりが出てくるからです。
 \begin{align}
   \del_{\mu}\psi'(x)=\del_{\mu}(e^{-iq\chi(x)}\psi(x))
   =e^{-iq\chi(x)}(\del_{\mu}\psi(x)-iq\del_{\mu}\chi(x)\psi(x)).
@@ -1478,7 +1478,7 @@ Dirac方程式が１粒子の量子力学を記述しているという解釈に
 \begin{align}
   (\text{Pauli項})=-g\frac{q}{2m}\Sb\cdot \Bb
 \end{align}
-と書き表しておきます。$g$以外の$-\frac{q}{2m}$という因子はBohr磁子と呼ばれる単位です。これは電子が古典的に質量密度と電荷密度を持つような大きさのある物体だと思ったときの磁気モーメントとスピンの比を表します。実験的に図られたg因子の値は約2でした。これはDirac方程式が出る前は、なぜこの値を持つのかは全くの謎でした。ここで見たようにDirac方程式から導かれるのは$g=2$ですから、この実験値を非常によく説明しています。これはDirac方程式が電子を良く記述していることの非常に重要な証拠です。
+と書き表しておきます。$g$以外の$-\frac{q}{2m}$という因子はBohr磁子と呼ばれる単位です。これは電子が古典的に質量密度と電荷密度を持つような大きさのある物体だと思ったときの磁気モーメントと古典的な自転による角運動量の比を表します。実験的に図られたg因子の値は約2でした。これはDirac方程式が出る前は、なぜこの値を持つのかは全くの謎でした。ここで見たようにDirac方程式から導かれるのは$g=2$ですから、この実験値を非常によく説明しています。これはDirac方程式が電子を良く記述していることの非常に重要な証拠です。
 
 ところで、現在分かっているg因子の実験値は
 \begin{align}
@@ -1488,8 +1488,10 @@ Dirac方程式が１粒子の量子力学を記述しているという解釈に
 
 \section{水素原子}
 
-ここでは、Dirac方程式を用いて水素原子、厳密に言えばCoulombポテンシャル中の電子のエネルギー固有値と固有状態を
-求めていきます。これには大きく分けて次の4つのステップを踏んでいきます。
+量子力学の研究において水素原子は重要な役割を果たしてきました。これは相対論的量子力学のDirac方程式の研究においても同様です。
+ここでは、Dirac方程式を用いて水素原子、厳密に言えばCoulombポテンシャル中の電子のエネルギー固有値と固有状態を求めていきます。
+
+これには大きく分けて次の4つのステップを踏んでいきます。
 \begin{enumerate}
   \item 対称性を用いた、角度方向の波動関数の基底の整備
   \item 動径方向の微分方程式の導出
@@ -1546,7 +1548,7 @@ Dirac方程式は電子などのスピン$\frac12$の粒子を記述します。
 \end{align*}
 により、今の基底を球面調和関数を用いて表すことができます。
 
-ここでひとつ問題があります。空間の回転SU$(2)$の表現のみで分類するかぎり、$j,m$が同じなら、$l=j-\frac12$から来た状態と$l=j+\frac12$から来た状態、つまり上の$\ket{j,m}_{\pm}$の状態は区別できないことになります。言い換えれば、Hamiltonian を対角化する基底は、これらが混じったものになる可能性があります。幸運なことに、球対称ポテンシャル中のDirac方程式はパリティ（空間反転）で不変ですので、次のようにパリティによって区別することができます。パリティ演算子$P$は$P^2=1$を満たす。座標$x^i$や運動量$p^{i}$に対して
+ここでひとつ問題があります。空間の回転SU$(2)$の表現のみで分類するかぎり、$j,m$が同じなら、$l=j-\frac12$から来た状態と$l=j+\frac12$から来た状態、つまり上の$\ket{j,m}_{\pm}$の状態は区別できないことになります。言い換えれば、Hamiltonian を対角化する基底は、これらが混じったものになる可能性があります。幸運なことに、球対称ポテンシャル中のDirac方程式はパリティ（空間反転）で不変ですので、次のようにパリティによって区別することができます。パリティ演算子$P$は$P^2=1$を満たします。座標$x^i$や運動量$p^{i}$に対して
 \begin{align*}
   Px^{i}P=-x^{i},\qquad Pp^{i}P=-p^{i}
 \end{align*}
@@ -1585,7 +1587,7 @@ Dirac方程式は電子などのスピン$\frac12$の粒子を記述します。
 \end{align*}
 と定義すると、$PH=HP$となるので、$H$の固有状態を$P$の固有状態とすることができます。
 
-\ref{sec:harmonics}節で考えた状態の波動関数は２成分であったが、Diracスピノールは４成分なので、余分に状態が必要です。$\beta$は$\Lb,\Sb,\Jb$と可換なので、$\beta$の固有値を用いてそれを区別することにします。つまり$\ket{+},\ket{-}$を
+\ref{sec:harmonics}節で考えた状態の波動関数は２成分でしたが、Diracスピノールは４成分なので、余分に状態が必要です。$\beta$は$\Lb,\Sb,\Jb$と可換なので、$\beta$の固有値を用いてそれを区別することにします。つまり$\ket{+},\ket{-}$を
 \begin{align*}
   \beta\ket{\pm}=\pm\ket{\pm}
 \end{align*}
@@ -1620,10 +1622,10 @@ Dirac方程式は電子などのスピン$\frac12$の粒子を記述します。
 \end{align}
 を満たすので、これを用いると$Q^2=1$が成り立つことが分かります。これらを用いると
 \begin{align}
-  \alpha_ip^i&=\alpha_i p^i Q^2=\alpha_i 2S_j p^{i}x^{j} \frac{Q}{r}\\
-  &=(\delta_{ij}\gamma_{5}+i\epsilon_{ijk}\alpha_{k})p^{i}x^{j}\frac{Q}{r}\\
-  &=(\gamma_{5}p^{i}x^{i}-iL_k\alpha_{k})\frac{Q}{r}\\
-  &=(-ir\del_{r}\gamma_{5}-3i\gamma_5-iL_k\alpha_{k})\frac{Q}{r}\\
+  \alpha_ip^i&=\alpha_i p^i Q^2=\alpha_i 2S_j p^{i}x^{j} \frac{Q}{r}\nonumber\\
+  &=(\delta_{ij}\gamma_{5}+i\epsilon_{ijk}\alpha_{k})p^{i}x^{j}\frac{Q}{r}\nonumber\\
+  &=(\gamma_{5}p^{i}x^{i}-iL_k\alpha_{k})\frac{Q}{r}\nonumber\\
+  &=(-ir\del_{r}\gamma_{5}-3i\gamma_5-iL_k\alpha_{k})\frac{Q}{r}\nonumber\\
   &=(-ir\del_{r}-3i-iL_k\alpha_{k}\gamma_5)\gamma_5\frac{Q}{r}\label{alphap}
 \end{align}
 を得ます。途中
@@ -1861,8 +1863,9 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
   x^{1-(\lambda-\kappa+A)}\pdv{x} (x^{\lambda-\kappa+A}\Fii(a,c;x)),\\
   &v=\sum_{n=0}^{\infty}b_nx^n=
   -\sum_{n=0}^{\infty}(n+\lambda+\kappa+B)c_nx^n=
-  -x^{1-(\lambda+\kappa+B)}\pdv{x} (x^{\lambda+\kappa+B}\Fii(a,c;x)).\\
+  -x^{1-(\lambda+\kappa+B)}\pdv{x} (x^{\lambda+\kappa+B}\Fii(a,c;x))
 \end{align}
+を得ます。
 
 \subsection{無限遠での振る舞いとエネルギー固有値}
 さて、波動関数は合流型超幾何関数で書けることが分かりましたが、その$r\to\infty$の振る舞いについてもう一度考えてみましょう。まず、無限級数\eqref{infseries}の収束半径は無限大であり、すべての複素数$x$に対して収束することに注意しましょう。漸化式\eqref{crecursion}は$n$が大きいときには
@@ -1891,7 +1894,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \begin{align}
   \frac{EZ\alpha}{\omega}=\lambda+n'
 \end{align}
-と書き換えられます。両辺２乗し、$\omega=m^2-E^2$であること、および$\lambda=\sqrt{\kappa^2-(Z\alpha)^2}$の中には$E$は入っていないことに注意して$E$について解くと\footnote{もちろん今は正エネルギー解$E>0$を考えています。}
+と書き換えられます。両辺２乗し、$\omega^2=m^2-E^2$であること、および$\lambda=\sqrt{\kappa^2-(Z\alpha)^2}$の中には$E$は入っていないことに注意して$E$について解くと\footnote{もちろん今は正エネルギー解$E>0$を考えています。}
 \begin{align}
   E=\frac{m}{\sqrt{1+\qty(\frac{Z\alpha}{n'+\lambda})^2}}
 \end{align}
@@ -1906,7 +1909,12 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 が得られます。
 
 \section{この章のまとめ}
-
+この章では、電磁気の力を受けて運動するDirac粒子を調べました。
+\begin{itemize}
+  \item 電磁場背景中のDirac方程式は、自由なDirac方程式から微分を共変微分に置き換えることによって得られます。これは、ゲージ原理に基づいています。
+  \item 非相対論的極限を考えることにより、スピンと磁場の相互作用を含んだSchrödinger方程式が得られます。ここからg因子が約2であることが分かり、これは実験から求まるものとよく合っています。
+  \item 水素原子でDirac方程式を解くことができ、相対論的な補正を含んだエネルギースペクトルが得られます。
+\end{itemize}
 
 
 \chapter{場の理論に向けて}
