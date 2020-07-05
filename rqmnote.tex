@@ -69,10 +69,20 @@
 
 \newcommand{\Fii}{{}_1F_1}
 
+\newcommand{\Lcal}{\mathcal{L}}
+
 \newcommand{\ao}[1]{\textcolor{blue}{#1}}
 \newcommand{\aka}[1]{\textcolor{red}{#1}}
 
-
+\newcommand{\phih}{\hat{\phi}}
+\newcommand{\chih}{\hat{\chi}}
+\newcommand{\pih}{\hat{\pi}}
+\newcommand{\Hh}{\widehat{H}}
+\newcommand{\Ah}{\widehat{A}}
+\newcommand{\Bh}{\widehat{B}}
+\newcommand{\ah}{\hat{a}}
+\newcommand{\Nh}{\widehat{N}}
+\newcommand{\Ph}{\widehat{P}}
 
 \title{相対論的量子力学マニュアル}
 \author{山口　哲}
@@ -1374,14 +1384,14 @@ Dirac方程式が１粒子の量子力学を記述しているという解釈に
 \end{align}
 という、きれいな変換性を示すことが分かります。したがって、\eqref{freeDiracequation3}の微分を共変微分で置き換えたもの
 \begin{align}
-  (\gamma^{\mu}D_{\mu}-m)\psi=0
+  (i\gamma^{\mu}D_{\mu}-m)\psi=0
 \end{align}
 がゲージ対称性を持つことが分かります。
 
 
 
 \section{非相対論的極限}
-一般的に相対論的な効果は「速さが光速に比べて無視できない」ときに大きくなります。しかし、Dirac方程式は「スピン」に代表されるように、速さが小さくないときにも、その痕跡を残し、検証することが出来ます。ここでは、Dirac方程式の非相対論的極限を考え、そこから導かれる電子の性質について考えましょう。
+一般的に相対論的な効果は「速さが光速に比べて無視できない」ときに大きくなります。しかし、Dirac方程式は「スピン」に代表されるように、速さが小さいときにも、その痕跡を残し、検証することが出来ます。ここでは、Dirac方程式の非相対論的極限を考え、そこから導かれる電子の性質について考えましょう。
 
 まず、非相対論的な場合（「速さが光速に比べて小さい」場合）には、エネルギーが静止エネルギー、つまり質量とほぼ同じです。したがって、次のように波動関数を再定義すると見通しがよくなります。
 \begin{align}
@@ -1437,7 +1447,7 @@ Dirac方程式が１粒子の量子力学を記述しているという解釈に
 \begin{align}
   i\del_0 \phi_{+}
   &=\qty(\frac{1}{2m}\gamma^{i}\gamma^{j}D_{i} D_{j}+qA_{0})\phi_{+}\nonumber\\
-  &=\Big(\underbrace{-\frac{1}{2m}D_{i} D_{i}}_{\text{運動項}} + \underbrace{\frac{1}{2m}\gamma^{i}\gamma^{j}D_{i} D_{j}}_{\text{Pauli項}} + \underbrace{q A_{0}}_{\text{ポテンシャル項}}\Big)\phi_{+}
+  &=\Big(\underbrace{-\frac{1}{2m}D_{i} D_{i}}_{\text{運動項}} + \underbrace{\frac{1}{2m}\gamma^{ij}D_{i} D_{j}}_{\text{Pauli項}} + \underbrace{q A_{0}}_{\text{ポテンシャル項}}\Big)\phi_{+}
 \end{align}
 という式を得ます。ここで左辺の括弧の中の第１項、第２項、第３項をそれぞれ運動項、Pauli項、ポテンシャル項と呼んでおきましょう。
 
@@ -1478,13 +1488,13 @@ Dirac方程式が１粒子の量子力学を記述しているという解釈に
 \begin{align}
   (\text{Pauli項})=-g\frac{q}{2m}\Sb\cdot \Bb
 \end{align}
-と書き表しておきます。$g$以外の$-\frac{q}{2m}$という因子はBohr磁子と呼ばれる単位です。これは電子が古典的に質量密度と電荷密度を持つような大きさのある物体だと思ったときの磁気モーメントと古典的な自転による角運動量の比を表します。実験的に図られたg因子の値は約2でした。これはDirac方程式が出る前は、なぜこの値を持つのかは全くの謎でした。ここで見たようにDirac方程式から導かれるのは$g=2$ですから、この実験値を非常によく説明しています。これはDirac方程式が電子を良く記述していることの非常に重要な証拠です。
+と書き表しておきます。$g$以外の$-\frac{q}{2m}$という因子はBohr磁子と呼ばれる単位です。これは電子が古典的に質量密度と電荷密度を持つような大きさのある物体だと思ったときの磁気モーメントと古典的な自転による角運動量の比を表します。実験的に測られたg因子の値は約2でした。これはDirac方程式が出る前は、なぜこの値を持つのかは全くの謎でした。ここで見たようにDirac方程式から導かれるのは$g=2$ですから、この実験値を非常によく説明しています。これはDirac方程式が電子を良く記述していることの非常に重要な証拠です。
 
 ところで、現在分かっているg因子の実験値は
 \begin{align}
   g=2.00231930436256(35)
 \end{align}
-です。最後の$(35)$は最後二桁の誤差を表します。これは物理量の中で最も正確に図られたものの一つです。Dirac方程式からは説明できない$g-2$の部分は場の理論を用いると説明できます。電子に関しては、理論計算と実験値が誤差の範囲内で一致しています。これは場の理論が非常に良い精度で現実の物理を記述していることの重要な証拠です\footnote{μ粒子の$g-2$に関しては、理論値と実験値が誤差を考慮しても合っていない可能性が高いという結果があります。これは素粒子の標準模型を超える物理が効いていて、それを取り入れると説明できると考えている人たちもいます。もちろん、実験の誤差が正しく評価できていない、あるいは理論計算の近似等の誤差が正しく評価できていない可能性もあります。}。
+です。最後の$(35)$は最後二桁の誤差を表します。これは物理量の中で最も正確に測られたものの一つです。Dirac方程式からは説明できない$g-2$の部分は場の理論を用いると説明できます。電子に関しては、理論計算と実験値が誤差の範囲内で一致しています。これは場の理論が非常に良い精度で現実の物理を記述していることの重要な証拠です\footnote{μ粒子の$g-2$に関しては、理論値と実験値が誤差を考慮しても合っていない可能性が高いという結果があります。これは素粒子の標準模型を超える物理が効いていて、それを取り入れると説明できると考えている人たちもいます。もちろん、実験の誤差が正しく評価できていない、あるいは理論計算の近似等の誤差が正しく評価できていない可能性もあります。}。
 
 \section{水素原子}
 
@@ -1629,9 +1639,9 @@ Dirac方程式は電子などのスピン$\frac12$の粒子を記述します。
   &=(-ir\del_{r}-3i-iL_k\alpha_{k}\gamma_5)\gamma_5\frac{Q}{r}\label{alphap}
 \end{align}
 を得ます。途中
-\begin{align*}
+\begin{align}
   \alpha_{i}2S_{j}=\delta_{ij}\gamma_{5}+i\epsilon_{ijk}\alpha_{k}
-\end{align*}
+\end{align}
 という式を用いました。この式自体は、計算で確かめることができます。その際、
 \begin{align*}
   \alpha_{1}\alpha_{2}\alpha_{3}=i\gamma_5
@@ -1919,11 +1929,494 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 
 \chapter{場の理論に向けて}
 \section{なぜ場の理論？}
-\section{連成振動と波動の古典論}
-\section{量子化と粒子}
-\section{連続極限}
-\section{この章のまとめ}
+この授業の後半は場の理論の導入部分をやっていきます。まず、「なぜ場の理論なのか」について少しお話します。
 
+これまでやってきた粒子の量子力学について思い出してみましょう。粒子の量子力学においては、位置$\xb$はq数、つまり演算子でした。一方で時間はc数、つまり普通の数です。ですから本質的に時間と空間を同等に扱っていませんので相対論とは非常に相性が悪いです。これまでは、なんとか誤魔化しながら１粒子の量子力学については、物理量を求めてきました。ですが、例えば２粒子にすることすら、どうやっていいのか分かりません。Diracの海のところでやったように、完全な理論を作るためには、粒子の数が時間変化で変わるような反応を取り扱えなければなりませんが、それは到底無理です。
+
+一方で、場の理論を考えてみましょう。これから見ていくように場の理論では、空間座標$\xb$、時間$t$ともにc数になります。ですから、比較的相対論と相性が良いです。そして場$\phi(x)$が基本的なq数になります。場の理論において粒子は「現れる」ものです。そのために、時間発展で粒子の数や種類が変わることができます。
+
+皆さんは、高校のとき、あるいは大学の１年生、２年生の授業で「波動と粒子の二重性」というお話を聞いたと思います。古典的には粒子と思っているものは、量子論では波動性を持ちます。また、古典的に波と思っているものは、量子論では粒子的に振る舞います。このうち、古典的に粒子と思っている電子などを量子論で取り扱うことは、量子力学で詳しく勉強したと思います。一方で、古典的に波であったものを量子論的に取り扱うことは、まだやったことがないと思います。場の理論は、まさに古典的に波と思っているものを量子論的に取り扱う理論です。
+
+この授業では、場の理論の初歩的な導入部分のみをやります。特に
+\begin{important}
+  場を量子化すると粒子が出てくる。  
+\end{important}
+ことを理解してください。
+
+\section{連成振動と波動の古典論}
+
+波動の１つのモデルとして、バネでつながった物体を取り扱うことは、力学２でやったと思います。ここでは、まずその復習をします。
+
+図\ref{fig:oscillator}のようにバネでつながった質量$m$の$N$個の物体を考えます。力学２でやったのと少し異なるかもしれない点は、物体の間だけではなく、それぞれの物体と地面の間にもバネがあるということです。物体に順に$1,2,\dots,N$のラベルをつけます。ラベル$n$の物体の時刻$t$での釣り合いの位置からのズレを$\phi_n(t)$とします。この$\phi_n(t)$が力学変数になります。一方で$n$は、ただのラベルであることに注意してください。簡単のため、周期境界条件
+\begin{align}
+  \phi_{0}(t)=\phi_{N}(t)\label{periodicboundarycondition}
+\end{align}
+を課します。
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=8cm]{oscillator.pdf}
+  \caption{}
+  \label{fig:oscillator}
+\end{figure}
+
+
+物体間をつなぐバネのバネ定数を$r$、地面と物体をつないでいるバネのバネ定数を$\ell$とすると作用は、
+\begin{align}
+  S=\int dt L(\phi,\dot{\phi}),\qquad
+  L(\phi,\dot{\phi})=\sum_{n=1}^{N}\qty(
+    \frac12 m \dot{\phi}_n^2-\frac12 r (\phi_n-\phi_{n-1})
+    -\frac12 \ell \phi_n^2
+  )\label{oscillatorLagrangian}
+\end{align}
+となります。Lagrangianの中の和の中で$n=1$のとき$\phi_0$が出てきますが、これは周期境界条件
+\eqref{periodicboundarycondition}から$\phi_N$と同じです。
+
+ここから基準モードに分けると、単に多数の調和振動子になり、問題が解けるということも力学２の授業でやったと思います。これも後でやります。
+
+物体間の距離を小さくしていく極限で、この系は連続的な波動を記述する系になります。物体間の距離を$a$として$a\to 0$の極限を考えます。ただし、
+\begin{align}
+  aN=:L,\quad \frac{m}{a}=:\rho,\quad ar=:c^2\rho,\quad \frac{\ell}{a}=:M^2c^4 \rho \label{classicalcontinuum}
+\end{align}
+を有限に保ったまま$a\to 0$の極限をとります。ラベルを$x:=an$とし、力学変数の書き方を少し変えて$\phi(x,t)$と書きます。$\phi_n(t)$との関係は
+\begin{align}
+  \phi(x=an,t)=\sqrt{\rho}\phi_n(t)
+\end{align}
+とします。そうすると周期境界条件\eqref{periodicboundarycondition}は
+\begin{align}
+  \phi(x=0,t)=\phi(x=L,t)
+\end{align}
+となり、また\eqref{oscillatorLagrangian}は
+\begin{align}
+  L=\sum_{n=1}^{N}a\qty[
+    \frac12 \rho \dot{\phi}_n^2-\frac12 c^2\rho\qty(\frac{\phi_{n}-\phi_{n-1}}{a})^2-\frac12 M^2c^4 \rho \phi_n^2
+  ]
+\end{align}
+となります。ここで$a\to 0$をとることを考えると、和のところは
+\begin{align}
+  \sum_{n=1}^{N}a\to\int_{0}^{L}dx
+\end{align}
+と積分で表示できます。また、$[]$の中の第２項めの$()$の中は
+\begin{align}
+  \frac{\phi_n-\phi_{n-1}}{a}=\sqrt{\rho}\pdv{x}\phi
+\end{align}
+と微分でかけます。したがって、この極限でLagrangianは、
+\begin{align}
+  L=\int \Lcal,\quad 
+  \Lcal=
+    \frac12 \dot{\phi}^2-\frac12 c^2 \phi'^2-\frac12 M^2 c^4 \phi^2
+\end{align}
+となります。積分範囲は省略しました。また$\phi':=\pdv{x}\phi$です。$\Lcal$は、積分してLangrangianになる量ですから\strong{Lagrangian密度}と呼ばれます。これを使うと作用は
+\begin{align}
+  S=\int d^2x \Lcal
+  \quad \int d^2x :=\int dt dx,\qquad
+  \Lcal=\frac12 \dot{\phi}^2-\frac12 c^2 \phi'^2-\frac12 M^2c^4 \phi^2\label{continuumaction}
+\end{align}
+と書けます。
+
+さて作用\eqref{continuumaction}で表される理論について詳しく見てみるために、まず運動方程式を求めてみましょう。作用を停留値にさせるような関数$\phi(x,t)$が運動方程式になるのでした。停留値とは、$\phi(x,t)$を少しだけずらして$\phi(x,t)+\delta \phi(x,t)$にしても作用の値が変わらないようになることです。実際\eqref{continuumaction}で作用の変分を計算してみると
+\begin{align}
+  \delta S
+  =\int d^2x( \dot{\phi}\delta\dot{\phi}-c^2\phi'\delta \phi'-M^2\phi\delta \phi)
+  =\int d^2x\delta \phi( -\ddot{\phi}+c^2\phi''-M^2c^4\phi)
+\end{align}
+となります。最後の変形では部分積分をしました。境界条件は表面項が消えるようにとっています。$\delta \phi$は任意の微小な変分ですから、$\delta S=0$から
+\begin{align}
+  \ddot{\phi}-c^2\phi''+M^2c^4\phi=0
+  \label{eomKG2}
+\end{align}
+という方程式を得ます。これは、$M=0$のときは波動方程式になるというのは力学２の授業で習ったと思います。
+
+さて、\eqref{eomKG2}で$c$を光速と思ってみると2次元のKlein-Gordon方程式になります。ですからこの理論にはLorentz対称性があります。これは、作用\eqref{continuumaction}がLorentz変換で不変であることからも言えます。後から見るように、この系を量子化すると「粒子」が現れ、状態によって粒子の数は様々です。連続極限をとる前の系はなんの変哲もない連成振動の系ですから、量子化したときに負の確率が現れたり、エネルギー固有値の下限がなくなったりというような病的なことは起こりません。つまり、Lorentz対称性をもち、数が変化する粒子を記述することができるわけです。これを素粒子を記述するのに用いるというのが場の理論のアイデアです。
+
+ここで、少しだけ注意を述べます。\eqref{oscillatorLagrangian}の作用で表される系を量子化するのには何の困難もありません。実際に欲しいのは連続理論ですから、量子論で連続極限をとる必要があります。この連続極限には実際には微妙さがあります。場の理論の発散の問題について聞いたことがある人もいるかと思います。この連続極限をとる際に、うまくやらないと物理量が無限になってしまうことがあります。「極限」をとるのですから、うまくやらないと発散するのは当然ですね。しかし多くの場の理論の教科書では、連続理論の作用\eqref{continuumaction}から始めて量子化するという手続きをとっています。これは本当は微妙な手続きなのですが、ある程度のところまでは深く考えなくてもうまくいってしまいます。そして、あるときに突然発散が出てきて驚く、ということになります。
+
+この講義では、実用的な計算手法を学ぶというよりは、場の理論についての正しいイメージを持ってもらうために、普通の場の理論の教科書ではとばされている\eqref{oscillatorLagrangian}の量子化から始めたいと思います。そこから連続極限をとるという正しい手続きをとって、どういう発散が出るのか、それをどう処理するのかということを簡単に説明したいと思います。
+
+\section{量子化と粒子}
+では、\eqref{oscillatorLagrangian}の系の量子化をやっていきます。ここでは、特に新しいことをやっていないことに注意してください。
+
+まずは、正準形式に直します。$\phi_n$に正準共役な運動量を$\pi_n$とすると
+\begin{align}
+  \pi_n=\pdv{L}{\dot{\phi}_n}=m\dot{\phi}_n
+\end{align}
+という関係があります。Hamiltonianは
+\begin{align}
+  H=\sum_{n}\pi_n \dot{\phi}_n-L=\sum_{n}\frac{1}{2m}\pi_n^2+V(\phi),\quad 
+  V(\phi):=\sum_n\qty(\frac12 r (\phi_n-\phi_{n-1})^2
+  +\frac12 \ell \phi_n^2
+  )
+\end{align}
+となります。$n$の和は省略していますが、$1$から$N$までです。
+
+さて、これを量子化しましょう。量子化とは、$\phi_n,\ \pi_n$などを演算子にすることでした。ちゃんと演算子にしたことを強調するために、しばらくは演算子を$\phih_n,\pih_n$と書くことにします\footnote{慣れてくると記号をだんだん区別しなくなります。教科書などを読むときには注意してください。}。これらの演算子は正準交換関係
+\begin{align}
+  [\phih_m,\pih_n]=i\hbar\delta_{mn},\quad
+  [\phih_m,\phih_n]=[\pih_m,\pih_n]=0\label{canonicalcommutationrelation}
+\end{align}
+を満たします。新しいことをやっていないことを強調するために、この章では$\hbar$をあらわに書くことにします。Hamiltonianも演算子になり
+\begin{align}
+  \Hh=\sum_{n}\frac{1}{2m}\pih_n^2+V(\phih)
+\end{align}
+となります。一般に量子化のときには、演算子順序の問題があるのですが、今の場合素朴な置き換えを行ったとき、各項で掛け算されている演算子が可換なので、今のような素朴な置き換えでいくことにします。
+
+さて、Heisenberg描像で時間発展を調べることにしましょう\footnote{みなさんはきっとSchrödinger描像の方が慣れているので、なぜSchrödinger描像で考えないのかと思うかもしれません。理由はHeisenberg描像の方がLorentz不変性が比較的見やすいからです。しかし、Schrödinger描像でScrödinger方程式を書いてみて解析するというのは、非常に良い練習問題だと思いますので、興味ある人はぜひ挑戦してみてください。}。Heisenberg方程式は
+\begin{align}
+  \dot{\phih}_n=\frac{i}{\hbar}[\Hh,\phih_n]=\frac{1}{m}\pih_n,\\
+  \dot{\pih}_n=\frac{i}{\hbar}[\Hh,\pih_n]=-(2r+\ell)\phih_n+r \phih_{n-1}+r\phih_{n+1}
+\end{align}
+となります。これらから
+\begin{align}
+  m\ddot{\phih}_n=\frac{i}{\hbar}[\Hh,\pih_n]=-(2r+\ell)\phih_n+r \phih_{n-1}+r\phih_{n+1}\label{oscillatoreom}
+\end{align}
+という式を得ます。これは、古典的な運動方程式で$\phi_n$を形式的に演算子$\phih_n$に置き換えたものと同じですね。実は、この後の方程式を解くところも形式的に同じです。
+
+さて、方程式\eqref{oscillatoreom}は古典論の場合と同じように、基準モードに展開することで解けます。今の場合は基準モードに展開するのは離散的なFourier変換をするのと同じです。つまり
+\begin{align}
+  \phih_n(t)=\sum_{u=N_{-}}^{N_{+}}e^{\frac{2\pi i u n}{N}}\chih_{u}(t)\label{modeexpansion}
+\end{align}
+となるように$\chih_{u}(t)$を導入します。ここで、$N_{\pm}$は、
+\begin{align}
+  &N_{-}=-\frac{N-1}{2},\ N_{+}=\frac{N+1}{2}\qquad &(N \text{が奇数}),\\ 
+  &N_{-}=-\frac{N}{2},\ N_{+}=\frac{N}{2}+1\qquad &(N \text{偶数})
+\end{align}
+としています。これは単に整数$u$に対して$\chih_u(t)$が$\chih_{u+N}(t)=\chih_{u}(t)$を満たすので、代表元をどう取るかを指定しているだけです。$u=1,\dots, N$でも良いのですが、後で連続極限を取るときの都合上、だいたい$0$を真ん中にして左右で同じくらいになるようにしています。今後$u$の和の範囲を省略したら$N_{-}$から$N_{+}$までの和ということにします。\eqref{modeexpansion}を\eqref{oscillatoreom}に代入し整理すると
+\begin{align}
+  m\ddot{\chih}_{u}=-m\omega_{u}^2\chih_{u},\quad
+  \omega_{u}:=\frac{1}{\sqrt{m}}\sqrt{\ell+4r\sin^2\frac{\pi u}{N}}\label{modeeom}
+\end{align}
+となり、独立した$N$個の調和振動子になります。調和振動子を生成消滅演算子で解く方法は、皆さん量子力学の授業で習ったと思います。ここでも生成消滅演算子を用いた形にします。
+
+さて、\eqref{modeeom}は調和振動子ですから簡単に解けます。$\Ah_u,\ \Bh_u$を時間によらない演算子として、一般解は
+\begin{align}
+  \chih_{u}(t)=\Ah_{u}e^{-i\omega_u t}+\Bh_{u}e^{i\omega_u t}
+\end{align}
+となります。これを\eqref{modeexpansion}に代入すると
+\begin{align}
+  \phih_{n}(t)(t)=\sum_{u}e^{\frac{2\pi i u n}{N}}
+  (\Ah_{u}e^{-i\omega_u t}+\Bh_{u}e^{i\omega_u t})\label{tempmodeex}
+\end{align}
+となります。ところで、古典的には$\phi_n$は実数でしたから、量子論的には、$\phih_n$はエルミート演算子とすべきです。つまり$\phi_n(t)^{\dag}=\phi_n(t)$です。ここから
+\begin{align}
+  \sum_{u}e^{\frac{2\pi i u n}{N}}
+  (\Ah_{u}e^{-i\omega_u t}+\Bh_{u}e^{i\omega_u t})
+  &=\sum_{u}e^{\frac{-2\pi i u n}{N}}
+  (\Ah_{u}^{\dag}e^{i\omega_u t}+\Bh_{u}^{\dag}e^{-i\omega_u t})\nonumber\\
+  &=\sum_{u}e^{\frac{2\pi i u n}{N}}(\Ah_{-u}^{\dag}e^{i\omega_u t}+\Bh_{-u}^{\dag}e^{-i\omega_u t})
+\end{align}
+という条件を得ます。1行目から2行目への変換では、$u$を$-u$と書きました。また$\omega_{u}=\omega_{-u}$という関係を使っています。ここから両辺逆変換し、任意の$t$で成り立つことを用いると
+\begin{align}
+  \Ah_{u}^{\dag}=\Bh_{-u}
+\end{align}
+という関係式を得ます。これを\eqref{tempmodeex}に代入して変形していきます。
+\begin{align}
+  \phih_{n}(t)
+  =\sum_{u}e^{\frac{2\pi i u n}{N}}\Ah_{u}e^{-i\omega_u t}+\sum_{u}e^{\frac{2\pi i u n}{N}}\Bh_{u}e^{i\omega_u t}\nonumber\\
+  =\sum_{u}e^{\frac{2\pi i u n}{N}}\Ah_{u}e^{-i\omega_u t}+\sum_{u}e^{\frac{2\pi i u n}{N}}\Ah_{-u}^{\dag}e^{i\omega_u t}\nonumber\\
+  =\sum_{u}e^{\frac{2\pi i u n}{N}}\Ah_{u}e^{-i\omega_u t}+\sum_{u}e^{\frac{-2\pi i u n}{N}}\Ah_{u}^{\dag}e^{i\omega_u t}\nonumber\\
+  =\sum_{u}(\Ah_{u}e^{-i(\omega_u t-k_u x_n)}+\Ah_{u}e^{i(\omega_u t-k_u x_n)}).\label{tempmodeex2}
+\end{align}
+2行目から3行目に行くときに、2項目だけ$u\to -u$の変換を行いました。最後の行では、雰囲気を出すために
+\begin{align}
+  k_u:=\frac{2\pi u}{Na},\quad x_n:=na
+\end{align}
+という記号を導入しました。$a$はバネで繋がれた２つの物体の釣り合いの位置の間隔です。つまり、$x$はラベル$n$の物体の釣り合いの位置の座標です。最後の表式では、$u>0$の場合が右回り（x軸正の方向に進む）モード、$u<0$の場合が左回り（x軸負の方向に進む）モード、であることがあらわに見て取れます。
+
+ここで出てきた$\Ah_u,\Ah_u^{\dag}$がだいたい生成消滅演算子です。ただし皆さんが習ったものとは、規格化が異なります。これを見ていきましょう。正準交換関係\eqref{canonicalcommutationrelation}を用いるために、まず$\Ah_u,\ \Ah_u^{\dag}$を$\phih_n,\pih_n$で表すことを考えます。Heisenberg方程式の片方から$\pih_n(t)=m\phih_n(t)$でしたから、\eqref{tempmodeex2}より
+\begin{align}
+  \pih_n(t)=m\sum_{u}(-i\omega_{u}\Ah_{u}e^{-i(\omega_u t-k_u x_n)}+i\omega_u\Ah_{u}e^{i(\omega_u t-k_u x_n)})
+\end{align}
+を得ます。ここから$\Ah_u,\ \Ah_u^{\dag}$について解くわけですが、これらは時間$t$によらないので式の簡単のために$t=0$として考えます。いつものように$t=0$のときの演算子を引数を省略して書くと
+\begin{align}
+  &\phih_n=\sum_{u}(\Ah_{u}+\Ah_{-u}^{\dag})e^{ik_u x_n},\\
+  &\pih_n=m\sum_{u}(-i\omega_{u}\Ah_{u}+i\omega_u\Ah_{-u})e^{ik_u x_n}\label{tempmodeex3}
+\end{align}
+となります。両方の式とも、第2項目は$u\to -u$の変換を行っています。これを逆に解くには、両辺に$e^{-ik_{u'}x_n}$をかけて$n$について和をとるということをします。その際に便利な公式は$-N<u<N$の場合に
+\begin{align}
+  \sum_{n}e^{\frac{2\pi i u n}{N}}=N\delta_{u,0}
+\end{align}
+という式が成り立つことです。そうすると\eqref{tempmodeex3}から
+\begin{align}
+  N(\Ah_u+\Ah_{-u}^{\dag}) =\sum_{n}\phih_n e^{-ik_u x_n},\nonumber\\
+  -iN\omega_{u}(\Ah_u-\Ah_{-u}^{\dag})  =\sum_{n}\pih_n e^{-ik_u x_n}
+\end{align}
+という式を得ます。これらから
+\begin{align}
+  \Ah_u&=\frac{1}{2N}\sum_{n}(\phih_n+\frac{i}{\omega_u m}\pih_n)e^{-ik_ux_n}\nonumber\\
+  \Ah_u^{\dag}&=\frac{1}{2N}\sum_{n}(\phih_n-\frac{i}{\omega_u m}\pih_n)e^{ik_ux_n}\label{tempmodeex4}
+\end{align}
+という表式を得ます。
+
+さて、\eqref{tempmodeex4}から、$\Ah_u,\Ah_u^{\dag}$を含む交換関係を計算しましょう。
+\begin{align}
+[\Ah_u,\Ah_{u'}]
+&=\frac{1}{4N^2}\sum_{n,n'}e^{-ik_ux_n-ik_{u'}x_{n'}}[\phih_n+\frac{i}{\omega_{u}m}\pih_n,\phih_{n'}+\frac{i}{\omega_{u'}m}\pih_{n'}]\nonumber\\
+&=\frac{1}{4N^2}\sum_{n,n'}e^{-ik_ux_n-ik_{u'}x_{n'}}i\hbar\delta_{n,n'}\qty(\frac{i}{\omega_{u'}m}-\frac{i}{\omega_{u}m})\nonumber\\
+&=\frac{1}{4N^2}\sum_{n}e^{-ik_ux_n-ik_{u'}x_{n}}i\hbar\qty(\frac{i}{\omega_{u'}m}-\frac{i}{\omega_{u}m})\nonumber\\
+&=\frac{1}{4N}\delta_{u,-u'}i\hbar\qty(\frac{i}{\omega_{u'}m}-\frac{i}{\omega_{u}m})\nonumber\\
+&=0
+\end{align}
+同様にして$[\Ah_u^{\dag},\Ah_{u'}^{\dag}]=0$です。$[\Ah_u,\Ah_{u'}^{\dag}]$も同様の方針で計算すると
+\begin{align}
+  [\Ah_u,\Ah_{u'}^{\dag}]=\frac{\hbar}{2N\omega_{u}m}\delta_{u,u'}
+\end{align}
+という結果を得ます。ですから
+\begin{align}
+  \ah_{u}=\sqrt{\frac{2N\omega_um}{\hbar}}\Ah_{u}
+\end{align}
+を導入すると
+\begin{align}
+  [\ah_u,\ah_{u'}]=[\ah_u^{\dag},\ah_{u'}^{\dag}]=0,\qquad
+  [\ah_u,\ah_{u'}^{\dag}]=\delta_{u,u'}
+\end{align}
+となり、量子力学の授業で出てきた生成消滅演算子と同じ規格化になります。これを用いてHeisenberg演算子を表すと
+\begin{important}
+  \begin{align}
+    \phih_n(t)&=\sum_{u}\sqrt{\frac{\hbar}{2N\omega_um}}
+    (\ah_ue^{-i(\omega_u t -k_ux_n)}
+    +\ah_u^{\dag}e^{i(\omega_u t -k_ux_n)})\label{discretefield}\\
+    \pih_n(t)&=\sum_{u}\sqrt{\frac{\hbar}{2N\omega_um}}
+    (-im\omega_{u})
+    (\ah_ue^{-i(\omega_u t -k_ux_n)}
+    -\ah_u^{\dag}e^{i(\omega_u t -k_ux_n)})\label{discretemomentum}
+  \end{align}
+\end{important}
+となります。
+
+さて、Hamiltonianを見てみましょう。今モード展開によって、系が調和振動子がたくさん集まったものであることはすでに見ました。したがってHamiltonianもたくさんの調和振動子のHamiltonianの和になっているはずです。これを確かめてみましょう。\eqref{modeexpansion}で導入した$\chih_u(t)$を考えるのが便利です。生成消滅演算子で書くと
+\begin{align}
+  \chih_u(t)=\sqrt{\frac{\hbar}{2N\omega_um}}(\ah_ue^{-i\omega_u t}
+  +\ah_u^{\dag}e^{i\omega_u t})
+\end{align}
+となります。これを用いると
+\begin{align}
+  \pih_n(t)=\sum_{u}m\dot{\chih}_u(t)e^{ik_ux_n}\label{modeexpansionpi}
+\end{align}
+となります。Hamiltonianは保存するので、時刻$t=0$で考えればよいのです。そのときの演算子を求めておきます。
+\begin{align}
+  \chih_u=\sqrt{\frac{\hbar}{2N\omega_um}}(\ah_u
+  +\ah_u^{\dag}),\quad
+  \dot{\chih}_u=-i\omega_{u}\sqrt{\frac{\hbar}{2N\omega_um}}(\ah_u
+  -\ah_u^{\dag}).\label{tempmodeex5}
+\end{align}
+まず、\eqref{modeexpansion}、\eqref{modeexpansionpi}を用いてHamiltonianを変形していきます。
+\begin{align}
+  \Hh&=\sum_{n}\frac{1}{2m}\pih_n^2+V(\phih)
+  =\sum_{n}\qty(
+    \frac{1}{2m}\pih_n^2+\frac12(\phih_n-\phih_{n-1})^2
+    +\frac12\ell \phih_n^2
+  )\nonumber\\
+  &=\sum_n\sum_{u,u'}e^{ik_ux_n+ik_{u'}x_n}\qty(
+    \frac{1}{2m}m^2\dot{\chih}_u\dot{\chih}_{u'}
+    +\frac12 r (1-e^{-ik_ua})(1-e^{-ik_{u'}a})\chih_u\chih_{u'}
+    +\frac12\ell \chih_u\chih_{u'}
+  )\nonumber\\
+  &=\sum_{u}N\qty(
+    \frac{1}{2m}m^2\dot{\chih}_u\dot{\chih}_{-u}
+    +\frac12 r (1-e^{-ik_ua})(1-e^{ik_{u}a})\chih_u\chih_{-u}
+    +\frac12\ell \chih_u\chih_{-u}
+  )\nonumber\\
+  &=\sum_{u}N\qty(
+    \frac{1}{2m}m^2\dot{\chih}_u\dot{\chih}_{-u}
+    +\frac12 m\omega_{u}^2 \chih_u\chih_{-u}
+  )
+\end{align}
+となります。ここでさらに\eqref{tempmodeex5}を代入して整理していきます。
+\begin{align}
+  \Hh
+  &=\sum_{u}N\frac{\hbar}{2N\omega_{u}}\qty(
+    -\frac12 \omega_{u}^2(\ah_u-\ah_{-u}^{\dag})(\ah_{-u}-\ah_{u}^{\dag})
+    +\frac12 \omega_{u}^2(\ah_u+\ah_{-u}^{\dag})(\ah_{-u}+\ah_{u}^{\dag})
+  )\nonumber\\
+  &=\sum_{u}\frac12 \hbar\omega_{u}(\ah_{u}\ah_{u}^{\dag}+\ah_{-u}^{\dag}\ah_{-u})=\sum_{u}\frac12 \hbar\omega_{u}(\ah_{u}\ah_{u}^{\dag}+\ah_{u}^{\dag}\ah_{u})\nonumber\\
+  &=\sum_{u}\hbar\omega_{u}(\ah_{u}^{\dag}\ah_{u}+\frac12)
+\end{align}
+となって、予想通りたくさんの調和振動子のHamiltonianの和になりました。量子力学の授業でやったようにモード$u$にいる「粒子数」の演算子$\Nh_u:=\ah_u^{\dag}\ah_u$を導入すると
+\begin{important}
+\begin{align}
+    \Hh = \sum_{u}\hbar
+    \omega_{u}\Nh_{u}
+    +\sum_{u}\frac12 \hbar\omega_{u}\label{oscillatorhamiltonian}
+\end{align}
+\end{important}
+を得ます。
+
+ここまで来れば、もう問題は解けています。量子力学の授業でやったように基底状態$\ket{0}$は、すべての$u$に対して
+\begin{align}
+  \ah_u\ket{0}=0
+\end{align}
+となる状態です。場の理論の文脈では、この状態は粒子が1つもない状態ですから\strong{真空}と呼ばれます。真空のエネルギーを求めてみると
+\begin{align}
+  \Hh\ket{0}=E_0\ket{0},\quad E_0=\sum_{u}\frac12 \hbar\omega_{u}
+\end{align}
+となります。これは、たくさんの調和振動子の基底状態のエネルギーを合わせたものです。今の場合は、$E_0$は有限の定数になりますので、何の問題もありません。
+
+励起状態は真空$\ket{0}$に$\ah_{u}^{\dag}$をかけることにより作れます。このような励起状態を粒子がある状態と思う、というのがミソです。例えば
+\begin{align}
+  \ah_{u}^{\dag}\ket{0}
+\end{align}
+という状態は、波数$k_u$をもつ1粒子状態と思うことができます。そのエネルギーは真空に比べて$\hbar \omega_u$だけ大きくなるので、これを粒子のエネルギーと思うことができます。高校のときか、大学の1年生か2年生のときに「角振動数$\omega$の波は粒子描像があって、１つの粒子のエネルギーは$\hbar\omega$である」という話を聞いたことがあるのではないでしょうか。今、まさにそれを導出しました。さらに
+\begin{align}
+  \ah_{u}^{\dag}\ah_{u'}^{\dag}\ket{0}
+\end{align}
+は2粒子状態と思うことができます。$u$と$u'$を入れ替えても状態ベクトルに符号は出ませんから、この粒子は\strong{ボゾン}であることが分かります。さらに、この状態のエネルギーと真空のエネルギーとの差は、それぞれの粒子のエネルギー$\hbar\omega_u,\hbar\omega_{u'}$の単なる和になります。これは、この2粒子の間に相互作用が無いということです。つまり、今の系は自由な粒子を記述するので場の理論の文脈では「自由場の理論」と呼ばれます。
+
+今の系で$\ell=0$として、さらに3次元的にしたものは、固体の格子振動を記述する良い模型です。口語的に言えば固体中を伝わる「音」のモデルです。そのときに出てくる粒子は\strong{フォノン}(phonon)と呼ばれます。フォノンとは「音の粒子」という意味です。
+
+この講義の目的は、相対論的な粒子をあつかうことです。そのためには、連続極限を考えなければなりません。次の節では、連続極限を考え、これが相対論的な粒子を記述していることを見ます。
+
+\section{連続極限}
+\subsection{真空のエネルギー}
+連続極限を考えます。素朴には\eqref{classicalcontinuum}のような量を有限に保って、$a\to 0$とすれば良いでしょう。これをやってみようとすると、次のような問題が発生します。\eqref{oscillatorhamiltonian}の真空のエネルギーの部分
+\begin{align}
+  E_0=\sum_{u}\frac12 \hbar \omega_{u}
+\end{align}
+が発散してしまいます。これについて少し考察してみましょう。
+
+１つめの解決策は、$E_0$は観測量に現れないので気にしないというものです。Heisenberg描像では、Hamiltonian $\Hh$ はHeisenberg方程式に交換関係の形でのみ現れます。ですからc数のものが足し算してあったとしても、Heisenberg方程式からは消えてしまいます。Schrödinger描像でも、$E_0$はすべての状態に共通の位相としてのみ現れるので、期待値には出てきません。したがって、Hamiltonianから$E_0$を黙って引いて
+\begin{align}
+  \Hh=\sum_{u}\hbar \omega_{u}\Nh_{u}
+\end{align}
+とします。\footnote{この１つめの解決策には少しだけ心配なことがあります。重力がある場合、$E_0$は宇宙項として観測されてしまうのです。}
+
+２つめの解決策は、現代での標準的な考え方です。そもそもLagrangian\eqref{oscillatorLagrangian}を書く段階で、エネルギーの基準を全く気にしていませんでした。それが悪かったのです。最初から、パラメータ$\Omega$として定数のポテンシャルエネルギーを入れて
+\begin{align}
+  L(\phi,\dot{\phi})=\sum_{n=1}^{N}\qty(
+    \frac12 m \dot{\phi}_n^2-\frac12 r (\phi_n-\phi_{n-1})
+    -\frac12 \ell \phi_n^2-\Omega
+  )
+\end{align}
+としておきます。そうするとHamiltonianは
+\begin{align}
+  \Hh=\sum_{u}\hbar \omega_{u}\Nh_{u}+\sum_{u}\frac12 \hbar \omega_{u}+N\Omega
+\end{align}
+となります。連続極限をとるときには\eqref{classicalcontinuum}とともに
+\begin{align}
+  E_0=\sum_{u}\frac12\hbar\omega_{u}+N\Omega
+\end{align}
+を固定して$a\to 0$にします。この２つめの解決策のような手法を「繰り込み」と呼びます。今の場合は、真空のエネルギーについて考えましたが、相互作用のある場の理論では、他のパラメーターの繰り込みも考える必要があります。繰り込みについての詳しいことは、M1の場の理論の授業などで習います。
+
+\subsection{連続極限での場}
+次に連続極限で場がどうなるか考えてみましょう。古典論と同様にして考えることにします。
+\begin{align}
+  \phih(x,t):=\sqrt{\rho}\phih_{n}(t)\qquad (x=na,\ L=Na,\ \rho=\frac{m}{a})
+\end{align}
+と定義します。これに\eqref{discretefield}の表式を代入して
+\begin{align}
+  \phih(x,t)=\sum_{u=-\infty}^{\infty}\sqrt{\frac{\hbar}{2L\omega_{u}}}(\ah_{u}e^{-i(\omega_ut-k_ux)}
+  +\ah^{\dag}_{u}e^{i(\omega_ut-k_ux)})
+\end{align}
+という表式を得ます。ここで
+\begin{align}
+  k_u=\frac{2\pi u}{L},\quad \omega_{u}=\frac{1}{\hbar}\sqrt{M^2c^4+(\hbar k_u)^2c^2},\quad M=\frac{\hbar\sqrt{\lambda}}{c^4}
+\end{align}
+としました。$c$を光速と思うなら、１粒子のエネルギー$\hbar \omega_{u}$と運動量$\hbar k_u$の関係が、相対論的なものになっていることが分かると思います。
+
+正準運動量の方は、次のように連続的なものを定義します。
+\begin{align}
+  \pih(x,t):=\frac{1}{\sqrt{\rho}a}\pih_{n}(t).
+\end{align}
+こうすると、正準交換関係が
+\begin{align}
+  [\phih(x,t),\pih(x',t)]=[\sqrt{\rho}\phi_{n}(t),\frac{1}{a\sqrt{\rho}}\pih_{n'}(t)]=\frac{ih}{a}\delta_{n,n'}
+  \label{tempcommutationrelationcontinuum}
+\end{align}
+となります。ここで、最後の$\frac{1}{a}\delta_{n,n'}$について考えてみましょう。$x=na,\ x'=n'a$ですから$a\to\infty$の極限で
+\begin{align}
+  \frac{1}{a}\delta_{n,n'}\to
+  \begin{cases}
+    \infty & (x=x')\\
+    0 & (x\ne x')
+  \end{cases}
+\end{align}
+です。さらに
+\begin{align}
+  \sum_{n}a \frac{1}{a}\delta_{n,n'}=1
+\end{align}
+という関係と$a\to 0$で
+\begin{align}
+  \sum_{n=-\infty}^{\infty}a\to \int dx
+\end{align}
+ということを考え合わせると$a\to 0$で
+\begin{align}
+  \frac{1}{a}\delta_{n,n'}\to \delta(x-x')
+\end{align}
+となることが分かります。したがって式\eqref{tempcommutationrelationcontinuum}で連続極限をとると
+\begin{important}
+  \begin{align}
+    [\phih(x,t),\pih(x',t)]=i\hbar\delta(x-x')
+  \end{align}
+\end{important}
+という正準交換関係が得られます。
+
+ここまでで、長さが$L$の円周を空間とする連続的な場の理論が出来ました。結果をまとめておきます。
+\begin{important}
+  \begin{align}
+    \phih(x,t)=\sum_{u=-\infty}^{\infty}\sqrt{\frac{\hbar}{2L\omega_{u}}}(\ah_{u}e^{-i(\omega_ut-k_ux)}
+    +\ah^{\dag}_{u}e^{i(\omega_ut-k_ux)}),
+  \end{align}
+  \begin{align}
+    \Hh=\sum_{u=-\infty}^{\infty}\hbar \omega_{u}\ah_{u}^{\dag}\ah_{u}+E_0,
+  \end{align}
+  \begin{align}
+    [\ah_{u},\ah_{u'}^{\dag}]=\delta_{u,u'},
+  \end{align}
+  \begin{align}
+    k_u=\frac{2\pi u}{L},\qquad \omega_{u}=\frac{1}{\hbar}
+    \sqrt{M^2c^4+(\hbar k_u)^2c^2}.
+  \end{align}
+\end{important}
+
+\subsection{無限体積極限}
+ここまででは、空間が長さ$L$の円周です。$L\to \infty$の極限をとることを考えましょう。この極限では、運動量$k$も連続的になります。$k_u=\frac{2\pi u}{L}$であったことを思い出すと、$L\to\infty$の極限で
+\begin{align}
+  \sum_{u=-\infty}^{\infty}\frac{2\pi}{L}\to \int dk
+\end{align}
+と積分になることが分かります。また生成消滅演算子を
+\begin{align}
+  \ah(k):=\sqrt{\frac{L}{2\pi}}\ah_{u}
+\end{align}
+と定義すると交換関係は
+\begin{align}
+  [\ah(k),\ah(k')^{\dag}]=\frac{L}{2\pi}\delta_{u,u'}\to \delta(k-k')
+\end{align}
+となります。
+
+これらをまとめておきます。
+\begin{important}
+  \begin{align}
+    \phih(x,t)=\int\frac{dk}{\sqrt{2\pi}}\sqrt{\frac{\hbar}{2\pi}}(\ah(k)e^{-i(\omega_{k}t-kx)} + \ah(k)^{\dag}e^{i(\omega_kt-kx)}),
+  \end{align}
+  \begin{align}
+    \Hh=\int dk \hbar \omega_{k}\ah(k)^{\dag}\ah(k),
+  \end{align}
+  \begin{align}
+    \omega_{k}=\frac{1}{\hbar}\sqrt{M^2c^4+(\hbar k)^2c^2}.
+  \end{align}
+\end{important}
+これを見るとちゃんとこの系が相対論的な粒子を記述していることが分かります。
+
+ここでは、\strong{波動を量子化すると粒子が出てくる}ことを飛躍なしに説明したつもりです。しかし、１つだけ説明を飛ばしたことがあります。それは、ここで$\hbar k$と書いたものが１つの粒子の運動量だということです。運動量とは、空間並進対称性に対する保存量でした。これはNoetherの定理を用いて得ることができます。場の理論でのNoetherの定理をちゃんと説明する時間がないので、結果だけ書くと、運動量の演算子$\Ph$は
+\begin{align}
+  \Ph=\int dk \,\hbar k \ah(k)^{\dag}\ah(k)
+\end{align}
+となります。ここから
+\begin{align}
+  [\Ph,\ah(k)^{\dag}]=\hbar k
+\end{align}
+という交換関係が導かれ、$\ah(k)^{\dag}$で生成される粒子が持つ運動量が$\hbar k$であることが分かります。特に１粒子状態に対して
+\begin{align}
+  \Ph \ah(k)^{\dag}\ket{0}=\hbar k\ah(k)^{\dag}\ket{0}
+\end{align}
+が成り立ちます。
+
+\section{この章のまとめ}
+この章では、波動を量子化すると粒子が出てくることを説明しました。
+\begin{itemize}
+  \item 波動のモデルとしてバネでつながったたくさんの物体を考えました。
+  \item これを量子化すると粒子が現れました。理論には任意個の粒子を含むことができます。
+  \item 連続極限では、真空のエネルギーに発散が現れましたが、繰り込みにより処理できます。
+  \item 連続極限、無限体積極限で相対論的な粒子を記述する理論になりました。
+\end{itemize}
 
 \chapter{場の理論における作用と正準量子化}
 
