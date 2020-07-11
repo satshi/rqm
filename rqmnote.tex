@@ -53,6 +53,8 @@
 %\newcommand{\ad}{\mathrm{ad}}
 \DeclareMathOperator{\ad}{\mathrm{ad}}
 \newcommand{\xb}{\vvmathbb{x}}
+\newcommand{\nb}{\vvmathbb{n}}
+\newcommand{\eb}{\vvmathbb{e}}
 \newcommand{\kb}{\vvmathbb{k}}
 \newcommand{\jb}{\vvmathbb{j}}
 \newcommand{\pbb}{\vvmathbb{p}}
@@ -70,9 +72,17 @@
 \newcommand{\Fii}{{}_1F_1}
 
 \newcommand{\Lcal}{\mathcal{L}}
+\newcommand{\Hcal}{\mathcal{H}}
 
 \newcommand{\ao}[1]{\textcolor{blue}{#1}}
 \newcommand{\aka}[1]{\textcolor{red}{#1}}
+
+\newcommand{\dk}{\frac{d^3\kb}{(2\pi)^3}}
+
+
+
+
+
 
 \newcommand{\phih}{\hat{\phi}}
 \newcommand{\chih}{\hat{\chi}}
@@ -2033,6 +2043,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 この講義では、実用的な計算手法を学ぶというよりは、場の理論についての正しいイメージを持ってもらうために、普通の場の理論の教科書ではとばされている\eqref{oscillatorLagrangian}の量子化から始めたいと思います。そこから連続極限をとるという正しい手続きをとって、どういう発散が出るのか、それをどう処理するのかということを簡単に説明したいと思います。
 
 \section{量子化と粒子}
+\label{sec:discretequantization}
 では、\eqref{oscillatorLagrangian}の系の量子化をやっていきます。ここでは、特に新しいことをやっていないことに注意してください。
 
 まずは、正準形式に直します。$\phi_n$に正準共役な運動量を$\pi_n$とすると
@@ -2419,6 +2430,261 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \end{itemize}
 
 \chapter{場の理論における作用と正準量子化}
+前の章では、連成振動の系の量子論を考えると、粒子が出てくることを見ました。また、連続極限を考えると、$c$を光速とみなすと相対論的な粒子の系の記述になっていることを見ました。
+
+この章では、古典的な連続理論を、連続理論のまま取り扱う方法を説明します。この方法では、計算などが楽になるので良いです。反面、場の理論の微妙な点を覆い隠してしまっているので、発散などが出た場合、改めて考え直す必要があります。
+
+この章から、また４次元時空を考えます。また、$c=\hbar=1$の自然単位系に戻ります。
+
+
+\section{場の理論の作用}
+この講義では、簡単のためにスカラー場が１つだけの理論を考えます。$\phi(x)$をそのスカラー場として、その作用は、
+\begin{align}
+  S[\phi]=\int d^4x \Lcal(\phi(x),\del\phi(x)),\qquad \int d^4x :=\int dt\int d^3\xb\label{fieldtheoryaction}
+\end{align}
+とLagrangian密度$\Lcal(\phi,\del\phi)l$を用いて書かれているとします。$\Lcal(\phi,\del\phi)$は$\phi,\del_{\mu}\phi\ (\mu=0,1,2,3)$の（汎関数ではなく）関数で、スカラー場であるとします。例えば$V(\phi)$を$\phi$の関数として
+\begin{align}
+  \Lcal=\frac12\del_{\mu}\phi \del^{\mu}\phi-V(\phi)
+\end{align}
+というものです。$\Lcal$がスカラー場ですから、その積分である$S$もスカラーです。したがって、あらわなLorentz不変性があります。
+
+しつこいようですが、解析力学でやったこととつなげるために、空間を離散化してみます。$\xb=a\nb,\ \nb=(n_1,n_2,n_3)\in \Zb^3$とし、$\phi(x)=\phi_{\nb}(t)$と書いてみます。空間方向の微分は、$i$方向の単位ベクトル$\eb_i$を用いて$\del_i\phi(x)\to \frac{1}{a}(\phi_{\nb+\eb_i}(t)-\phi_{\nb}(t))$と置き換えるのが適当でしょう。作用は
+\begin{align}
+  S=\int dt L,\qquad L=\sum_{\nb}a^3 \Lcal(\phi_{\nb}(t),\dot{\phi}_{\nb}(t), \frac{1}{a}(\phi_{\nb+\eb_i}(t)-\phi_{\nb}(t)))
+  \label{discreteaction}
+\end{align}
+とします。こうなれば沢山の物体がある普通の力学系になります。古典論の範囲では、適切に$a\to 0$の極限をとれば\eqref{fieldtheoryaction}に戻ります。
+
+運動方程式は最小作用の原理から出します。これは、$\phi(x)\to \phi(x)+\delta\phi(x)$と任意の微小量$\delta\phi(x)$変化させたとき、作用の変化分$\delta S=S[\phi+\delta \phi]-S[\phi]$が
+\begin{align}
+  \delta S=0
+\end{align}
+となるような$\phi$が実際に起こる運動だという原理です。
+
+少し、この変分計算の仕方を簡単に説明します。$\delta$はだいたい微分みたいな感じで作用します。つまり
+\begin{align}
+  \delta(A+B)=\delta A+\delta B,\quad \delta(AB)=(\delta A)B+A\delta B,\quad
+  \delta(aA)=a\delta A\ (a\text{は$\phi$によらないもの})
+\end{align}
+のような計算が成り立ちます。特に微分や積分は足し算、引き算、$\phi$によらないものをかける、というようなもので出来ていますから
+\begin{align}
+  \delta(\del_{\mu}A)=\del_{\mu}(\delta A),\delta \int d^4x A=\int d^4x\delta A
+\end{align}
+などが成り立ちます。また、$V(A)$を$A$の関数とすると
+\begin{align}
+  \delta V(A)=V(A+\delta A)-V(A)=V'(A)\delta A
+\end{align}
+となります。同様に$V(A,B)$を$A,B$の関数とすると
+\begin{align}
+  \delta V(A,B)=\del_{A}V(A,B)\delta A+\del_{B}V(A,B)\delta B
+\end{align}
+などとなります。
+
+これらを用いて\eqref{fieldtheoryaction}の作用の変分をとってみましょう。
+\begin{align}
+  \delta S=\int d^4x \delta \Lcal(\phi,\del \phi)
+  =\int d^4 x \qty(
+    \pdv{\Lcal}{\phi}\delta \phi+\pdv{\Lcal}{(\del_{\mu}\phi)}\delta(\del_{\mu}\phi)
+  )\nonumber \\
+  =\int d^4 x \delta \phi(x) \qty(
+    \pdv{\Lcal}{\phi(x)}-\del_{\mu}\pdv{\Lcal}{(\del_{\mu}\phi(x))}
+  )
+\end{align}
+となります。１行目から２行目へは、部分積分をしました。$\delta \phi(x)$は任意の微小な変分ですから、$\delta S=0$となるためには
+\begin{align}
+  \pdv{\Lcal}{\phi(x)}-\del_{\mu}\pdv{\Lcal}{(\del_{\mu}\phi(x))}=0
+\end{align}
+となる必要があります。これが運動方程式です。
+
+\section{場の理論の正準形式}
+さて、この系を正準形式で書いていきましょう。まず、大前提として正準形式では時間を特別扱いしますから、明白なLorentz不変性がなくなります\footnote{経路積分形式ですと、明白なLorentz不変性を保ったまま定式化できます。}。もちろん、今の系はLorentz不変ですから明白でないだけで物理はLorentz不変です。
+
+まず、正準運動量を考えます。今の場合、$\xb$はただのラベルですから、気持ち的に正準運動量は
+\begin{align}
+  \pi(\xb)=\pdv{L}{\dot{\phi}(\xb)}?
+\end{align}
+としたい気がします。しかし、これでは$\xb$が連続的であるために記号の意味が分かりません。そこで一旦離散的な場合にもどって考えます。場を$\phi_{\nb}$として式\eqref{discreteaction}の作用を考えます。すると普通に
+\begin{align}
+  \pi_{\nb}:=\pdv{L}{\dot{\phi}_{\nb}}=a^3\pdv{\Lcal}{\dot{\phi}_{\nb}}
+\end{align}
+となります。しかし、これで素朴に$a\to 0$の極限をとってしまうと$\pi_{\nb}\to 0$となってしまいます。なので
+\begin{align}
+  \pi(\xb=a\nb):=\frac{1}{a^3}\pi_{\nb}=\pdv{\Lcal}{\dot{\phi}_{\nb}}
+\end{align}
+と定義します。すると連続理論にもどって
+\begin{align}
+  \pi(\xb)=\fdv{L}{(\dot{\phi}(\xb))}=\pdv{\Lcal}{(\dot{\phi}(\xb))}
+\end{align}
+となります。ここで、汎関数微分$\fdv{L}{(\dot{\phi}(\xb))}$の記号を導入しました。これは、偏微分の添字を連続的にしたようなもので
+\begin{align}
+  \fdv{L}{(\dot{\phi}(\xb))}=\lim_{a\to 0}\pdv{L}{\dot{\phi}_{\nb}}
+\end{align}
+となるものです。
+
+もう少し汎関数微分について説明します。一般的に$\phi(\xb)$の汎関数$A$に対して、$\phi(\xb)\to \phi(\xb)+\delta \phi(\xb)$としたときに
+\begin{align}
+  \delta A=\int d^3\xb \delta \phi(\xb)\fdv{A}{\phi(\xb)}
+\end{align}
+となるとして$\fdv{A}{\phi(\xb)}$を定義します。この定義にしたがうと例えば
+\begin{align}
+  \delta \phi(\xb')=\int d^3\xb \delta \phi(\xb)\delta^3(\xb-\xb')
+\end{align}
+ですから
+\begin{align}
+  \fdv{\phi(\xb')}{\phi(\xb)}=\delta^3(\xb-\xb')
+\end{align}
+となります。
+
+ここで得た教訓は、場の理論の解析力学をやるには、次のような置き換えをやれば、大体良いということです。
+\begin{itemize}
+  \item $\xb$は連続的だが、ただのラベル。
+  \item 偏微分は汎関数微分に置き換える。
+  \item ラベルについての和は、積分に置き換える。
+\end{itemize}
+
+これを踏まえてPoisson括弧を考えてみましょう。$A,B$を$\pi(\xb),\phi(\xb)$の汎関数をします。上の処方をPoisson括弧でやると
+\begin{align}
+  \{A,B\}=\int d^3\xb\qty(
+    \fdv{A}{\phi(\xb)}\fdv{B}{\pi(\xb)}
+    -\fdv{A}{\pi(\xb)}\fdv{B}{\phi(\xb)}
+  )
+\end{align}
+と定義するのが適当です。ここから例えば
+\begin{align}
+\{\phi(\xb'),\pi(\xb)\}=\delta^3(\xb-\xb'),\qquad  \{\phi(\xb'),\phi(\xb)\}=\{\pi(\xb'),\pi(\xb)\}=0
+\end{align}
+という式が得られます。
+
+次にHamiltonianを考えます。上で見た置き換え、あるいは一旦離散的なものを考えてから連続極限をとって考えると
+\begin{align}
+  H=\int d^3\xb \pi(\xb)\dot{\phi}(\xb)-L=\int d^3\xb \Hcal,\nonumber\\
+  \Hcal=\pi(\xb)\dot{\phi}(\xb)-\Lcal
+\end{align}
+となります。この$\Hcal$は積分してHamiltonianになるので、\strong{Hamiltonian密度}と呼びます。物理的には積分してエネルギーになるので、エネルギー密度です。
+
+例をやってみましょう。
+\begin{align}
+  \Lcal
+  =\frac{1}{2}\del_{\mu}\phi \del^{\mu}\phi-\frac12 m^2 \phi^2
+  =\frac{1}{2}\dot{\phi}^2-\frac12 (\bnabla \phi)^2-\frac12 m^2 \phi^2\label{KGLagrangian}
+\end{align}
+を考えます。ここから導かれる運動方程式はKlein-Gordon方程式になります。正準運動量は
+\begin{align}
+  \pi(\xb)=\pdv{\Lcal}{\dot{\phi}(\xb)}=\dot{\phi}(\xb)
+\end{align}
+となります。Hamiltonianは
+\begin{align}
+  H=\int d^3\xb \Hcal,\qquad \Hcal=\frac12 \pi(\xb)^2+\frac12 (\bnabla \phi)^2+\frac12 m^2 \phi^2
+\end{align}
+となります。
+
+\section{Klein-Gordon場の量子化}
+
+最後に\eqref{KGLagrangian}で表されるKlein-Gordon場の量子化を考えましょう。既に正準形式を作ってあるので、あとはPoisson括弧を交換子に置きかえるだけです。特に
+\begin{align}
+  [\phih(\xb),\pih(\xb')]=i\delta(\xb-\xb')
+\end{align}
+となります。
+
+\ref{sec:discretequantization}節でやったのと同様に解いていきます。Heisenberg方程式はKlein-Gordon方程式になります。
+\begin{align}
+  \ddot{\phih}(x)-\bnabla^2\phih(x)+\frac12 m^2\phih(x)=0.
+\end{align}
+これはモード展開するとたくさんの独立した調和振動子になります。
+今の場合、モード展開はFourier変換です。
+\begin{align}
+  \phih(t,\xb)=\int\dk \chih(t,\kb)e^{i\kb\cdot\xb}
+\end{align}
+とすると運動方程式は
+\begin{align}
+  \ddot{\chih}(t,\kb)=-\omega(\kb)^2 \chih(t,\kb),\qquad
+  \omega_{\kb}:=\sqrt{m^2+\kb^2}
+\end{align}
+と調和振動子になります。
+
+一般解は
+\begin{align}
+  \chih(t,\kb)=\Ah(\kb)e^{-i\omega(\kb) t}+\Bh(\kb)e^{i\omega(\kb)t}
+\end{align}
+となります。$\phih(x)$がエルミート演算子であることを考え合わせると
+\begin{align}
+  \phih(x)=\int \dk (\Ah(\kb)e^{-ik\cdot x} +\Ah(\kb)^{\dag}e^{ik\cdot x})
+\end{align}
+となります。ここで４元ベクトル$k^{\mu}$を$\kb=(k^1,k^2,k^3),\ k^0=\omega(\kb)$として導入しました。また$k\cdot x=k_{\mu}x^{\mu}$です。
+
+$\Ah(\kb)^{\dag},\Ah(\kb)$が生成消滅演算子になります。これの交換関係を計算しておくと
+\begin{align}
+  [\Ah(\kb),\Ah(\kb')]=[\Ah(\kb)^{\dag},\Ah(\kb')^{\dag}]=0,\qquad
+  [\Ah(\kb),\Ah(\kb)]=\frac{1}{2\omega(\kb)}(2\pi)^3\delta^{3}(\kb-\kb')
+\end{align}
+となります。ですから
+\begin{align}
+  \ah(\kb):=\sqrt{\frac{2\omega(\kb)}{(2\pi)^3}}
+\end{align}
+とすると
+\begin{align}
+  [\ah(\kb),\ah(\kb)^{\dag}]=\delta^3(\kb-\kb')
+\end{align}
+となります。
+
+Hamiltonianも同様に計算できます。真空のエネルギーは無限になりますが、これは手で取り除くことにします。この結果をまとめておきます。
+\begin{important}
+  \begin{align}
+    \phih(x)=\int\frac{d^3\kb}{\sqrt{(2\pi)^32\omega(\kb)}}
+    (\ah(\kb)e^{-ik\cdot x} +\ah(\kb)^{\dag}e^{ik\cdot x})
+  \end{align}
+  \begin{align}
+    \omega(\kb)=\sqrt{m^2+\kb^2}
+  \end{align}
+  \begin{align}
+    [\ah(\kb),\ah(\kb')]=[\ah(\kb)^{\dag},\ah(\kb')^{\dag}]=0,\qquad
+    [\ah(\kb),\ah(\kb')^{\dag}]=\delta^3(\kb-\kb')
+  \end{align}
+  \begin{align}
+    \Hh=\int d^3\kb\omega(\kb)\ah(\kb)^{\dag}\ah(\kb).
+  \end{align}
+\end{important}
+ここから、やはりこの理論には様々な数の粒子を含む理論であることが分かります。また、その粒子のエネルギーと運動量の関係は相対論的であることが分かります。さらに粒子の間に相互作用はなく、自由な粒子になっています。そして、粒子はスピン0でボゾンです。
+
+\section{この先}
+
+ここから先について、少しだけお話しします。
+
+ここまでのところで、場を量子化すると粒子が出てくるということは分かってもらえたと思います。しかし、この粒子は相互作用のない粒子でした。つまり、状態はいくつかの粒子が自由に飛んているだけというものになっています。
+
+粒子同士が互いに力を及ぼすような「相互作用」する物理を記述するためには、理論を少し変形する必要があります。これは、作用が場の２次だけでなく３次以上の項を入れることによって実現されます。例えば$\lambda$を定数として
+\begin{align}
+  \Lcal=\frac12 \del_{\mu}\phi\del^{\mu}\phi-\frac12 m^2\phi^2-\frac{\lambda}{4!}\phi^4
+\end{align}
+のようにします。この付け加えた項によって粒子同士の間に相互作用が生まれます。粒子同士の間に力がはたらいたり、時間発展で粒子が出来たり消えたりします。
+
+自由場は完全に解くことができましたが、相互作用のある場の理論は一般的には解けません。したがって、相互作用のある理論で何か計算するためには近似法を用いる必要があります。このうち、最も広く使われている方法が摂動論です。
+
+また、スカラー場$\phi(x)$だけで記述できるのは、スピン0のボゾンでした。ですから、電子や光子を記述するには、別の種類の場を用いる必要があります。
+電子は、スピノールの場$\psi(x)$で記述されます。さらに電子はフェルミオンですから、$\psi(x)$は古典的にはGrassmann数という、掛け算が反交換するようなものになります。自由な電子を記述する作用は、
+\begin{align}
+  S=\int d^4x(\psib(i\gamma^{\mu}\del_{\mu}-m)\psi)
+\end{align}
+となります。運動方程式が自由なDirac方程式になることは確認できると思います。
+
+また光子は電磁場ですから電磁ポテンシャル$A_{\mu}(x)$で記述されます。光子はボゾンなので、$A_{\mu}(x)$は古典的には交換する場です。この作用は
+\begin{align}
+  S=\int d^4x \qty(
+    -\frac14 F_{\mu\nu}F^{\mu\nu}
+  )
+\end{align}
+となります。
+
+これらを合わせると、電子と光子が相互作用するような理論の作用は
+\begin{align}
+  S=\int d^4x\qty(
+    -\frac14 F_{\mu\nu}F^{\mu\nu}+
+    \psib(i\gamma^{\mu}D_{\mu}-m)\psi
+  )
+\end{align}
+となります。この理論は\strong{量子電磁気学}(Quantum Electro-Dynamics, QED)と呼ばれます。物質を表す$\psi$と力を表す$A_{\mu}$が、どちらも場として理論の中にあらわれているのが分かってもらえると思います。
+
+素粒子の標準模型と呼ばれる理論も、何種類かの場を用いて、作用が書けている場の理論です。（ニュートリノの部分を修正した）標準模型は今のところ素粒子のほぼすべての実験結果をよく説明しています。
 
 
 \appendix
