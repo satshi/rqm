@@ -1749,7 +1749,7 @@ $e$を素電荷とし、電荷$Ze$の原子核が作るCoulombポテンシャル
 である\footnote{ここでは$\epsilon_0$は残したが、$\epsilon_0=1$となるような単位を選ぶと便利であることが多い。あるいは、そのかわりに$e=1$となる単位を選ぶのが便利な場合もある。}。
 このポテンシャルを\eqref{radialeq0}に代入したものは、
 \begin{align}
-  \qty(E-m+\frac{Z\alpha}{r})f(r)=-g'(r)+\frac{\kappa}{r}g(r),\\
+  \qty(E-m+\frac{Z\alpha}{r})f(r)=-g'(r)+\frac{\kappa}{r}g(r),\nonumber\\
   \qty(E+m+\frac{Z\alpha}{r})g(r)=f'(r)+\frac{\kappa}{r}f(r)  \label{radialeq}  
 \end{align}
 となります。
@@ -1765,7 +1765,7 @@ $e$を素電荷とし、電荷$Ze$の原子核が作るCoulombポテンシャル
 \end{align}
 となります。この式で$\lambda<\lambda'$を仮定すると$a_0\ne 0$と矛盾するので$\lambda \ge \lambda'$が言えます。一方、\eqref{radialeq}の下の式は、
 \begin{align}
-  Z\alpha b_0r^{\lambda'-1}+\cdots = \lambda_0r^{\lambda-1}+\kappa a_0r^{\lambda-1}+\cdots
+  Z\alpha b_0r^{\lambda'-1}+\cdots = \lambda a_0r^{\lambda-1}+\kappa a_0r^{\lambda-1}+\cdots
   \label{series2}
 \end{align}
 となります。同様の議論で$\lambda\le \lambda'$が言えます。上と合わせると$\lambda=\lambda'$であることが言えます。式\eqref{series1}と\eqref{series2}から
@@ -1773,7 +1773,7 @@ $e$を素電荷とし、電荷$Ze$の原子核が作るCoulombポテンシャル
   Z\alpha a_0=-\lambda b_0+\kappa b_0,\qquad
   Z\alpha b_0=\lambda a_0+\kappa a_0
 \end{align}
-という関係を得ます。この式が$a_0\ne 0,b_0\ne 0$の階を持つための必要条件は、
+という関係を得ます。この式が$a_0\ne 0,b_0\ne 0$の解を持つための必要条件は、
 \begin{align*}
   (Z\alpha)^{2}+(\lambda-\kappa)(\lambda+\kappa)=0
 \end{align*}
@@ -1789,8 +1789,8 @@ $e$を素電荷とし、電荷$Ze$の原子核が作るCoulombポテンシャル
 
 次に$r\to\infty$での振る舞いを見てみよう。\eqref{radialeq}で$r\to\infty$を考えると
 \begin{align}
-  (E-m)f=-g'+\frac{\kappa}{r}g,\quad
-  (E+m)g=f'+\frac{\kappa}{r}f\label{rinfty}
+  (E-m)f=-g',\quad
+  (E+m)g=f'\label{rinfty}
 \end{align}
 となります。$g$を消去すると$f$に関する２階の微分方程式
 \begin{align}
@@ -1818,7 +1818,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 を得ます。さらに独立変数も無次元のものにしておくのがよいです。$x=2\omega r$として代入し、整理すると
 \begin{align}
   &\dv{v}{x}+\frac{u-v}{2}+\frac{1}{x}\qty((\lambda-\kappa)v+Bu)=0,\\
-  &\dv{u}{x}-\frac{u-v}{2}+\frac{1}{x}\qty((\lambda+\kappa)v+Au)=0,\qquad
+  &\dv{u}{x}-\frac{u-v}{2}+\frac{1}{x}\qty((\lambda+\kappa)u+Av)=0,\qquad
   A:=\frac{\omega Z\alpha}{E+m},\quad B:=\frac{\omega Z\alpha}{E-m}
   \label{radialeq1}
 \end{align}
@@ -1832,7 +1832,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 を\eqref{radialeq1}に代入します。$x$の$0$次の項から
 \begin{align}
   (\lambda+\kappa)a_0+Ab_0=0,\quad
-  (\lambda-\kappa)b_0+Ab_0=0\label{zeroth}
+  (\lambda-\kappa)b_0+Aa_0=0\label{zeroth}
 \end{align}
 を得ます。$n=1,2,3,\cdots$からは
 \begin{align}
@@ -1974,7 +1974,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \begin{align}
   S=\int dt L(\phi,\dot{\phi}),\qquad
   L(\phi,\dot{\phi})=\sum_{n=1}^{N}\qty(
-    \frac12 m \dot{\phi}_n^2-\frac12 r (\phi_n-\phi_{n-1})
+    \frac12 m \dot{\phi}_n^2-\frac12 r (\phi_n-\phi_{n-1})^2
     -\frac12 \ell \phi_n^2
   )\label{oscillatorLagrangian}
 \end{align}
@@ -2007,11 +2007,11 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \end{align}
 と積分で表示できます。また、$[]$の中の第２項めの$()$の中は
 \begin{align}
-  \frac{\phi_n-\phi_{n-1}}{a}=\sqrt{\rho}\pdv{x}\phi
+  \frac{\phi_n-\phi_{n-1}}{a}=\frac{1}{\sqrt{\rho}}\pdv{x}\phi
 \end{align}
 と微分でかけます。したがって、この極限でLagrangianは、
 \begin{align}
-  L=\int \Lcal,\quad 
+  L=\int dx \Lcal,\quad 
   \Lcal=
     \frac12 \dot{\phi}^2-\frac12 c^2 \phi'^2-\frac12 M^2 c^4 \phi^2
 \end{align}
@@ -2026,7 +2026,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 さて作用\eqref{continuumaction}で表される理論について詳しく見てみるために、まず運動方程式を求めてみましょう。作用を停留値にさせるような関数$\phi(x,t)$が運動方程式になるのでした。停留値とは、$\phi(x,t)$を少しだけずらして$\phi(x,t)+\delta \phi(x,t)$にしても作用の値が変わらないようになることです。実際\eqref{continuumaction}で作用の変分を計算してみると
 \begin{align}
   \delta S
-  =\int d^2x( \dot{\phi}\delta\dot{\phi}-c^2\phi'\delta \phi'-M^2\phi\delta \phi)
+  =\int d^2x( \dot{\phi}\delta\dot{\phi}-c^2\phi'\delta \phi'-M^2c^4\phi\delta \phi)
   =\int d^2x\delta \phi( -\ddot{\phi}+c^2\phi''-M^2c^4\phi)
 \end{align}
 となります。最後の変形では部分積分をしました。境界条件は表面項が消えるようにとっています。$\delta \phi$は任意の微小な変分ですから、$\delta S=0$から
@@ -2395,7 +2395,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 これらをまとめておきます。
 \begin{important}
   \begin{align}
-    \phih(x,t)=\int\frac{dk}{\sqrt{2\pi}}\sqrt{\frac{\hbar}{2\pi}}(\ah(k)e^{-i(\omega_{k}t-kx)} + \ah(k)^{\dag}e^{i(\omega_kt-kx)}),
+    \phih(x,t)=\int\frac{dk}{\sqrt{2\pi}}\sqrt{\frac{\hbar}{2\omega_k}}(\ah(k)e^{-i(\omega_{k}t-kx)} + \ah(k)^{\dag}e^{i(\omega_kt-kx)}),
   \end{align}
   \begin{align}
     \Hh=\int dk \hbar \omega_{k}\ah(k)^{\dag}\ah(k),
@@ -2412,7 +2412,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \end{align}
 となります。ここから
 \begin{align}
-  [\Ph,\ah(k)^{\dag}]=\hbar k
+  [\Ph,\ah(k)^{\dag}]=\hbar k\ah(k)^{\dag}
 \end{align}
 という交換関係が導かれ、$\ah(k)^{\dag}$で生成される粒子が持つ運動量が$\hbar k$であることが分かります。特に１粒子状態に対して
 \begin{align}
@@ -2501,7 +2501,8 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 
 まず、正準運動量を考えます。今の場合、$\xb$はただのラベルですから、気持ち的に正準運動量は
 \begin{align}
-  \pi(\xb)=\pdv{L}{\dot{\phi}(\xb)}?
+  \pi(\xb)=\pdv{L}{\dot{\phi}(\xb)}
+  \quad \mbox{\Huge ?}
 \end{align}
 としたい気がします。しかし、これでは$\xb$が連続的であるために記号の意味が分かりません。そこで一旦離散的な場合にもどって考えます。場を$\phi_{\nb}$として式\eqref{discreteaction}の作用を考えます。すると普通に
 \begin{align}
@@ -2517,7 +2518,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \end{align}
 となります。ここで、汎関数微分$\fdv{L}{(\dot{\phi}(\xb))}$の記号を導入しました。これは、偏微分の添字を連続的にしたようなもので
 \begin{align}
-  \fdv{L}{(\dot{\phi}(\xb))}=\lim_{a\to 0}\pdv{L}{\dot{\phi}_{\nb}}
+  \fdv{L}{(\dot{\phi}(\xb))}=\lim_{a\to 0}\frac{1}{a^3}\pdv{L}{\dot{\phi}_{\nb}}
 \end{align}
 となるものです。
 
@@ -2588,7 +2589,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 
 \ref{sec:discretequantization}節でやったのと同様に解いていきます。Heisenberg方程式はKlein-Gordon方程式になります。
 \begin{align}
-  \ddot{\phih}(x)-\bnabla^2\phih(x)+\frac12 m^2\phih(x)=0.
+  \ddot{\phih}(x)-\bnabla^2\phih(x)+ m^2\phih(x)=0.
 \end{align}
 これはモード展開するとたくさんの独立した調和振動子になります。
 今の場合、モード展開はFourier変換です。
@@ -2619,7 +2620,7 @@ $\Ah(\kb)^{\dag},\Ah(\kb)$が生成消滅演算子になります。これの交
 \end{align}
 となります。ですから
 \begin{align}
-  \ah(\kb):=\sqrt{\frac{2\omega(\kb)}{(2\pi)^3}}
+  \ah(\kb):=\sqrt{\frac{2\omega(\kb)}{(2\pi)^3}}\Ah(\kb)
 \end{align}
 とすると
 \begin{align}
