@@ -1945,7 +1945,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 
 一方で、場の理論を考えてみましょう。これから見ていくように場の理論では、空間座標$\xb$、時間$t$ともにc数になります。ですから、比較的相対論と相性が良いです。そして場$\phi(x)$が基本的なq数になります。場の理論において粒子は「現れる」ものです。そのために、時間発展で粒子の数や種類が変わることができます。
 
-皆さんは、高校のとき、あるいは大学の１年生、２年生の授業で「波動と粒子の二重性」というお話を聞いたと思います。古典的には粒子と思っているものは、量子論では波動性を持ちます。また、古典的に波と思っているものは、量子論では粒子的に振る舞います。このうち、古典的に粒子と思っている電子などを量子論で取り扱うことは、量子力学で詳しく勉強したと思います。一方で、古典的に波であったものを量子論的に取り扱うことは、まだやったことがないと思います。場の理論は、まさに古典的に波と思っているものを量子論的に取り扱う理論です。
+皆さんは、高校のとき、あるいは大学の１年生、２年生の授業で「波動と粒子の二重性」というお話を聞いたと思います。古典的には粒子と思っているものは、量子論では波動性を持ちます。また、古典的に波と思っているものは、量子論では粒子的に振る舞います。このうち、古典的に粒子と思っている電子などを量子論で取り扱うことは、量子力学で詳しく勉強したと���います。一方で、古典的に波であったものを量子論的に取り扱うことは、まだやったことがないと思います。場の理論は、まさに古典的に波と思っているものを量子論的に取り扱う理論です。
 
 この授業では、場の理論の初歩的な導入部分のみをやります。特に
 \begin{important}
@@ -2103,7 +2103,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \end{align}
 となります。これを\eqref{modeexpansion}に代入すると
 \begin{align}
-  \phih_{n}(t)(t)=\sum_{u}e^{\frac{2\pi i u n}{N}}
+  \phih_{n}(t)=\sum_{u}e^{\frac{2\pi i u n}{N}}
   (\Ah_{u}e^{-i\omega_u t}+\Bh_{u}e^{i\omega_u t})\label{tempmodeex}
 \end{align}
 となります。ところで、古典的には$\phi_n$は実数でしたから、量子論的には、$\phih_n$はエルミート演算子とすべきです。つまり$\phi_n(t)^{\dag}=\phi_n(t)$です。ここから
@@ -2124,7 +2124,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
   =\sum_{u}e^{\frac{2\pi i u n}{N}}\Ah_{u}e^{-i\omega_u t}+\sum_{u}e^{\frac{2\pi i u n}{N}}\Bh_{u}e^{i\omega_u t}\nonumber\\
   =\sum_{u}e^{\frac{2\pi i u n}{N}}\Ah_{u}e^{-i\omega_u t}+\sum_{u}e^{\frac{2\pi i u n}{N}}\Ah_{-u}^{\dag}e^{i\omega_u t}\nonumber\\
   =\sum_{u}e^{\frac{2\pi i u n}{N}}\Ah_{u}e^{-i\omega_u t}+\sum_{u}e^{\frac{-2\pi i u n}{N}}\Ah_{u}^{\dag}e^{i\omega_u t}\nonumber\\
-  =\sum_{u}(\Ah_{u}e^{-i(\omega_u t-k_u x_n)}+\Ah_{u}e^{i(\omega_u t-k_u x_n)}).\label{tempmodeex2}
+  =\sum_{u}(\Ah_{u}e^{-i(\omega_u t-k_u x_n)}+\Ah_{u}^{\dag}e^{i(\omega_u t-k_u x_n)}).\label{tempmodeex2}
 \end{align}
 2行目から3行目に行くときに、2項目だけ$u\to -u$の変換を行いました。最後の行では、雰囲気を出すために
 \begin{align}
@@ -2132,7 +2132,8 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \end{align}
 という記号を導入しました。$a$はバネで繋がれた２つの物体の釣り合いの位置の間隔です。つまり、$x$はラベル$n$の物体の釣り合いの位置の座標です。最後の表式では、$u>0$の場合が右回り（x軸正の方向に進む）モード、$u<0$の場合が左回り（x軸負の方向に進む）モード、であることがあらわに見て取れます。
 
-ここで出てきた$\Ah_u,\Ah_u^{\dag}$がだいたい生成消滅演算子です。ただし皆さんが習ったものとは、規格化が異なります。これを見ていきましょう。正準交換関係\eqref{canonicalcommutationrelation}を用いるために、まず$\Ah_u,\ \Ah_u^{\dag}$を$\phih_n,\pih_n$で表すことを考えます。Heisenberg方程式の片方から$\pih_n(t)=m\phih_n(t)$でしたから、\eqref{tempmodeex2}より
+ここで出てきた$\Ah_u,\Ah_u^{\dag}$がだいたい生成消滅演算子です。ただし皆さんが習ったものとは、規格化が異なります。これを見ていきましょう。
+正準交換関係\eqref{canonicalcommutationrelation}を用いるために、まず$\Ah_u,\ \Ah_u^{\dag}$を$\phih_n,\pih_n$で表すことを考えます。Heisenberg方程式の片方から$\pih_n(t)=m\dot{\phih}_n(t)$でしたから、\eqref{tempmodeex2}より
 \begin{align}
   \pih_n(t)=m\sum_{u}(-i\omega_{u}\Ah_{u}e^{-i(\omega_u t-k_u x_n)}+i\omega_u\Ah_{u}e^{i(\omega_u t-k_u x_n)})
 \end{align}
@@ -2148,7 +2149,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 という式が成り立つことです。そうすると\eqref{tempmodeex3}から
 \begin{align}
   N(\Ah_u+\Ah_{-u}^{\dag}) =\sum_{n}\phih_n e^{-ik_u x_n},\nonumber\\
-  -iN\omega_{u}(\Ah_u-\Ah_{-u}^{\dag})  =\sum_{n}\pih_n e^{-ik_u x_n}
+  -iN\omega_{u}m(\Ah_u-\Ah_{-u}^{\dag})  =\sum_{n}\pih_n e^{-ik_u x_n}
 \end{align}
 という式を得ます。これらから
 \begin{align}
@@ -2196,7 +2197,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 さて、Hamiltonianを見てみましょう。今モード展開によって、系が調和振動子がたくさん集まったものであることはすでに見ました。したがってHamiltonianもたくさんの調和振動子のHamiltonianの和になっているはずです。これを確かめてみましょう。\eqref{modeexpansion}で導入した$\chih_u(t)$を考えるのが便利です。生成消滅演算子で書くと
 \begin{align}
   \chih_u(t)=\sqrt{\frac{\hbar}{2N\omega_um}}(\ah_ue^{-i\omega_u t}
-  +\ah_u^{\dag}e^{i\omega_u t})
+  +\ah_{-u}^{\dag}e^{i\omega_u t})
 \end{align}
 となります。これを用いると
 \begin{align}
@@ -2205,9 +2206,9 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 となります。Hamiltonianは保存するので、時刻$t=0$で考えればよいのです。そのときの演算子を求めておきます。
 \begin{align}
   \chih_u=\sqrt{\frac{\hbar}{2N\omega_um}}(\ah_u
-  +\ah_u^{\dag}),\quad
+  +\ah_{-u}^{\dag}),\quad
   \dot{\chih}_u=-i\omega_{u}\sqrt{\frac{\hbar}{2N\omega_um}}(\ah_u
-  -\ah_u^{\dag}).\label{tempmodeex5}
+  -\ah_{-u}^{\dag}).\label{tempmodeex5}
 \end{align}
 まず、\eqref{modeexpansion}、\eqref{modeexpansionpi}を用いてHamiltonianを変形していきます。
 \begin{align}
@@ -2318,9 +2319,9 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \end{align}
 という表式を得ます。ここで
 \begin{align}
-  k_u=\frac{2\pi u}{L},\quad \omega_{u}=\frac{1}{\hbar}\sqrt{M^2c^4+(\hbar k_u)^2c^2},\quad M=\frac{\hbar\sqrt{\lambda}}{c^4}
+  k_u=\frac{2\pi u}{L},\quad \omega_{u}=\frac{1}{\hbar}\sqrt{M^2c^4+(\hbar k_u)^2c^2},\quad \frac{M^2c^4}{\hbar^2}\rho=\frac{\ell}{a}
 \end{align}
-としました。$c$を光速と思うなら、１粒子のエネルギー$\hbar \omega_{u}$と運動量$\hbar k_u$の関係が、相対論的なものになっていることが分かると思います。
+としました。$\hbar$をあらわに書いたので、$M$の表式が\eqref{classicalcontinuum}と少し変わっています。$c$を光速と思うなら、１粒子のエネルギー$\hbar \omega_{u}$と運動量$\hbar k_u$の関係が、相対論的なものになっていることが分かると思います。
 
 正準運動量の方は、次のように連続的なものを定義します。
 \begin{align}
@@ -2331,7 +2332,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
   [\phih(x,t),\pih(x',t)]=[\sqrt{\rho}\phi_{n}(t),\frac{1}{a\sqrt{\rho}}\pih_{n'}(t)]=\frac{ih}{a}\delta_{n,n'}
   \label{tempcommutationrelationcontinuum}
 \end{align}
-となります。ここで、最後の$\frac{1}{a}\delta_{n,n'}$について考えてみましょう。$x=na,\ x'=n'a$ですから$a\to\infty$の極限で
+となります。ここで、最後の$\frac{1}{a}\delta_{n,n'}$について考えてみましょう。$x=na,\ x'=n'a$ですから$a\to 0$の極限で
 \begin{align}
   \frac{1}{a}\delta_{n,n'}\to
   \begin{cases}
@@ -2442,7 +2443,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 \begin{align}
   S[\phi]=\int d^4x \Lcal(\phi(x),\del\phi(x)),\qquad \int d^4x :=\int dt\int d^3\xb\label{fieldtheoryaction}
 \end{align}
-とLagrangian密度$\Lcal(\phi,\del\phi)l$を用いて書かれているとします。$\Lcal(\phi,\del\phi)$は$\phi,\del_{\mu}\phi\ (\mu=0,1,2,3)$の（汎関数ではなく）関数で、スカラー場であるとします。例えば$V(\phi)$を$\phi$の関数として
+とLagrangian密度$\Lcal(\phi,\del\phi)$を用いて書かれているとします。$\Lcal(\phi,\del\phi)$は$\phi,\del_{\mu}\phi\ (\mu=0,1,2,3)$の（汎関数ではなく）関数で、スカラー場であるとします。例えば$V(\phi)$を$\phi$の関数として
 \begin{align}
   \Lcal=\frac12\del_{\mu}\phi \del^{\mu}\phi-V(\phi)
 \end{align}
@@ -2543,7 +2544,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
   \item ラベルについての和は、積分に置き換える。
 \end{itemize}
 
-これを踏まえてPoisson括弧を考えてみましょう。$A,B$を$\pi(\xb),\phi(\xb)$の汎関数をします。上の処方をPoisson括弧でやると
+これを踏まえてPoisson括弧を考えてみましょう。$A,B$を$\pi(\xb),\phi(\xb)$の汎関数とします。上の処方をPoisson括弧でやると
 \begin{align}
   \{A,B\}=\int d^3\xb\qty(
     \fdv{A}{\phi(\xb)}\fdv{B}{\pi(\xb)}
