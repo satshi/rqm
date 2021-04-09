@@ -63,8 +63,12 @@
 \newcommand{\Lb}{\vvmathbb{L}}
 \newcommand{\Sb}{\vvmathbb{S}}
 \newcommand{\Jb}{\mathbb{J}}
+\newcommand{\Eb}{\vvmathbb{E}}
 \newcommand{\bnabla}{\raisebox{-0.2ex}{\includegraphics[width=0.65em]{bnabla.pdf}}}
 \newcommand{\alphab}{\vmathbb{\alpha}}
+\newcommand{\zerob}{\vmathbb{0}}
+
+
 \newcommand{\uket}{\ket{\uparrow}}
 \newcommand{\dket}{\ket{\downarrow}}
 \newcommand{\ml}{m_{l}}
@@ -187,6 +191,72 @@ Dirac方程式による１つの電子の記述は素晴らしいものですが
 \end{align}
 となります。私の電磁気学２の講義を受けた人は、そのときと符号が逆であることに注意してください。人、教科書、時と場合によって、この符号はどちらを使っているかが違います。今後教科書、論文などを読むときは注意してください。
 
+\section{Maxwell理論}
+ここでは、Maxwell理論のテンソルの記号を用いた表記について復習します。テンソルの記号を用いて書くと、シンプルになるというのみならず、Poincar\'e不変性が明らかになります。ここでやるのはあくまで復習です。もし、この節でやることを今までやったことがなければ、ちゃんとした教科書で勉強してください。
+
+みなさんが、１年生のときから習ってきたMaxwell方程式は次のようになっていたと思います。
+\begin{align}
+  &\bnabla\cdot \Eb = \frac{1}{\epsilon_0}\rho,\quad
+  &&\bnabla \cdot \Bb =0,\\
+  &\bnabla \times \Eb + \pdv{t} \Bb = \zerob ,
+  &&\bnabla \times \Bb -\epsilon_0\mu_0 \pdv{t}\Eb =\mu_0 \jb.
+\end{align}
+ここで、光速$c$は、$c=\frac{1}{\sqrt{\epsilon_0\mu_0}}$と表すことができました。今、自然単位系をとっているので$c=1$であり、したがって$\epsilon_0 \mu_0=1$ となります。この関係を使って$\epsilon_0$を消すと
+\begin{align}
+  &\bnabla\cdot \Eb = \mu_0 \rho,\quad
+  &&\bnabla \cdot \Bb =0, \label{Bianchi}\\
+  &\bnabla \times \Eb + \pdv{t} \Bb = \zerob ,
+  &&\bnabla \times \Bb - \pdv{t}\Eb =\mu_0 \jb\label{Maxwelleq}
+\end{align}
+というふうに書けます。さらに電荷の単位を調整して$\mu_0=1$となるようにすることもできますが、ここでは必要ないのでやりません。\footnote{電荷の単位を決めるのに$\mu_0=1$にするのが便利なこともありますが、$\mu_0$は残したままで電子の電荷を$-1$にするのが便利なこともあります。}
+
+これを相対論的に書き換えていきます。何も言わなければ３次元ベクトルの成分は上付きで書くことにします。例えば$\Eb=(E^1,E^2,E^3)$です。
+
+天下り的ですが、次のように$\Eb$と$\Bb$をまとめて反対称テンソル$F^{\mu\nu}$にします。
+\begin{align}
+  F^{\mu\nu}=\mqty(
+    0 & -E^1 & -E^2 & -E^3\\
+    E^1 & 0 & -B^3 & B^2 \\
+    E^2 & B^3 & 0 & -B^1 \\
+    E^3 & -B^2 & B^1 & 0
+  ).\label{fieldstrength}
+\end{align}
+この書き方の意味は$F^{\mu\nu}$を４行４列の行列の$\mu\nu$成分とみなして、その行列を書いたものです。例えば$F^{10}=E^1$になります。$F^{\mu\nu}=-F^{\nu\mu}$であることに注意してください。
+
+\eqref{fieldstrength}式の$F^{\mu\nu}$を用いるとMaxwell方程式の\eqref{Bianchi}式と\eqref{Maxwelleq}式はそれぞれ
+\begin{align}
+  \del_{[\mu}F_{\nu\rho]} =0,\label{Bianchi2}\\
+  \del_{\mu}F^{\mu\nu}=\mu_0j^{\mu}
+\end{align}
+と書けます。ただし４元ベクトル$j^{\mu}$の$0$成分は$j^0=\rho$としました。また、\eqref{Bianchi2}では反対称化の記号$[]$を用いました。定義は
+$T_{\mu\nu\rho}$に対して
+\begin{align}
+  T_{[\mu\nu\rho]}:=\frac{1}{3!}(T_{\mu\nu\rho}+T_{\nu\rho\mu}+T_{\rho\mu\nu}-T_{\nu\mu\rho}-T_{\mu\rho\nu}-T_{\rho\nu\mu})
+\end{align}
+です。もっと一般の場合には付録の\eqref{antisymmetrization}式を参照してください。今の場合には\eqref{Bianchi2}は
+\begin{align}
+  \del_{\mu}F_{\nu\rho}+\del_{\nu}F_{\rho\mu}+\del_{\rho}F_{\mu\nu}=0
+\end{align}
+と等価です。
+
+さて、\eqref{Bianchi2}の式は「解く」ことができて、あるベクトル場$A_{\mu}$を用いて
+\begin{align}
+  F_{\mu\nu}=\del_{\mu}A_{\nu}-\del_{\nu}A_{\mu}\label{gaugefield}
+\end{align}
+と書くことができます。この$A_{\mu}$は電磁気の授業でならった電磁ポテンシャル$\phi,\Ab$と同じです。実際
+\begin{align}
+  \phi=A^{0},\quad \Ab=(A^1,A^2,A^3)
+\end{align}
+となっています。電磁場$\Eb,\Bb$が
+\begin{align}
+  \Eb=-\pdv{t}\Ab-\bnabla \phi,\quad \Bb=\bnabla \times \Ab
+\end{align}
+と書けるのでした。さらに、同じ$F_{\mu\nu}$を与える$A_{\mu}$は一意的でなく、任意の関数$\alpha$を用いて\strong{ゲージ変換}
+\begin{align}
+  A_{\mu} \to \tilde{A}_{\mu}=A_{\mu}+\del_{\mu}\alpha 
+\end{align}
+としても同じ$F_{\mu\nu}$を与えます。このゲージ変換で理論が不変であることを\strong{ゲージ対称性}といいます。ゲージ対称性は素粒子論で非常に重要な概念です。
+
 \section{相対論的な自由粒子の古典力学}
 さて、相対論的な粒子の運動について復習しましょう。ここでは解析力学の枠組みで見ていきます。まずは自由粒子からです。粒子が時空に描く線を\strong{世界線}と呼びます。自由粒子の作用は世界線の長さに比例します。これは、質量を$m$として
 \begin{important}
@@ -241,11 +311,11 @@ Dirac方程式による１つの電子の記述は素晴らしいものですが
 
 \section{電磁場背景中の粒子}
 \label{classicalelemagbackground}
-ここでは、電磁場背景中の電荷を持った粒子を考えることにしましょう。まず、電磁ポテンシャル$(\phi, \Ab)$は、４元ベクトルとして表すことができます。つまり
-\begin{align}
-  \phi=A^0,\quad \Ab=\mqty(A^1 \\ A^2 \\ A^3)
-\end{align}
-としたとき$A^{\mu}$は４元反変ベクトルになっています。
+ここでは、電磁場背景中の電荷を持った粒子を考えることにしましょう。運動方程式には、電場や磁場あるいはそれをまとめた$F_{\mu\nu}$しか出てこないですが、作用を書くためには電磁ポテンシャル$(\phi, \Ab)$あるいはそれをまとめた\eqref{gaugefield}式の$A_{\mu}$が必要になります。
+% \begin{align}
+%   \phi=A^0,\quad \Ab=\mqty(A^1 \\ A^2 \\ A^3)
+% \end{align}
+% としたとき$A^{\mu}$は４元反変ベクトルになっています。
 
 少々天下り的ですが、電荷$q$をもつ粒子の作用は
 \begin{align}
@@ -1247,7 +1317,7 @@ Dirac方程式に従う波動関数であるスピノール場に行く前に、
 \end{align}
 という記号を用いました。反対称化の記号$[]$は$p$個の添字を持つ量$B^{\mu_1\dots \mu_p}$があったときに
 \begin{align}
-  B^{[\mu_1\dots \mu_p]}:=\frac{1}{p!}\sum_{(i_1,\dots,i_p):\ (1,\dots, p)\text{の置換}}B^{\mu_{i_1}\dots \mu_{i_p}}\epsilon(i_1,\dots,i_p)
+  B^{[\mu_1\dots \mu_p]}:=\frac{1}{p!}\sum_{(i_1,\dots,i_p):\ (1,\dots, p)\text{の置換}}B^{\mu_{i_1}\dots \mu_{i_p}}\epsilon(i_1,\dots,i_p)\label{antisymmetrization}
 \end{align}
 と定義しています。$\epsilon(i_1,\dots,i_p)$は、
 \begin{align}
