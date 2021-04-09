@@ -196,16 +196,16 @@ Dirac方程式による１つの電子の記述は素晴らしいものですが
 
 みなさんが、１年生のときから習ってきたMaxwell方程式は次のようになっていたと思います。
 \begin{align}
-  &\bnabla\cdot \Eb = \frac{1}{\epsilon_0}\rho,\quad
-  &&\bnabla \cdot \Bb =0,\\
   &\bnabla \times \Eb + \pdv{t} \Bb = \zerob ,
+  &&\bnabla \cdot \Bb =0,\\
+  &\bnabla\cdot \Eb = \frac{1}{\epsilon_0}\rho,\quad
   &&\bnabla \times \Bb -\epsilon_0\mu_0 \pdv{t}\Eb =\mu_0 \jb.
 \end{align}
 ここで、光速$c$は、$c=\frac{1}{\sqrt{\epsilon_0\mu_0}}$と表すことができました。今、自然単位系をとっているので$c=1$であり、したがって$\epsilon_0 \mu_0=1$ となります。この関係を使って$\epsilon_0$を消すと
 \begin{align}
-  &\bnabla\cdot \Eb = \mu_0 \rho,\quad
-  &&\bnabla \cdot \Bb =0, \label{Bianchi}\\
   &\bnabla \times \Eb + \pdv{t} \Bb = \zerob ,
+  &&\bnabla \cdot \Bb =0, \label{Bianchi}\\
+  &\bnabla\cdot \Eb = \mu_0 \rho,\quad
   &&\bnabla \times \Bb - \pdv{t}\Eb =\mu_0 \jb\label{Maxwelleq}
 \end{align}
 というふうに書けます。さらに電荷の単位を調整して$\mu_0=1$となるようにすることもできますが、ここでは必要ないのでやりません。\footnote{電荷の単位を決めるのに$\mu_0=1$にするのが便利なこともありますが、$\mu_0$は残したままで電子の電荷を$-1$にするのが便利なこともあります。}
@@ -224,10 +224,12 @@ Dirac方程式による１つの電子の記述は素晴らしいものですが
 この書き方の意味は$F^{\mu\nu}$を４行４列の行列の$\mu\nu$成分とみなして、その行列を書いたものです。例えば$F^{10}=E^1$になります。$F^{\mu\nu}=-F^{\nu\mu}$であることに注意してください。
 
 \eqref{fieldstrength}式の$F^{\mu\nu}$を用いるとMaxwell方程式の\eqref{Bianchi}式と\eqref{Maxwelleq}式はそれぞれ
-\begin{align}
-  \del_{[\mu}F_{\nu\rho]} =0,\label{Bianchi2}\\
-  \del_{\mu}F^{\mu\nu}=\mu_0j^{\mu}
-\end{align}
+\begin{important}
+  \begin{align}
+    \del_{[\mu}F_{\nu\rho]} =0,\label{Bianchi2}\\
+    \del_{\mu}F^{\mu\nu}=\mu_0j^{\nu}\label{Maxwelleq2}
+  \end{align}    
+\end{important}
 と書けます。ただし４元ベクトル$j^{\mu}$の$0$成分は$j^0=\rho$としました。また、\eqref{Bianchi2}では反対称化の記号$[]$を用いました。定義は
 $T_{\mu\nu\rho}$に対して
 \begin{align}
@@ -235,14 +237,23 @@ $T_{\mu\nu\rho}$に対して
 \end{align}
 です。もっと一般の場合には付録の\eqref{antisymmetrization}式を参照してください。今の場合には\eqref{Bianchi2}は
 \begin{align}
-  \del_{\mu}F_{\nu\rho}+\del_{\nu}F_{\rho\mu}+\del_{\rho}F_{\mu\nu}=0
+  \del_{\mu}F_{\nu\rho}+\del_{\nu}F_{\rho\mu}+\del_{\rho}F_{\mu\nu}=0\label{Bianchi3}
 \end{align}
-と等価です。
+と等価です。実際\eqref{Bianchi2}（あるいは\eqref{Bianchi3}）と\eqref{Maxwelleq2}がそれぞれ\eqref{Bianchi}式と\eqref{Maxwelleq}式と等価であることは次のように確かめられます。
+\begin{itemize}
+  \item \eqref{Bianchi2}式あるいは\eqref{Bianchi3}式で$(\mu,\nu,\rho)=(0,i,j),\ i,j=1,2,3$としたものが、\eqref{Bianchi}の左の式になります。
+  \item \eqref{Bianchi2}式あるいは\eqref{Bianchi3}式で$(\mu,\nu,\rho)=(1,2,3)$としたものが\eqref{Bianchi}の右の式になります。
+  \item \eqref{Maxwelleq2}式で$\nu=0$としたものが\eqref{Maxwelleq}の左の式になります。  
+  \item \eqref{Maxwelleq2}式で$\nu=i,\ i=1,2,3$としたものが\eqref{Maxwelleq}の右の式になります。
+\end{itemize}
+実際に手を動かして確かめてみてください。
 
 さて、\eqref{Bianchi2}の式は「解く」ことができて、あるベクトル場$A_{\mu}$を用いて
-\begin{align}
-  F_{\mu\nu}=\del_{\mu}A_{\nu}-\del_{\nu}A_{\mu}\label{gaugefield}
-\end{align}
+\begin{important}
+  \begin{align}
+    F_{\mu\nu}=\del_{\mu}A_{\nu}-\del_{\nu}A_{\mu}\label{gaugefield}
+  \end{align}    
+\end{important}
 と書くことができます。この$A_{\mu}$は電磁気の授業でならった電磁ポテンシャル$\phi,\Ab$と同じです。実際
 \begin{align}
   \phi=A^{0},\quad \Ab=(A^1,A^2,A^3)
