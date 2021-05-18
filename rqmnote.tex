@@ -398,7 +398,7 @@ $T_{\mu\nu\rho}$に対して
 \end{important}
 という連続の式が導けるのでした。この式の意味は「ある領域から流れ出た電荷の分だけ、その中にある電荷が減る」というものであり、全電荷が時間変化しないことはここからすぐに導くことができます。なので今の場合も確率密度$\rho(t,\xb)$に対して式\eqref{continue}を満たすような「確率の流れ密度」$\jb(t,\xb)$を見つけてやればよいことになります。実際、
 \begin{align}
-  \jb(t,\xb)=-\frac{i}{2m}\qty((\bnabla \psi^*)\psi-\psi^{*}\bnabla \psi)
+  \jb(t,\xb)=\frac{i}{2m}\qty((\bnabla \psi^*)\psi-\psi^{*}\bnabla \psi)
 \end{align}
 とするとよいです。実際にこの$\jb$が式\eqref{continue}を満たすことを確かめるのは、みなさんの練習問題に残しておきます。
 
@@ -984,8 +984,8 @@ Dirac方程式\eqref{freeDiracequation2}は、Lorentz不変になりそうな雰
 \begin{align}
   M_{12}=\mqty(
     0 & 0 & 0 & 0 \\  
-    0 & 0 & i & 0 \\  
-    0 &-i & 0 & 0 \\  
+    0 & 0 & -i & 0 \\  
+    0 & i & 0 & 0 \\  
     0 & 0 & 0 & 0 \\  
   ),\quad
   M_{01}=\mqty(
