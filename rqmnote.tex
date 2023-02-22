@@ -1,16 +1,14 @@
 \RequirePackage{plautopatch}
 \documentclass[report,paper=a4, fontsize=12pt, line_length=16cm, number_of_lines=33,dvipdfmx]{jlreq}
-%\documentclass[pandoc,12pt]{bxjsarticle}
-
-\usepackage{amsmath,amssymb}
-\usepackage[bold,uplatex]{otf}
-%% Fonts
 \usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+%\usepackage[bold,uplatex]{otf}
+\usepackage{jlreq-deluxe}
+%% Fonts
 \usepackage{tgtermes,tgheros,tgcursor}
 \renewcommand{\bfdefault}{bx}
 \usepackage[libertine]{newtxmath}
 \usepackage{hyperref}
-\usepackage{pxjahyper}
 
 \usepackage{graphicx}
 \graphicspath{{fig/}}
@@ -23,10 +21,10 @@
 %\usepackage{cleveref}
 
 % font warningを出さないため
-\DeclareFontShape{JY2}{hgt}{b}{n}{<->ssub*hgt/bx/n}{}
-\DeclareFontShape{JY2}{hgt}{m}{it}{<->ssub*hgt/m/n}{}
-\DeclareFontShape{JT2}{hgt}{b}{n}{<->ssub*hgt/bx/n}{}
-\DeclareFontShape{JT2}{hgt}{m}{it}{<->ssub*hgt/m/n}{}
+% \DeclareFontShape{JY2}{hgt}{b}{n}{<->ssub*hgt/bx/n}{}
+% \DeclareFontShape{JY2}{hgt}{m}{it}{<->ssub*hgt/m/n}{}
+% \DeclareFontShape{JT2}{hgt}{b}{n}{<->ssub*hgt/bx/n}{}
+% \DeclareFontShape{JT2}{hgt}{m}{it}{<->ssub*hgt/m/n}{}
 
 \newenvironment{myquote}{\begin{tcolorbox}[
   colback = blue!5, after = \noindent] }{\end{tcolorbox}}
@@ -45,7 +43,7 @@
 \newcommand{\Cb}{\mathbb{C}}
 \newcommand{\Zb}{\mathbb{Z}}
 \newcommand{\CP}{\Cb \mathrm{P}}
-\newcommand{\strong}[1]{{\sffamily \bfseries #1}}
+\newcommand{\strong}[1]{{\sffamily \gtfamily \bfseries #1}}
 \newcommand{\Sp}{S$'$}
 
 \newcommand{\psib}{\overline{\psi}}
@@ -1609,7 +1607,7 @@ Dirac方程式は電子などのスピン$\frac12$の粒子を記述します。
 スピン角運動量$\Sb$と合わせた全角運動量$\Jb=\Lb+\Sb$が保存します。まずは、$\Jb$の既約表現の基底$\ket{j,m}$を$\Lb$の
 既約表現の基底$\ket{l,\ml}$と$\Sb$の既約表現の基底$\uket,\dket$を用いて表すことを考えましょう。これらは次の式を満たします。
 \begin{align}
-  &L_3\ket{l,\ml}=\ml\ket{l,\ml},\quad \Lb^2\ket{l,\ml}=l(l+1)\ket{l,\ml},\quad L_{-}\ket{l,\ml}=\sqrt{(l+\ml)(l+1-\ml)}\ket{l,\ml},\\
+  &L_3\ket{l,\ml}=\ml\ket{l,\ml},\ \Lb^2\ket{l,\ml}=l(l+1)\ket{l,\ml},\ L_{-}\ket{l,\ml}=\sqrt{(l+\ml)(l+1-\ml)}\ket{l,\ml},\\
   &J_3\ket{j,m}=m\ket{j,m},\quad \Jb^2\ket{j,m}=j(j+1)\ket{j,m},\quad J_{-}\ket{j,m}=\sqrt{(j+m)(j+1-m)}\ket{j,m},\\
   &S_3\uket=+\frac12\uket,\quad S_3\dket=-\frac12\dket,\quad
   \Sb^2\uket=\frac34\uket,\quad
@@ -2029,7 +2027,7 @@ $e^{-\omega r}$の方を考えます。また\eqref{rinfty}の右の式を考え
 
 一方で、場の理論を考えてみましょう。これから見ていくように場の理論では、空間座標$\xb$、時間$t$ともにc数になります。ですから、比較的相対論と相性が良いです。そして場$\phi(x)$が基本的なq数になります。場の理論において粒子は「現れる」ものです。そのために、時間発展で粒子の数や種類が変わることができます。
 
-皆さんは、高校のとき、あるいは大学の１年生、２年生の授業で「波動と粒子の二重性」というお話を聞いたと思います。古典的には粒子と思っているものは、量子論では波動性を持ちます。また、古典的に波と思っているものは、量子論では粒子的に振る舞います。このうち、古典的に粒子と思っている電子などを量子論で取り扱うことは、量子力学で詳しく勉強したと���います。一方で、古典的に波であったものを量子論的に取り扱うことは、まだやったことがないと思います。場の理論は、まさに古典的に波と思っているものを量子論的に取り扱う理論です。
+皆さんは、高校のとき、あるいは大学の１年生、２年生の授業で「波動と粒子の二重性」というお話を聞いたと思います。古典的には粒子と思っているものは、量子論では波動性を持ちます。また、古典的に波と思っているものは、量子論では粒子的に振る舞います。このうち、古典的に粒子と思っている電子などを量子論で取り扱うことは、量子力学で詳しく勉強したと思います。一方で、古典的に波であったものを量子論的に取り扱うことは、まだやったことがないと思います。場の理論は、まさに古典的に波と思っているものを量子論的に取り扱う理論です。
 
 この授業では、場の理論の初歩的な導入部分のみをやります。特に
 \begin{important}
